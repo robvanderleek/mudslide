@@ -1,0 +1,30 @@
+{
+  "name": "jackknife",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "yarn build && node ./dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "ncc build dist/index.js -o dist-ncc && pkg -t node16-macos-arm64 -o jackknife dist-ncc/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@adiwajshing/baileys": "^4.4.0",
+    "@hapi/boom": "^10.0.0",
+    "commander": "^9.4.1",
+    "pino": "^8.7.0",
+    "qrcode-terminal": "^0.12.0",
+    "signale": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.10",
+    "@types/pino": "^7.0.5",
+    "@types/signale": "^1.4.4",
+    "@vercel/ncc": "^0.34.0",
+    "pkg": "^5.8.0",
+    "typescript": "^4.9.3"
+  }
+}
