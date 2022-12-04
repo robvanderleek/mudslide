@@ -31,11 +31,9 @@ jobs:
     - name: 'Checkout sources'
       uses: actions/checkout@v3
     - name: 'Set NodeJS'
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16.x
+      uses: actions/setup-node@v2.1.1
     - name: 'Install dependencies'
-      run: yarn install
+      run: yarn
     - name: 'Create distribution'
       run: yarn dist
     - name: 'Add tarballs to release'
