@@ -20,7 +20,6 @@ jobs:
         release_name: Release ${{ github.ref }}
         draft: false
         prerelease: false
-
   build:
     name: Build packages
     needs: createrelease
@@ -44,4 +43,3 @@ jobs:
       with:
         files: |
           jackknife-macos-arm64.tgz
-
