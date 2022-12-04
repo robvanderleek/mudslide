@@ -32,6 +32,8 @@ jobs:
       uses: actions/checkout@v3
     - name: 'Set NodeJS'
       uses: actions/setup-node@v2.1.1
+    - name: 'Use HTTPS, not SSH'
+      run: git config --global url."https://github".insteadOf ssh://git@github
     - name: 'Install dependencies'
       run: yarn
     - name: 'Create distribution'
