@@ -27,6 +27,7 @@ jobs:
       run:
         shell: bash
     runs-on: ubuntu-latest
+    steps:
     - name: 'Checkout sources'
       uses: actions/checkout@v2
     - name: 'Set NodeJS'
