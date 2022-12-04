@@ -6,8 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "yarn build && node ./dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dist": "ncc build dist/index.js -o dist-ncc && pkg -t node16-macos-arm64 -o jackknife dist-ncc/index.js"
+    "dist": "ncc build dist/index.js -o dist-ncc && pkg -t node16-macos-arm64 -o jackknife dist-ncc/index.js && tar czf jackknife-macos-arm64.tgz jackknife"
   },
   "author": "",
   "license": "ISC",

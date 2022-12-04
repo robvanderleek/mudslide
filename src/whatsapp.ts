@@ -1,40 +1,51 @@
 import makeWASocket, {DisconnectReason, useMultiFileAuthState} from "@adiwajshing/baileys";
 import pino from "pino";
-import * as os from "os";
 import path from "path";
 import * as fs from "fs";
 import {Boom} from "@hapi/boom";
 import signale from "signale";
+import * as os from "os";
 
 function getAuthStateCacheFolder() {
-    const homeDir = os.homedir();
-    if (!homeDir) {
-        console.error('Could not resolve home directory!');
-        process.exit(1);
+    const homedir = os.homedir();
+    let folder;
+    if (process.platform === 'win32') {
+        folder = path.join(homedir, 'AppData', 'Local', 'jackknife', 'Data');
+    } else {
+        folder = path.join(homedir, '.local', 'share', 'jackknife');
     }
-    const folder = path.join(homeDir, '.local', 'share', 'jackknife');
     if (!fs.existsSync(folder)) {
         fs.mkdirSync(folder, {recursive: true});
-        console.log(`Created jackknife cache folder: ${folder}`);
+        signale.log(`Created jackknife cache folder: ${folder}`);
     }
     return folder;
 }
 
-async function initWASocket(printQR = true) {
+async function initWASocket(printQR = true, message: string | undefined = undefined) {
     const {state, saveCreds} = await useMultiFileAuthState(getAuthStateCacheFolder());
     const socket = makeWASocket({
         logger: pino({level: 'silent'}),
         auth: state,
-        printQRInTerminal: printQR
+        printQRInTerminal: printQR,
+        getMessage: async _ => {
+            return {
+                conversation: message
+            }
+        }
     });
     socket.ev.on('creds.update', async () => await saveCreds());
     return socket;
 }
 
-function terminate(socket: any) {
-    socket.end(undefined);
-    socket.ws.close();
-    process.exit();
+function terminate(socket: any, waitSeconds = 0) {
+    if (waitSeconds > 0) {
+        signale.await(`Waiting ${waitSeconds} second(s) for successful delivery...`);
+    }
+    setTimeout(() => {
+        socket.end(undefined);
+        socket.ws.close();
+        process.exit();
+    }, waitSeconds * 1000)
 }
 
 function checkLoggedIn() {
@@ -86,34 +97,38 @@ export async function logout() {
     });
 }
 
-export async function sendMessage(id: string, message: string) {
+export async function sendMessage(recipient: string, message: string) {
     checkLoggedIn();
     const socket = await initWASocket();
     socket.ev.on('connection.update', async (update) => {
         const {connection} = update
         if (connection === 'open') {
-            signale.await(`Sending message: "${message}" to: ${id}`);
-            const whatsappId = `${id}@s.whatsapp.net`;
+            if (recipient === 'me') {
+                const user = await socket.user;
+                if (user) {
+                    recipient = user.id.substring(0, user.id.indexOf(':'));
+                }
+            }
+            signale.await(`Sending message: "${message}" to: ${recipient}`);
+            const whatsappId = `${recipient}@s.whatsapp.net`;
             await socket.sendMessage(whatsappId, {text: message});
             signale.success('Done');
-            terminate(socket);
+            terminate(socket, 3);
         }
     });
 }
 
 export async function sendGroupMessage(id: string, message: string) {
     checkLoggedIn();
-    const socket = await initWASocket();
+    const socket = await initWASocket(true, message);
     socket.ev.on('connection.update', async (update) => {
         const {connection} = update
         if (connection === 'open') {
-            // const groupData = await socket.groupFetchAllParticipating()
-            // console.log(groupData);
             const whatsappId = `${id}@g.us`;
             signale.await(`Sending message: "${message}" to: ${whatsappId}`);
             await socket.sendMessage(whatsappId, {text: message});
             signale.success('Done');
-            terminate(socket);
+            terminate(socket, 3);
         }
     });
 }

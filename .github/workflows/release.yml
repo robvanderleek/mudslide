@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  createrelease:
+    name: Create Release
+    runs-on: [ubuntu-latest]
+    steps:
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+  build:
+    name: Build packages
+    needs: createrelease
+    defaults:
+      run:
+        shell: bash
+    runs-on: ubuntu-latest
+    - name: 'Checkout sources'
+      uses: actions/checkout@v2
+    - name: 'Set NodeJS'
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16.x
+    - name: 'Install dependencies'
+      run: yarn install
+    - name: 'Create distribution'
+      run: yarn dist
+    - name: 'Add tarballs to release'
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          jackknife-macos-arm64.tgz
+
