@@ -14,6 +14,7 @@
     "@adiwajshing/baileys": "^4.4.0",
     "@hapi/boom": "^10.0.0",
     "commander": "^9.4.1",
+    "libsignal": "^2.0.1",
     "pino": "^8.7.0",
     "qrcode-terminal": "^0.12.0",
     "signale": "^1.4.0"
