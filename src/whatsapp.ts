@@ -5,19 +5,18 @@ import * as fs from "fs";
 import {Boom} from "@hapi/boom";
 import signale from "signale";
 import * as os from "os";
-import {sign} from "crypto";
 
 function getAuthStateCacheFolder() {
     const homedir = os.homedir();
     let folder;
     if (process.platform === 'win32') {
-        folder = path.join(homedir, 'AppData', 'Local', 'wacli', 'Data');
+        folder = path.join(homedir, 'AppData', 'Local', 'mudslide', 'Data');
     } else {
-        folder = path.join(homedir, '.local', 'share', 'wacli');
+        folder = path.join(homedir, '.local', 'share', 'mudslide');
     }
     if (!fs.existsSync(folder)) {
         fs.mkdirSync(folder, {recursive: true});
-        signale.log(`Created wacli cache folder: ${folder}`);
+        signale.log(`Created mudslide cache folder: ${folder}`);
     }
     return folder;
 }

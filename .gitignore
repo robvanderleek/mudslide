@@ -2,5 +2,5 @@ dist/
 dist-ncc/
 node_modules/
 yarn-error.log
-wacli
+mudslide
 *.tgz

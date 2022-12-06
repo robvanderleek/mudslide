@@ -1,5 +1,5 @@
 {
-  "name": "wacli",
+  "name": "mudslide",
   "version": "0.1.0",
   "author": "Rob van der Leek <robvanderleek@gmail.com>",
   "description": "WhatsApp CLI",
@@ -9,8 +9,8 @@
     "build": "tsc && chmod a+x ./dist/index.js",
     "start": "yarn build && node ./dist/index.js",
     "dist:build": "ncc build dist/index.js -o dist-ncc",
-    "dist:pkg": "pkg -t node16-macos-arm64 -o wacli dist-ncc/index.js",
-    "dist:bundle": "tar czf wacli-macos-arm64.tgz wacli"
+    "dist:pkg": "pkg -t node16-macos-arm64 -o mudslide dist-ncc/index.js",
+    "dist:bundle": "tar czf mudslide-macos-arm64.tgz mudslide"
   },
   "author": "",
   "license": "ISC",
