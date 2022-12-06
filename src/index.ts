@@ -3,7 +3,7 @@ import {program} from "commander";
 import {listGroups, login, logout, me, sendGroupMessage, sendMessage} from "./whatsapp";
 
 
-program.name('jackknife').version('0.1.0');
+program.name('wacli').version('0.1.0');
 program
     .command('login')
     .description('Login to WhatsApp')

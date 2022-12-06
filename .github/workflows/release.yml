@@ -39,7 +39,7 @@ jobs:
     - name: 'Compile TypeScript'
       run: yarn build
     - name: 'Create distribution'
-      run: yarn dist
+      run: yarn dist:build && yarn dist:pkg && yarn dist:bundle
     - name: 'Add tarballs to release'
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')

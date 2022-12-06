@@ -10,13 +10,13 @@ function getAuthStateCacheFolder() {
     const homedir = os.homedir();
     let folder;
     if (process.platform === 'win32') {
-        folder = path.join(homedir, 'AppData', 'Local', 'jackknife', 'Data');
+        folder = path.join(homedir, 'AppData', 'Local', 'wacli', 'Data');
     } else {
-        folder = path.join(homedir, '.local', 'share', 'jackknife');
+        folder = path.join(homedir, '.local', 'share', 'wacli');
     }
     if (!fs.existsSync(folder)) {
         fs.mkdirSync(folder, {recursive: true});
-        signale.log(`Created jackknife cache folder: ${folder}`);
+        signale.log(`Created wacli cache folder: ${folder}`);
     }
     return folder;
 }
@@ -110,6 +110,7 @@ export async function sendMessage(recipient: string, message: string) {
                 }
             }
             signale.await(`Sending message: "${message}" to: ${recipient}`);
+            message = message.replace(/\\n/g, '\n');
             const whatsappId = `${recipient}@s.whatsapp.net`;
             await socket.sendMessage(whatsappId, {text: message});
             signale.success('Done');
@@ -126,6 +127,7 @@ export async function sendGroupMessage(id: string, message: string) {
         if (connection === 'open') {
             const whatsappId = `${id}@g.us`;
             signale.await(`Sending message: "${message}" to: ${whatsappId}`);
+            message = message.replace(/\\n/g, '\n');
             await socket.sendMessage(whatsappId, {text: message});
             signale.success('Done');
             terminate(socket, 3);
