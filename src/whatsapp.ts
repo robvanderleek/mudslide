@@ -77,7 +77,7 @@ export async function login(waitForWA = false) {
         } else if (connection === 'open') {
             signale.success('Logged in');
             if (waitForWA) {
-                await waitForKey("Wait until WhatsApp finished then press any key to exit");
+                await waitForKey("Wait until WhatsApp finishes connecting, then press any key to exit");
                 terminate(socket);
             } else {
                 terminate(socket);
