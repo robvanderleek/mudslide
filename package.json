@@ -6,7 +6,7 @@
   "bin": "dist/index.js",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && chmod a+x ./dist/index.js",
     "start": "yarn build && node ./dist/index.js",
     "dist:build": "ncc build dist/index.js -o dist-ncc",
     "dist:pkg": "pkg -t node16-macos-arm64 -o wacli dist-ncc/index.js",

@@ -5,6 +5,7 @@ import * as fs from "fs";
 import {Boom} from "@hapi/boom";
 import signale from "signale";
 import * as os from "os";
+import {sign} from "crypto";
 
 function getAuthStateCacheFolder() {
     const homedir = os.homedir();
@@ -55,23 +56,30 @@ function checkLoggedIn() {
     }
 }
 
+export async function waitForKey(message: string) {
+    signale.pause(message);
+    process.stdin.setRawMode(true);
+    return new Promise(resolve => process.stdin.once('data', () => {
+        process.stdin.setRawMode(false);
+        resolve(undefined);
+    }));
+}
 
-export async function login() {
-    let waitForWA = false;
+export async function login(waitForWA = false) {
     const socket = await initWASocket();
     socket.ev.on('connection.update', async (update) => {
         const {connection, lastDisconnect} = update
         if (connection === 'close') {
             if ((lastDisconnect?.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut) {
-                waitForWA = true;
-                await login();
+                await login(true);
             } else {
                 return;
             }
         } else if (connection === 'open') {
             signale.success('Logged in');
             if (waitForWA) {
-
+                await waitForKey("Wait until WhatsApp finished then press any key to exit");
+                terminate(socket);
             } else {
                 terminate(socket);
             }

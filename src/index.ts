@@ -2,7 +2,6 @@
 import {program} from "commander";
 import {listGroups, login, logout, me, sendGroupMessage, sendMessage} from "./whatsapp";
 
-
 program.name('wacli').version('0.1.0');
 program
     .command('login')
