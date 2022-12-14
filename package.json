@@ -1,9 +1,11 @@
 {
   "name": "mudslide",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "Rob van der Leek <robvanderleek@gmail.com>",
   "description": "WhatsApp CLI",
-  "bin": "dist/index.js",
+  "bin": {
+    "mudslide": "dist/index.js"
+  },
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc && chmod a+x ./dist/index.js",
