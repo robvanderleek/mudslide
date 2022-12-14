@@ -6,23 +6,30 @@ import {Boom} from "@hapi/boom";
 import signale from "signale";
 import * as os from "os";
 
-function getAuthStateCacheFolder() {
-    const homedir = os.homedir();
-    let folder;
-    if (process.platform === 'win32') {
-        folder = path.join(homedir, 'AppData', 'Local', 'mudslide', 'Data');
+function getAuthStateCacheFolderLocation() {
+    if (process.env.MUDSLIDE_CACHE_FOLDER) {
+        return process.env.MUDSLIDE_CACHE_FOLDER;
     } else {
-        folder = path.join(homedir, '.local', 'share', 'mudslide');
+        const homedir = os.homedir();
+        if (process.platform === 'win32') {
+            return path.join(homedir, 'AppData', 'Local', 'mudslide', 'Data');
+        } else {
+            return path.join(homedir, '.local', 'share', 'mudslide');
+        }
     }
-    if (!fs.existsSync(folder)) {
-        fs.mkdirSync(folder, {recursive: true});
-        signale.log(`Created mudslide cache folder: ${folder}`);
+}
+
+function initAuthStateCacheFolder() {
+    const folderLocation = getAuthStateCacheFolderLocation();
+    if (!fs.existsSync(folderLocation)) {
+        fs.mkdirSync(folderLocation, {recursive: true});
+        signale.log(`Created mudslide cache folder: ${folderLocation}`);
     }
-    return folder;
+    return folderLocation;
 }
 
 async function initWASocket(printQR = true, message: string | undefined = undefined) {
-    const {state, saveCreds} = await useMultiFileAuthState(getAuthStateCacheFolder());
+    const {state, saveCreds} = await useMultiFileAuthState(initAuthStateCacheFolder());
     const socket = makeWASocket({
         logger: pino({level: 'silent'}),
         auth: state,
@@ -49,7 +56,7 @@ function terminate(socket: any, waitSeconds = 0) {
 }
 
 function checkLoggedIn() {
-    if (!fs.existsSync(path.join(getAuthStateCacheFolder(), 'creds.json'))) {
+    if (!fs.existsSync(path.join(initAuthStateCacheFolder(), 'creds.json'))) {
         signale.error('Not logged in');
         process.exit(1);
     }
@@ -88,18 +95,18 @@ export async function login(waitForWA = false) {
 
 export async function logout() {
     checkLoggedIn();
-    const sock = await initWASocket(false);
-    fs.rmSync(path.join(getAuthStateCacheFolder(), 'creds.json'));
-    sock.ev.on('connection.update', async (update) => {
+    const socket = await initWASocket(false);
+    fs.rmSync(path.join(initAuthStateCacheFolder(), 'creds.json'));
+    socket.ev.on('connection.update', async (update) => {
         const {connection} = update
         if (update.connection === undefined && update.qr) {
             signale.success(`Logged out`);
-            terminate(sock);
+            terminate(socket);
         }
         if (connection === 'open') {
-            await sock.logout();
+            await socket.logout();
             signale.success(`Logged out`);
-            terminate(sock);
+            terminate(socket);
         }
     });
 }

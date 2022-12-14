@@ -3,6 +3,8 @@ import {program} from "commander";
 import {listGroups, login, logout, me, sendGroupMessage, sendMessage} from "./whatsapp";
 
 program.name('mudslide').version('0.1.0');
+program.option('-c, --cache <folder>', 'Override default cache folder');
+program.on('option:cache', (folder) => process.env.MUDSLIDE_CACHE_FOLDER = folder);
 program
     .command('login')
     .description('Login to WhatsApp')
