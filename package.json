@@ -1,6 +1,6 @@
 {
   "name": "mudslide",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "author": "Rob van der Leek <robvanderleek@gmail.com>",
   "description": "WhatsApp CLI",
   "bin": {

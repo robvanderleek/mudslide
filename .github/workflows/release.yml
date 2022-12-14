@@ -50,12 +50,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout sources'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: 'Setup NodeJS'
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
+      - name: 'Force HTTPS'
+        run: git config --global url."https://github".insteadOf ssh://git@github
       - name: 'Install dependencies'
         run: yarn install
       - name: 'Compile TypeScript'
