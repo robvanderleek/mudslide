@@ -30,7 +30,7 @@ jobs:
     steps:
     - name: 'Checkout sources'
       uses: actions/checkout@v3
-    - name: 'Set NodeJS'
+    - name: 'Setup NodeJS'
       uses: actions/setup-node@v3
     - name: 'Force HTTPS'
       run: git config --global url."https://github".insteadOf ssh://git@github
@@ -49,11 +49,18 @@ jobs:
   npm:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: 'Checkout sources'
+        uses: actions/checkout@v2
+      - name: 'Setup NodeJS'
+        uses: actions/setup-node@v2
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: npm publish
+      - name: 'Install dependencies'
+        run: yarn install
+      - name: 'Compile TypeScript'
+        run: yarn build
+      - name: 'Publish'
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
