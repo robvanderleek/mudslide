@@ -64,13 +64,15 @@ npx mudslide login
 ▀▀▀▀▀▀▀ ▀▀▀ ▀ ▀  ▀ ▀▀▀▀▀▀
 ```
 
-In the WhatsApp mobile app go to "Settings > Connected Devices > Connect Device" and scan the QR code.
-Wait until the status is "active", then you can exit Mudslide.
+In the WhatsApp mobile app go to "Settings > Connected Devices > Connect
+Device" and scan the QR code. Wait until the status is "active", then you can
+exit Mudslide.
 
 ## Logout
 
-Logging our removes credentials from your local environment but will not disconnect Mudslide from your WhatsApp account, 
-you can disconnect Mudslide using the WhatsApp app.
+Logging out removes credentials from your local environment but will not
+disconnect Mudslide from your WhatsApp account, you can disconnect Mudslide
+using the WhatsApp app.
 
 ```shell
 npx mudslide logout
@@ -119,8 +121,24 @@ npx mudslide me
 
 # Configuration
 
+By default WhatsApp credentials are cached in a folder located in the user's
+home directory. This folder is `.local/share/mudslide'` on Linux & macOS and
+`AppData\Local\mudslide\Data` on Windows.
+
+A different location for the cache folder can be configured via the environment
+variable `MUDSLIDE_CACHE_FOLDER` or the `-c`/`--cache` options.
+
 # Feedback, suggestions and bug reports
+
+Please create an issue here: https://github.com/robvanderleek/mudslide/issues
 
 # Contributing
 
+If you have suggestions for how Mudslide could be improved, or want to report a
+bug, [open an issue](https://github.com/robvanderleek/mudslide/issues)! All and
+any contributions are appreciated.
+
 # License
+
+[ISC](LICENSE) © 2022 Rob van der Leek <robvanderleek@gmail.com>
+(https://twitter.com/robvanderleek)
