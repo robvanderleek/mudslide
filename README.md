@@ -10,7 +10,6 @@ API library (in case you're wondering about the name, a Mudslide is a Baileys co
 * [Installation](#installation)
 * [Usage](#usage)
 * [Configuration](#configuration)
-* [Development](#development)
 * [Feedback, suggestions and bug reports](#feedback-suggestions-and-bug-reports)
 * [Contributing](#contributing)
 * [License](#license)
@@ -84,3 +83,44 @@ Using the recipient `me` you can send yourself a test message:
 ```shell
 npx mudslide send me 'hello world'
 ```
+
+To send a message to a phone number:
+
+```shell
+npx mudslide send 3161234567890 'hello world'
+```
+
+## List your groups
+
+To list all the groups you are participating in:
+
+```shell
+npx mudslide groups
+```
+
+this will show a list of group IDs and subjects.
+
+## Sending a message to a group
+
+To send a message to a group you are particpating in you need the numerical group ID (see the `mudslide groups` command).
+Send a message to a group as follows:
+
+```shell
+npx mudslide send-group 123456789-987654321 'hello world'
+```
+
+## Show current user details
+
+To get the WhatsApp ID of the logged in user:
+
+```shell
+npx mudslide me
+```
+
+# Configuration
+
+# Feedback, suggestions and bug reports
+
+# Contributing
+
+# License
