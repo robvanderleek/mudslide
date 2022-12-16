@@ -96,15 +96,17 @@ export async function login(waitForWA = false) {
 export async function logout() {
     checkLoggedIn();
     const socket = await initWASocket(false);
-    fs.rmSync(path.join(initAuthStateCacheFolder(), 'creds.json'));
+    const folder = initAuthStateCacheFolder();
     socket.ev.on('connection.update', async (update) => {
         const {connection} = update
         if (update.connection === undefined && update.qr) {
+            fs.readdirSync(folder).forEach(f => f.endsWith(".json") && fs.rmSync(`${folder}/${f}`));
             signale.success(`Logged out`);
             terminate(socket);
         }
         if (connection === 'open') {
             await socket.logout();
+            fs.readdirSync(folder).forEach(f => f.endsWith(".json") && fs.rmSync(`${folder}/${f}`));
             signale.success(`Logged out`);
             terminate(socket);
         }

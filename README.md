@@ -33,3 +33,54 @@ npm install -g mudslide
 ```
 
 # Usage
+
+Available commands and options can be listed with `--help` flag:
+
+```shell
+npx mudslide --help
+```
+
+for most command it's necessary that you've authorized Mudslide to interact with the WhatsApp API on your behalf. 
+This can be done by logging in as described below.
+
+## Login
+
+To login you need to authorize Mudslide from another device that has WhatsApp installed and scan the QR code printed
+in the terminal:
+
+```shell
+npx mudslide login
+█▀▀▀▀▀█ ▀▀   ▀  █ █▀▀▀▀▀█
+█ ███ █ █▄ █▀▀▀▀  █ ███ █
+█ ▀▀▀ █ ▀█▀▀▄▀█▀▀ █ ▀▀▀ █
+▀▀▀▀▀▀▀ ▀▄▀▄▀▄█▄▀ ▀▀▀▀▀▀▀
+▀███▄ ▀▄▀▄   ▀▀ █▀ ▄▀▀▀▄▀
+█▄▄▄▄ ▀ ▄  ▄▄▄█▄ ▄█▀ ▄▄  
+▀▄ ▄▀ ▀ ▄█▄█ ▄ ▄ ██▄█ ▀▀█
+▄▀▄██▀▀██▄▀ █▄▀▄▄█▀▄█ ▀▀▄
+    ▀▀▀ ███▀▄▄  █▀▀▀█▀█▀█
+█▀▀▀▀▀█   ▀▀█  ▄█ ▀ █ ▀██
+█ ███ █ ▄▄█▀██▄▄▀██▀██▄▄▄
+█ ▀▀▀ █ █▀▀▀▀▀ ▀▀█▀ █ █▀ 
+▀▀▀▀▀▀▀ ▀▀▀ ▀ ▀  ▀ ▀▀▀▀▀▀
+```
+
+In the WhatsApp mobile app go to "Settings > Connected Devices > Connect Device" and scan the QR code.
+Wait until the status is "active", then you can exit Mudslide.
+
+## Logout
+
+Logging our removes credentials from your local environment but will not disconnect Mudslide from your WhatsApp account, 
+you can disconnect Mudslide using the WhatsApp app.
+
+```shell
+npx mudslide logout
+```
+
+## Sending a message to yourself or a phone number
+
+Using the recipient `me` you can send yourself a test message:
+
+```shell
+npx mudslide send me 'hello world'
+```
