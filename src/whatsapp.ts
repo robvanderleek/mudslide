@@ -159,7 +159,7 @@ export async function listGroups() {
         if (connection === 'open') {
             const groupData = await socket.groupFetchAllParticipating()
             for (const group in groupData) {
-                signale.log(`{id: ${groupData[group].id}, subject: ${groupData[group].subject}`);
+                signale.log(`{"id": "${groupData[group].id}", "subject": "${groupData[group].subject}"}`);
             }
             terminate(socket);
         }
