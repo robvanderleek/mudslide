@@ -7,6 +7,9 @@ Send WhatsApp messages from the command-line.
 This project is based on [Baileys](https://github.com/adiwajshing/Baileys), a full-featured WhatsApp Web+Multi-Device 
 API library (in case you're wondering about the name, a Mudslide is a Baileys cocktail).
 
+See also this [Medium post](https://levelup.gitconnected.com/how-to-send-whatsapp-messages-from-the-command-line-d1afd8b55de5).
+
+Table of Contents:
 * [Installation](#installation)
 * [Usage](#usage)
 * [Configuration](#configuration)
