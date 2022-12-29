@@ -1,0 +1,17 @@
+name: Update package version
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: erlete/version-updater@v1.1
+        with:
+          target-file: "package.json"
