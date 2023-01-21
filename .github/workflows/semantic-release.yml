@@ -1,0 +1,32 @@
+name: Sematic Release
+on:
+  push:
+    branches:
+      - main
+jobs:
+  release:
+    name: Semantic Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout sources'
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: 'Setup NodeJS'
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+      - name: 'Force HTTPS'
+        run: git config --global url."https://github".insteadOf ssh://git@github
+      - name: 'Install dependencies'
+        run: yarn install
+      - name: 'Run unit-tests'
+        run: yarn test
+      - name: 'Compile TypeScript'
+        run: yarn build
+      - name: 'Release'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
