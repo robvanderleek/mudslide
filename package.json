@@ -3,6 +3,9 @@
   "version": "0.9.0",
   "author": "",
   "description": "WhatsApp CLI",
+  "release": {
+    "branches": ["main"]
+  },
   "bin": {
     "mudslide": "dist/index.js"
   },
