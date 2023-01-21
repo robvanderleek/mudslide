@@ -15,7 +15,7 @@ jobs:
       - name: 'Setup NodeJS'
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
       - name: 'Force HTTPS'
         run: git config --global url."https://github".insteadOf ssh://git@github
