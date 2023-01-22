@@ -18,6 +18,8 @@ jobs:
         run: git config --global url."https://github".insteadOf ssh://git@github
       - name: 'Install dependencies'
         run: yarn install
+      - name: 'Compile TypeScript'
+        run: yarn build
       - name: 'Semantic Release'
         uses: cycjimmy/semantic-release-action@v3
         env:
