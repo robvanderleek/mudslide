@@ -10,6 +10,10 @@ jobs:
     steps:
       - name: 'Checkout sources'
         uses: actions/checkout@v3
+      - name: 'Setup NodeJS'
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
       - name: 'Semantic Release'
         uses: cycjimmy/semantic-release-action@v3
         env:
