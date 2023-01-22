@@ -19,7 +19,8 @@
     "start": "yarn build && node ./dist/index.js",
     "dist:build": "ncc build dist/index.js -o dist-ncc",
     "dist:pkg": "pkg -t node16-macos-arm64 -o mudslide dist-ncc/index.js",
-    "dist:bundle": "tar czf mudslide-macos-arm64.tgz mudslide"
+    "dist:bundle": "tar czf mudslide-macos-arm64.tgz mudslide",
+    "gh-actions-release": "rm .npmrc && semantic-release"
   },
   "license": "ISC",
   "dependencies": {
