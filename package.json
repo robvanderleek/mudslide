@@ -2,7 +2,7 @@
   "name": "mudslide",
   "version": "0.10.0",
   "author": "robvanderleek@gmail.com",
-  "description": "Simple WhatsApp CLI",
+  "description": "WhatsApp CLI",
   "release": {
     "branches": ["main"],
     "plugins": [
