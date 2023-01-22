@@ -4,7 +4,11 @@
   "author": "robvanderleek@gmail.com",
   "description": "WhatsApp CLI",
   "release": {
-    "branches": ["main"]
+    "branches": ["main"],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/npm"
+    ]
   },
   "bin": {
     "mudslide": "dist/index.js"
