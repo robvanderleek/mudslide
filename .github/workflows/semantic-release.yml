@@ -10,21 +10,24 @@ jobs:
     steps:
       - name: 'Checkout sources'
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: 'Setup NodeJS'
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18.x'
-          registry-url: 'https://registry.npmjs.org'
-      - name: 'Force HTTPS'
-        run: git config --global url."https://github".insteadOf ssh://git@github
-      - name: 'Install dependencies'
-        run: yarn install
-      - name: 'Compile TypeScript'
-        run: yarn build
-      - name: 'Release'
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: yarn gh-actions-release
+      # - name: 'Setup NodeJS'
+        # uses: actions/setup-node@v3
+        # with:
+          # node-version: '18.x'
+          # registry-url: 'https://registry.npmjs.org'
+      # - name: 'Force HTTPS'
+        # run: git config --global url."https://github".insteadOf ssh://git@github
+      # - name: 'Install dependencies'
+        # run: yarn install
+      # - name: 'Compile TypeScript'
+        # run: yarn build
+      # - name: 'Release'
+        # env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        # run: yarn gh-actions-release
