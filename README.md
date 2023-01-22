@@ -95,6 +95,18 @@ To send a message to a phone number:
 npx mudslide send 3161234567890 'hello world'
 ```
 
+## Sending an image file
+
+Image files (PNG, JPG, GIF) can be sent to individuals or groups:
+
+```shell
+npx mudslide send-image me image.png
+```
+
+```shell
+npx mudslide send-group-image 123456789-987654321 image.jpg
+```
+
 ## List your groups
 
 To list all the groups you are participating in:

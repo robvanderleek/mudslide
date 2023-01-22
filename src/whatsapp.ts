@@ -62,6 +62,13 @@ function checkLoggedIn() {
     }
 }
 
+function checkValidFile(path: string) {
+    if (!(fs.existsSync(path) && fs.lstatSync(path).isFile())) {
+        signale.error(`Could not read image file: ${path}`);
+        process.exit(1);
+    }
+}
+
 export async function waitForKey(message: string) {
     signale.pause(message);
     process.stdin.setRawMode(true);
@@ -135,6 +142,26 @@ export async function sendMessage(recipient: string, message: string) {
     });
 }
 
+export async function sendImage(recipient: string, path: string, options: { caption: string | undefined }) {
+    checkValidFile(path);
+    checkLoggedIn();
+    const socket = await initWASocket();
+    socket.ev.on('connection.update', async (update) => {
+        const {connection} = update
+        if (connection === 'open') {
+            if (recipient === 'me') {
+                const user = await socket.user;
+                if (user) {
+                    recipient = user.id.substring(0, user.id.indexOf(':'));
+                }
+            }
+            signale.await(`Sending image file: "${path}" to: ${recipient}`);
+            const whatsappId = `${recipient}@s.whatsapp.net`;
+            await sendImageHelper(socket, whatsappId, path, options)
+        }
+    });
+}
+
 export async function sendGroupMessage(id: string, message: string) {
     checkLoggedIn();
     const socket = await initWASocket(true, message);
@@ -149,6 +176,27 @@ export async function sendGroupMessage(id: string, message: string) {
             terminate(socket, 3);
         }
     });
+}
+
+export async function sendGroupImage(id: string, path: string, options: { caption: string | undefined }) {
+    checkValidFile(path);
+    checkLoggedIn();
+    const socket = await initWASocket(true);
+    socket.ev.on('connection.update', async (update) => {
+        const {connection} = update
+        if (connection === 'open') {
+            const whatsappId = `${id}@g.us`;
+            signale.await(`Sending image file: "${path}" to: ${whatsappId}`);
+            await sendImageHelper(socket, whatsappId, path, options)
+        }
+    });
+}
+
+async function sendImageHelper(socket: any, whatsappId: string, path: string, options: { caption: string | undefined }) {
+    const payload = {image: fs.readFileSync(path), caption: options.caption}
+    await socket.sendMessage(whatsappId, payload);
+    signale.success('Done');
+    terminate(socket, 3);
 }
 
 export async function listGroups() {
