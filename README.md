@@ -99,7 +99,7 @@ Use `\n` to send a message with a newline, for example:
 
 ```shell
 npx mudslide send me 'hello\nworld'
-``
+```
 
 ## Sending an image file
 
