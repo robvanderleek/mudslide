@@ -47,5 +47,6 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
-          mudslide-linuxstatic
-          mudslide-win.exe
+          mudslide-linuxstatic-x64
+          mudslide-linuxstatic-arm64
+          mudslide-win-x64.exe

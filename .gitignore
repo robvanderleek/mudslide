@@ -3,7 +3,7 @@ dist-ncc/
 node_modules/
 yarn-error.log
 mudslide
-mudslide-linuxstatic
-mudslide-win.exe
+mudslide-linuxstatic-*
+mudslide-win-*.exe
 *.tgz
 tmp

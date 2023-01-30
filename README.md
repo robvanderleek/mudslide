@@ -19,8 +19,8 @@ Table of Contents:
 
 # Installation
 
-Using `npx` installation is not necessary. You can run Mudslide on a system with NodeJS 16 or higher from the 
-command-line as follows:
+Using `npx`, installation is not necessary. You can run Mudslide on a system
+with NodeJS 16 or higher from the command-line as follows:
 
 ```shell
 npx mudslide -V
@@ -28,11 +28,16 @@ npx mudslide -V
 
 this should display the version number of the latest release.
 
-Using `npm` Mudslide can be installe globally as follows:
+Using `npm` Mudslide can be installed globally as follows:
 
 ```shell
 npm install -g mudslide
 ```
+
+## Platform binaries
+
+Binaries for different platforms (Linux, Windows) are available on the [latest
+release page](https://github.com/robvanderleek/mudslide/releases/latest). 
 
 # Usage
 
