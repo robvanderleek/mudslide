@@ -32,6 +32,8 @@ jobs:
       uses: actions/checkout@v3
     - name: 'Setup NodeJS'
       uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
     - name: 'Force HTTPS'
       run: git config --global url."https://github".insteadOf ssh://git@github
     - name: 'Install dependencies'
