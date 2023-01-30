@@ -39,6 +39,28 @@ npm install -g mudslide
 Binaries for different platforms (Linux, Windows) are available on the [latest
 release page](https://github.com/robvanderleek/mudslide/releases/latest). 
 
+## Docker
+
+Mudslide can also run inside a Docker container, you can build the Docker image
+using the supplied `Dockerfile`:
+
+```shell
+docker build -t mudslide .
+```
+
+Test if the build was successful:
+
+```shell
+docker run -it mudslide
+```
+
+Since Mudslide keeps authentication state on disk you need to mount a state
+directory outside the container, for example:
+
+```shell
+docker run -v /home/<USERNAME>/.local/share/mudslide:/usr/src/app/cache login
+```
+
 # Usage
 
 Available commands and options can be listed with `--help` flag:
