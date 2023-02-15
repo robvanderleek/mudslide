@@ -177,6 +177,16 @@ home directory. This folder is `.local/share/mudslide'` on Linux & macOS and
 A different location for the cache folder can be configured via the environment
 variable `MUDSLIDE_CACHE_FOLDER` or the `-c`/`--cache` options.
 
+# Development
+
+## Running unit-tests
+
+To run the unit-tests run this command:
+
+```shell
+yarn test
+```
+
 # Feedback, suggestions and bug reports
 
 Please create an issue here: https://github.com/robvanderleek/mudslide/issues
