@@ -1,9 +1,13 @@
 {
+  "include": [
+    "src/**/*"
+  ],
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
     "strict": true,
     "target": "es6",
+    "resolveJsonModule": true,
     "module": "CommonJS",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
