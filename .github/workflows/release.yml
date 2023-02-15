@@ -41,7 +41,7 @@ jobs:
     - name: 'Compile TypeScript'
       run: yarn build
     - name: 'Create distribution'
-      run: yarn dist:build && yarn dist:pkg
+      run: yarn dist:build && yarn dist:pkg:linux && yarn dist:pkg:windows
     - name: 'Add assets to release'
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
