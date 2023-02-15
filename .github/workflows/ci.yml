@@ -19,6 +19,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 16.x
+    - name: 'Force HTTPS'
+      run: git config --global url."https://github".insteadOf ssh://git@github
     - name: 'Install dependencies'
       run: yarn install
     - name: 'Run unit-tests'
