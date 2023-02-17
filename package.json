@@ -4,14 +4,21 @@
   "author": "robvanderleek@gmail.com",
   "description": "WhatsApp CLI",
   "release": {
-    "branches": ["main"],
+    "branches": [
+      "main"
+    ],
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/npm",
-      ["@semantic-release/git", {
-      "assets": ["package.json"],
-      "message": "chore(release): ${nextRelease.version} [skip ci]"
-      }]
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]"
+        }
+      ]
     ]
   },
   "bin": {
@@ -20,9 +27,12 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc && chmod a+x ./dist/index.js",
+    "test": "jest",
     "start": "yarn build && node ./dist/index.js",
     "dist:build": "ncc build dist/index.js -o dist-ncc",
-    "dist:pkg": "pkg -t node16-linuxstatic-x64,node16-linuxstatic-arm64,node16-win-x64 -o mudslide dist-ncc/index.js",
+    "dist:pkg:linux": "pkg -t node16-linuxstatic-x64,node16-linuxstatic-arm64 -o mudslide dist-ncc/index.js",
+    "dist:pkg:windows": "pkg -t node16-win-x64 -o mudslide dist-ncc/index.js",
+    "dist:pkg:macos": "pkg -t node16-macos-arm64 -o mudslide dist-ncc/index.js",
     "dist:bundle": "tar czf mudslide-linuxstatic-x64.tgz mudslide"
   },
   "license": "ISC",
@@ -35,12 +45,15 @@
     "signale": "^1.4.0"
   },
   "devDependencies": {
+    "@types/jest": "^29.4.0",
     "@types/node": "^18.11.10",
     "@types/pino": "^7.0.5",
     "@types/signale": "^1.4.4",
     "@vercel/ncc": "^0.34.0",
+    "jest": "^29.4.2",
     "pkg": "^5.8.0",
     "semantic-release": "^20.0.2",
+    "ts-jest": "^29.0.5",
     "typescript": "^4.9.3"
   }
 }

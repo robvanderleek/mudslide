@@ -28,7 +28,7 @@ function initAuthStateCacheFolder() {
     return folderLocation;
 }
 
-async function initWASocket(printQR = true, message: string | undefined = undefined) {
+export async function initWASocket(printQR = true, message: string | undefined = undefined) {
     const {state, saveCreds} = await useMultiFileAuthState(initAuthStateCacheFolder());
     const socket = makeWASocket({
         logger: pino({level: 'silent'}),
@@ -44,7 +44,7 @@ async function initWASocket(printQR = true, message: string | undefined = undefi
     return socket;
 }
 
-function terminate(socket: any, waitSeconds = 0) {
+export function terminate(socket: any, waitSeconds = 0) {
     if (waitSeconds > 0) {
         signale.await(`Waiting ${waitSeconds} second(s) for successful delivery...`);
     }
@@ -55,18 +55,28 @@ function terminate(socket: any, waitSeconds = 0) {
     }, waitSeconds * 1000)
 }
 
-function checkLoggedIn() {
+export function checkLoggedIn() {
     if (!fs.existsSync(path.join(initAuthStateCacheFolder(), 'creds.json'))) {
         signale.error('Not logged in');
         process.exit(1);
     }
 }
 
-function checkValidFile(path: string) {
+export function checkValidFile(path: string) {
     if (!(fs.existsSync(path) && fs.lstatSync(path).isFile())) {
         signale.error(`Could not read image file: ${path}`);
         process.exit(1);
     }
+}
+
+export function parseGeoLocation(latitude: string, longitude: string): Array<number> {
+    const latitudeFloat = parseFloat(latitude);
+    const longitudeFloat = parseFloat(longitude);
+    if (isNaN(latitudeFloat) || isNaN(longitudeFloat)) {
+        signale.error(`Invalid geo location: ${latitude}, ${longitude}`);
+        process.exit(1);
+    }
+    return [parseFloat(latitudeFloat.toFixed(7)), parseFloat(longitudeFloat.toFixed(7))];
 }
 
 export async function waitForKey(message: string) {
@@ -120,109 +130,9 @@ export async function logout() {
     });
 }
 
-export async function sendMessage(recipient: string, message: string) {
-    checkLoggedIn();
-    const socket = await initWASocket();
-    socket.ev.on('connection.update', async (update) => {
-        const {connection} = update
-        if (connection === 'open') {
-            if (recipient === 'me') {
-                const user = await socket.user;
-                if (user) {
-                    recipient = user.id.substring(0, user.id.indexOf(':'));
-                }
-            }
-            signale.await(`Sending message: "${message}" to: ${recipient}`);
-            message = message.replace(/\\n/g, '\n');
-            const whatsappId = `${recipient}@s.whatsapp.net`;
-            await socket.sendMessage(whatsappId, {text: message});
-            signale.success('Done');
-            terminate(socket, 3);
-        }
-    });
-}
-
-export async function sendImage(recipient: string, path: string, options: { caption: string | undefined }) {
-    checkValidFile(path);
-    checkLoggedIn();
-    const socket = await initWASocket();
-    socket.ev.on('connection.update', async (update) => {
-        const {connection} = update
-        if (connection === 'open') {
-            if (recipient === 'me') {
-                const user = await socket.user;
-                if (user) {
-                    recipient = user.id.substring(0, user.id.indexOf(':'));
-                }
-            }
-            signale.await(`Sending image file: "${path}" to: ${recipient}`);
-            const whatsappId = `${recipient}@s.whatsapp.net`;
-            await sendImageHelper(socket, whatsappId, path, options)
-        }
-    });
-}
-
-export async function sendGroupMessage(id: string, message: string) {
-    checkLoggedIn();
-    const socket = await initWASocket(true, message);
-    socket.ev.on('connection.update', async (update) => {
-        const {connection} = update
-        if (connection === 'open') {
-            const whatsappId = `${id}@g.us`;
-            signale.await(`Sending message: "${message}" to: ${whatsappId}`);
-            message = message.replace(/\\n/g, '\n');
-            await socket.sendMessage(whatsappId, {text: message});
-            signale.success('Done');
-            terminate(socket, 3);
-        }
-    });
-}
-
-export async function sendGroupImage(id: string, path: string, options: { caption: string | undefined }) {
-    checkValidFile(path);
-    checkLoggedIn();
-    const socket = await initWASocket(true);
-    socket.ev.on('connection.update', async (update) => {
-        const {connection} = update
-        if (connection === 'open') {
-            const whatsappId = `${id}@g.us`;
-            signale.await(`Sending image file: "${path}" to: ${whatsappId}`);
-            await sendImageHelper(socket, whatsappId, path, options)
-        }
-    });
-}
-
-async function sendImageHelper(socket: any, whatsappId: string, path: string, options: { caption: string | undefined }) {
+export async function sendImageHelper(socket: any, whatsappId: string, path: string, options: { caption: string | undefined }) {
     const payload = {image: fs.readFileSync(path), caption: options.caption}
     await socket.sendMessage(whatsappId, payload);
     signale.success('Done');
     terminate(socket, 3);
-}
-
-export async function listGroups() {
-    checkLoggedIn();
-    const socket = await initWASocket();
-    socket.ev.on('connection.update', async (update) => {
-        const {connection} = update
-        if (connection === 'open') {
-            const groupData = await socket.groupFetchAllParticipating()
-            for (const group in groupData) {
-                signale.log(`{"id": "${groupData[group].id}", "subject": "${groupData[group].subject}"}`);
-            }
-            terminate(socket);
-        }
-    });
-}
-
-export async function me() {
-    checkLoggedIn();
-    const socket = await initWASocket();
-    socket.ev.on('connection.update', async (update) => {
-        const {connection} = update
-        if (connection === 'open') {
-            const user = await socket.user
-            signale.log(`Current user: ${user?.id}`);
-            terminate(socket);
-        }
-    });
 }

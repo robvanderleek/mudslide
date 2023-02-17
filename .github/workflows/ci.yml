@@ -1,0 +1,27 @@
+name: 'CI'
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    steps:
+    - name: 'Checkout sources'
+      uses: actions/checkout@v2
+    - name: 'Setup NodeJS'
+      uses: actions/setup-node@v1
+      with:
+        node-version: 18.x
+    - name: 'Force HTTPS'
+      run: git config --global url."https://github".insteadOf ssh://git@github
+    - name: 'Install dependencies'
+      run: yarn install
+    - name: 'Run unit-tests'
+      run: yarn test
