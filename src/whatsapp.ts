@@ -76,7 +76,7 @@ export function parseGeoLocation(latitude: string, longitude: string): Array<num
         signale.error(`Invalid geo location: ${latitude}, ${longitude}`);
         process.exit(1);
     }
-    return [parseFloat(latitudeFloat.toFixed(5)), parseFloat(longitudeFloat.toFixed(5))];
+    return [parseFloat(latitudeFloat.toFixed(7)), parseFloat(longitudeFloat.toFixed(7))];
 }
 
 export async function waitForKey(message: string) {

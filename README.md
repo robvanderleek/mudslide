@@ -141,6 +141,21 @@ npx mudslide send-image me image.png
 npx mudslide send-group-image 123456789-987654321 image.jpg
 ```
 
+## Sending a location
+
+Geographic locations can be sent to individuals or groups using latitude and
+longitude coordinates. For example, to position yourself at the Eiffel Tower:
+
+```shell
+npx mudslide send-location me 48.858222 2.2945
+```
+
+Or to send your location at the Sydney Opera House to a group:
+
+```shell
+npx mudslide send-group-location 123456789-987654321 -33.857058 151.214897
+```
+
 ## List your groups
 
 To list all the groups you are participating in:

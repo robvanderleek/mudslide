@@ -35,6 +35,7 @@ function configureUserCommands() {
         .action((recipient, file, options) => sendImage(recipient, file, options));
     program
         .command('send-location <number|me> <latitude> <longitude>')
+        .allowUnknownOption()
         .description('Send location to phone number or current user')
         .action((recipient, latitude, longitude) => sendLocation(recipient, latitude, longitude));
 }
@@ -54,6 +55,7 @@ function configureGroupCommands() {
         .action((id, file, options) => sendGroupImage(id, file, options));
     program
         .command('send-group-location <group-id> <latitude> <longitude>')
+        .allowUnknownOption()
         .description('Send location to group ID')
         .action((id, latitude, longitude) => sendGroupLocation(id, latitude, longitude));
 }
