@@ -141,6 +141,14 @@ npx mudslide send-image me image.png
 npx mudslide send-group-image 123456789-987654321 image.jpg
 ```
 
+### Image captions
+
+Use the `--caption` option to add a caption to the image:
+
+```shell
+npx mudslide send-image --caption 'Your text here' me image.png
+```
+
 ## Sending a location
 
 Geographic locations can be sent to individuals or groups using latitude and
