@@ -1,14 +1,15 @@
 # Mudslide
 
-![Logo](doc/mudslide-logo-180x180.png)
+![Logo](https://github.com/robvanderleek/mudslide/blob/main/doc/mudslide-logo-180x180.png?raw=true)
 
 Send WhatsApp messages from the command-line, see also this [Medium post](https://levelup.gitconnected.com/how-to-send-whatsapp-messages-from-the-command-line-d1afd8b55de5).
 
 This project is based on [Baileys](https://github.com/adiwajshing/Baileys), a full-featured WhatsApp Web+Multi-Device 
 API library (in case you're wondering about the name, a Mudslide is a Baileys cocktail).
 
-Keep in mind that the working of Mudslide depends on the Baileys library and since that is not an official supported 
-library by WhatsApp it could stop working without notice.
+Keep in mind that the working of Mudslide depends on the Baileys library and
+since that is not an official supported library by WhatsApp it could stop
+working without notice.
 
 Table of Contents:
 * [Installation](#installation)
@@ -70,8 +71,9 @@ Available commands and options can be listed with `--help` flag:
 npx mudslide --help
 ```
 
-for most command it's necessary that you've authorized Mudslide to interact with the WhatsApp API on your behalf. 
-This can be done by logging in as described below.
+for most command it's necessary that you've authorized Mudslide to interact
+with the WhatsApp API on your behalf.  This can be done by logging in as
+described below.
 
 ## Login
 
@@ -109,6 +111,14 @@ using the WhatsApp app.
 npx mudslide logout
 ```
 
+## Different types of recipients
+
+Muslide supports three types of recipients for sending messages/images/files/etc.:
+
+1. An international phone number (e.g.: `3161234567890`)
+2. The authenticated user: `me`
+3. A so-called WhatsApp ID, for example a group ID: `123456789-987654321@g.us`
+
 ## Sending a message to yourself or a phone number
 
 Using the recipient `me` you can send yourself a test message:
@@ -121,6 +131,13 @@ To send a message to a phone number:
 
 ```shell
 npx mudslide send 3161234567890 'hello world'
+```
+
+To send a message to a group you are particpating in you need the group ID (see
+the `mudslide groups` command).  Send a message to a group as follows:
+
+```shell
+npx mudslide send 123456789-987654321@g.us 'hello world'
 ```
 
 Use `\n` to send a message with a newline, for example:
@@ -138,12 +155,24 @@ npx mudslide send-image me image.png
 ```
 
 ```shell
-npx mudslide send-group-image 123456789-987654321 image.jpg
+npx mudslide send-image 123456789-987654321@g.us image.jpg
 ```
 
 ### Image captions
 
 Use the `--caption` option to add a caption to the image:
+
+## Sending other files
+
+Single files can be sent to individuals or groups:
+
+```shell
+npx mudslide send-file me test.json
+```
+
+```shell
+npx mudslide send-file 123456789-987654321@g.us document.pdf
+```
 
 ```shell
 npx mudslide send-image --caption 'Your text here' me image.png
@@ -161,7 +190,7 @@ npx mudslide send-location me 48.858222 2.2945
 Or to send your location at the Sydney Opera House to a group:
 
 ```shell
-npx mudslide send-group-location 123456789-987654321 -33.857058 151.214897
+npx mudslide send-location 123456789-987654321@g.us -33.857058 151.214897
 ```
 
 ## List your groups
@@ -173,15 +202,6 @@ npx mudslide groups
 ```
 
 this will show a list of group IDs and subjects.
-
-## Sending a message to a group
-
-To send a message to a group you are particpating in you need the numerical group ID (see the `mudslide groups` command).
-Send a message to a group as follows:
-
-```shell
-npx mudslide send-group 123456789-987654321 'hello world'
-```
 
 ## Show current user details
 

@@ -5,8 +5,9 @@ import * as fs from "fs";
 import {Boom} from "@hapi/boom";
 import signale from "signale";
 import * as os from "os";
+import mime from 'mime';
 
-function getAuthStateCacheFolderLocation() {
+export function getAuthStateCacheFolderLocation() {
     if (process.env.MUDSLIDE_CACHE_FOLDER) {
         return process.env.MUDSLIDE_CACHE_FOLDER;
     } else {
@@ -52,7 +53,8 @@ export function terminate(socket: any, waitSeconds = 0) {
         socket.end(undefined);
         socket.ws.close();
         process.exit();
-    }, waitSeconds * 1000)
+    }, waitSeconds * 1000);
+    console.info('⭐️ the repo if you enjoy Mudslide: https://github.com/robvanderleek/mudslide')
 }
 
 export function checkLoggedIn() {
@@ -130,8 +132,32 @@ export async function logout() {
     });
 }
 
-export async function sendImageHelper(socket: any, whatsappId: string, path: string, options: { caption: string | undefined }) {
-    const payload = {image: fs.readFileSync(path), caption: options.caption}
+export async function getWhatsAppId(socket: any, recipient: string) {
+    if (recipient.endsWith('@s.whatsapp.net') || recipient.endsWith('@g.us')) {
+        return recipient;
+    } else if (recipient === 'me') {
+        const user = await socket.user;
+        if (user) {
+            const phoneNumber = user.id.substring(0, user.id.indexOf(':'));
+            return `${phoneNumber}@s.whatsapp.net`;
+        }
+    }
+    return `${recipient}@s.whatsapp.net`;
+}
+
+export async function sendImageHelper(socket: any, whatsappId: string, filePath: string, options: { caption: string | undefined }) {
+    const payload = {image: fs.readFileSync(filePath), caption: options.caption}
+    await socket.sendMessage(whatsappId, payload);
+    signale.success('Done');
+    terminate(socket, 3);
+}
+
+export async function sendFileHelper(socket: any, whatsappId: string, filePath: string) {
+    const payload = {
+        document: fs.readFileSync(filePath),
+        mimetype: mime.getType(filePath),
+        fileName: path.basename(filePath)
+    }
     await socket.sendMessage(whatsappId, payload);
     signale.success('Done');
     terminate(socket, 3);

@@ -1,4 +1,11 @@
-import {parseGeoLocation} from "../src/whatsapp";
+import {getWhatsAppId, parseGeoLocation} from "../src/whatsapp";
+
+test('get whatsapp id', async () => {
+    expect(await getWhatsAppId({}, '3161234567890')).toBe('3161234567890@s.whatsapp.net');
+    expect(await getWhatsAppId({}, '3161234567890@s.whatsapp.net')).toBe('3161234567890@s.whatsapp.net');
+    expect(await getWhatsAppId({}, '123456789-987654321@g.us')).toBe('123456789-987654321@g.us');
+    expect(await getWhatsAppId({user: {id: '3161234567890:1'}}, 'me')).toBe('3161234567890@s.whatsapp.net');
+})
 
 test('parse geo location', () => {
     const result = parseGeoLocation('5', '10');
