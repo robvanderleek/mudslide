@@ -105,17 +105,21 @@ export async function listGroups() {
 }
 
 export async function sendGroupMessage(id: string, message: string) {
+    signale.warn('[THIS COMMAND IS DEPRECATED]')
     await sendMessage(`${id}@g.us`, message);
 }
 
 export async function sendGroupImage(id: string, path: string, options: { caption: string | undefined }) {
+    signale.warn('[THIS COMMAND IS DEPRECATED]')
     await sendImage(`${id}@g.us`, path, options);
 }
 
 export async function sendGroupLocation(id: string, latitude: string, longitude: string) {
+    signale.warn('[THIS COMMAND IS DEPRECATED]')
     await sendLocation(`${id}@g.us`, latitude, longitude);
 }
 
 export async function sendGroupFile(id: string, path: string) {
+    signale.warn('[THIS COMMAND IS DEPRECATED]')
     await sendFile(`${id}@g.us`, path);
 }

@@ -53,7 +53,8 @@ export function terminate(socket: any, waitSeconds = 0) {
         socket.end(undefined);
         socket.ws.close();
         process.exit();
-    }, waitSeconds * 1000)
+    }, waitSeconds * 1000);
+    console.info('⭐️ the repo if you enjoy Mudslide: https://github.com/robvanderleek/mudslide')
 }
 
 export function checkLoggedIn() {
