@@ -162,6 +162,10 @@ npx mudslide send-image 123456789-987654321@g.us image.jpg
 
 Use the `--caption` option to add a caption to the image:
 
+```shell
+npx mudslide send-image --caption 'Your text here' me image.png
+```
+
 ## Sending other files
 
 Single files can be sent to individuals or groups:
@@ -172,10 +176,6 @@ npx mudslide send-file me test.json
 
 ```shell
 npx mudslide send-file 123456789-987654321@g.us document.pdf
-```
-
-```shell
-npx mudslide send-image --caption 'Your text here' me image.png
 ```
 
 ## Sending a location
