@@ -4,7 +4,8 @@ import {
     checkValidFile,
     getWhatsAppId,
     initWASocket,
-    parseGeoLocation, sendFileHelper,
+    parseGeoLocation,
+    sendFileHelper,
     sendImageHelper,
     terminate
 } from "./whatsapp";
@@ -113,4 +114,8 @@ export async function sendGroupImage(id: string, path: string, options: { captio
 
 export async function sendGroupLocation(id: string, latitude: string, longitude: string) {
     await sendLocation(`${id}@g.us`, latitude, longitude);
+}
+
+export async function sendGroupFile(id: string, path: string) {
+    await sendFile(`${id}@g.us`, path);
 }

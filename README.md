@@ -1,6 +1,6 @@
 # Mudslide
 
-![Logo](doc/mudslide-logo-180x180.png)
+![Logo](https://github.com/robvanderleek/mudslide/blob/main/doc/mudslide-logo-180x180.png?raw=true)
 
 Send WhatsApp messages from the command-line, see also this [Medium post](https://levelup.gitconnected.com/how-to-send-whatsapp-messages-from-the-command-line-d1afd8b55de5).
 

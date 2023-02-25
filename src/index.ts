@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 import {program} from "commander";
-import {login, logout} from "./whatsapp";
+import {getAuthStateCacheFolderLocation, login, logout} from "./whatsapp";
 import {
     listGroups,
     me,
     sendFile,
+    sendGroupFile,
     sendGroupImage,
     sendGroupLocation,
     sendGroupMessage,
@@ -17,7 +18,7 @@ const packageJson = require('../package.json');
 
 
 program.name('mudslide').version(packageJson.version);
-program.option('-c, --cache <folder>', 'Override default cache folder');
+program.option('-c, --cache <folder>', `Override default cache folder (default: ${getAuthStateCacheFolderLocation()} )`);
 program.on('option:cache', (folder) => process.env.MUDSLIDE_CACHE_FOLDER = folder);
 program
     .command('login')
@@ -71,6 +72,10 @@ function configureGroupCommands() {
         .allowUnknownOption()
         .description('[DEPRECATED] Send location to group ID')
         .action((id, latitude, longitude) => sendGroupLocation(id, latitude, longitude));
+    program
+        .command('send-group-file <group-id> <file>')
+        .description('[DEPRECATED] Send file to group ID')
+        .action((id, file) => sendGroupFile(id, file));
 }
 
 configureCommands();

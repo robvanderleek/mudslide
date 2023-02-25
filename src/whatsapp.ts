@@ -5,8 +5,9 @@ import * as fs from "fs";
 import {Boom} from "@hapi/boom";
 import signale from "signale";
 import * as os from "os";
+import mime from 'mime';
 
-function getAuthStateCacheFolderLocation() {
+export function getAuthStateCacheFolderLocation() {
     if (process.env.MUDSLIDE_CACHE_FOLDER) {
         return process.env.MUDSLIDE_CACHE_FOLDER;
     } else {
@@ -151,7 +152,11 @@ export async function sendImageHelper(socket: any, whatsappId: string, filePath:
 }
 
 export async function sendFileHelper(socket: any, whatsappId: string, filePath: string) {
-    const payload = {document: fs.readFileSync(filePath), fileName: path.basename(filePath)}
+    const payload = {
+        document: fs.readFileSync(filePath),
+        mimetype: mime.getType(filePath),
+        fileName: path.basename(filePath)
+    }
     await socket.sendMessage(whatsappId, payload);
     signale.success('Done');
     terminate(socket, 3);
