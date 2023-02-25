@@ -117,9 +117,7 @@ Muslide supports three types of recipients for sending messages/images/files/etc
 
 1. An international phone number (e.g.: `3161234567890`)
 2. The authenticated user: `me`
-3. A so-called WhatsApp ID, for example a group ID: ``
-
-Sending messages 
+3. A so-called WhatsApp ID, for example a group ID: `123456789-987654321@g.us`
 
 ## Sending a message to yourself or a phone number
 
@@ -163,6 +161,18 @@ npx mudslide send-image 123456789-987654321@g.us image.jpg
 ### Image captions
 
 Use the `--caption` option to add a caption to the image:
+
+## Sending other files
+
+Single files can be sent to individuals or groups:
+
+```shell
+npx mudslide send-file me test.json
+```
+
+```shell
+npx mudslide send-file 123456789-987654321@g.us document.pdf
+```
 
 ```shell
 npx mudslide send-image --caption 'Your text here' me image.png
