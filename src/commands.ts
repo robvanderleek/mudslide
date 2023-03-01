@@ -2,6 +2,7 @@ import signale from "signale";
 import {
     checkLoggedIn,
     checkValidFile,
+    getAuthStateCacheFolderLocation,
     getWhatsAppId,
     initWASocket,
     parseGeoLocation,
@@ -78,6 +79,7 @@ export async function sendLocation(recipient: string, latitude: string, longitud
 
 export async function me() {
     checkLoggedIn();
+    signale.log(`Cache folder: ${getAuthStateCacheFolderLocation()}`);
     const socket = await initWASocket();
     socket.ev.on('connection.update', async (update) => {
         const {connection} = update
@@ -104,22 +106,20 @@ export async function listGroups() {
     });
 }
 
-export async function sendGroupMessage(id: string, message: string) {
-    signale.warn('[THIS COMMAND IS DEPRECATED]')
-    await sendMessage(`${id}@g.us`, message);
-}
-
-export async function sendGroupImage(id: string, path: string, options: { caption: string | undefined }) {
-    signale.warn('[THIS COMMAND IS DEPRECATED]')
-    await sendImage(`${id}@g.us`, path, options);
-}
-
-export async function sendGroupLocation(id: string, latitude: string, longitude: string) {
-    signale.warn('[THIS COMMAND IS DEPRECATED]')
-    await sendLocation(`${id}@g.us`, latitude, longitude);
-}
-
-export async function sendGroupFile(id: string, path: string) {
-    signale.warn('[THIS COMMAND IS DEPRECATED]')
-    await sendFile(`${id}@g.us`, path);
+export async function mutateGroup(groupId: string, phoneNumber: string, operation: "add" | "remove") {
+    checkLoggedIn();
+    const socket = await initWASocket();
+    socket.ev.on('connection.update', async (update) => {
+        const {connection} = update
+        if (connection === 'open') {
+            const whatsAppId = await getWhatsAppId(socket, phoneNumber);
+            if (operation === 'add') {
+                signale.log(`Adding ${whatsAppId} to group ${groupId}`);
+            } else {
+                signale.log(`Removing ${whatsAppId} from group ${groupId}`);
+            }
+            await socket.groupParticipantsUpdate(groupId, [whatsAppId], operation);
+            terminate(socket);
+        }
+    });
 }
