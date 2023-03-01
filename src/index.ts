@@ -1,24 +1,13 @@
 #!/usr/bin/env node
 import {program} from "commander";
-import {getAuthStateCacheFolderLocation, login, logout} from "./whatsapp";
-import {
-    listGroups,
-    me,
-    sendFile,
-    sendGroupFile,
-    sendGroupImage,
-    sendGroupLocation,
-    sendGroupMessage,
-    sendImage,
-    sendLocation,
-    sendMessage
-} from "./commands";
+import {login, logout} from "./whatsapp";
+import {listGroups, me, mutateGroup, sendFile, sendImage, sendLocation, sendMessage} from "./commands";
 
 const packageJson = require('../package.json');
 
 
 program.name('mudslide').version(packageJson.version);
-program.option('-c, --cache <folder>', `Override default cache folder (default: ${getAuthStateCacheFolderLocation()} )`);
+program.option('-c, --cache <folder>', 'Override cache folder');
 program.on('option:cache', (folder) => process.env.MUDSLIDE_CACHE_FOLDER = folder);
 program
     .command('login')
@@ -56,28 +45,17 @@ function configureCommands() {
         .allowUnknownOption()
         .description('Send location')
         .action((recipient, latitude, longitude) => sendLocation(recipient, latitude, longitude));
-}
-
-function configureGroupCommands() {
     program
-        .command('send-group <group-id> <message>')
-        .description('[DEPRECATED] Send message to group ID').action((id, message) => sendGroupMessage(id, message));
-    program
-        .command('send-group-image <group-id> <file>')
-        .option('--caption <text>', 'Caption text')
-        .description('[DEPRECATED] Send image file to group ID')
-        .action((id, file, options) => sendGroupImage(id, file, options));
-    program
-        .command('send-group-location <group-id> <latitude> <longitude>')
+        .command('add-to-group <group-id> <phone-number>')
         .allowUnknownOption()
-        .description('[DEPRECATED] Send location to group ID')
-        .action((id, latitude, longitude) => sendGroupLocation(id, latitude, longitude));
+        .description('Add group participant')
+        .action((groupId, phoneNumber) => mutateGroup(groupId, phoneNumber, 'add'));
     program
-        .command('send-group-file <group-id> <file>')
-        .description('[DEPRECATED] Send file to group ID')
-        .action((id, file) => sendGroupFile(id, file));
+        .command('remove-from-group <group-id> <phone-number>')
+        .allowUnknownOption()
+        .description('Remove group participant')
+        .action((groupId, phoneNumber) => mutateGroup(groupId, phoneNumber, 'remove'));
 }
 
 configureCommands();
-configureGroupCommands();
 program.parse(process.argv);

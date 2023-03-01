@@ -2,22 +2,15 @@
 
 ![Logo](https://github.com/robvanderleek/mudslide/blob/main/doc/mudslide-logo-180x180.png?raw=true)
 
-Send WhatsApp messages from the command-line, see also this [Medium post](https://levelup.gitconnected.com/how-to-send-whatsapp-messages-from-the-command-line-d1afd8b55de5).
+Send WhatsApp messages from the command-line, see also
+this [Medium post](https://levelup.gitconnected.com/how-to-send-whatsapp-messages-from-the-command-line-d1afd8b55de5).
 
-This project is based on [Baileys](https://github.com/adiwajshing/Baileys), a full-featured WhatsApp Web+Multi-Device 
+This project is based on [Baileys](https://github.com/adiwajshing/Baileys), a full-featured WhatsApp Web+Multi-Device
 API library (in case you're wondering about the name, a Mudslide is a Baileys cocktail).
 
 Keep in mind that the working of Mudslide depends on the Baileys library and
 since that is not an official supported library by WhatsApp it could stop
 working without notice.
-
-Table of Contents:
-* [Installation](#installation)
-* [Usage](#usage)
-* [Configuration](#configuration)
-* [Feedback, suggestions and bug reports](#feedback-suggestions-and-bug-reports)
-* [Contributing](#contributing)
-* [License](#license)
 
 # Installation
 
@@ -25,7 +18,7 @@ Using `npx`, installation is not necessary. You can run Mudslide on a system
 with NodeJS 16 or higher from the command-line as follows:
 
 ```shell
-npx mudslide -V
+npx mudslide@latest -V
 ```
 
 this should display the version number of the latest release.
@@ -39,7 +32,7 @@ npm install -g mudslide
 ## Platform binaries
 
 Binaries for different platforms (Linux, Windows) are available on the [latest
-release page](https://github.com/robvanderleek/mudslide/releases/latest). 
+release page](https://github.com/robvanderleek/mudslide/releases/latest).
 
 ## Docker
 
@@ -68,11 +61,11 @@ docker run -v /home/<USERNAME>/.local/share/mudslide:/usr/src/app/cache login
 Available commands and options can be listed with `--help` flag:
 
 ```shell
-npx mudslide --help
+npx mudslide@latest --help
 ```
 
 for most command it's necessary that you've authorized Mudslide to interact
-with the WhatsApp API on your behalf.  This can be done by logging in as
+with the WhatsApp API on your behalf. This can be done by logging in as
 described below.
 
 ## Login
@@ -81,7 +74,7 @@ To login you need to authorize Mudslide from another device that has WhatsApp in
 in the terminal:
 
 ```shell
-npx mudslide login
+npx mudslide@latest login
 █▀▀▀▀▀█ ▀▀   ▀  █ █▀▀▀▀▀█
 █ ███ █ █▄ █▀▀▀▀  █ ███ █
 █ ▀▀▀ █ ▀█▀▀▄▀█▀▀ █ ▀▀▀ █
@@ -108,7 +101,7 @@ disconnect Mudslide from your WhatsApp account, you can disconnect Mudslide
 using the WhatsApp app.
 
 ```shell
-npx mudslide logout
+npx mudslide@latest logout
 ```
 
 ## Different types of recipients
@@ -124,26 +117,26 @@ Muslide supports three types of recipients for sending messages/images/files/etc
 Using the recipient `me` you can send yourself a test message:
 
 ```shell
-npx mudslide send me 'hello world'
+npx mudslide@latest send me 'hello world'
 ```
 
 To send a message to a phone number:
 
 ```shell
-npx mudslide send 3161234567890 'hello world'
+npx mudslide@latest send 3161234567890 'hello world'
 ```
 
 To send a message to a group you are particpating in you need the group ID (see
-the `mudslide groups` command).  Send a message to a group as follows:
+the `mudslide groups` command). Send a message to a group as follows:
 
 ```shell
-npx mudslide send 123456789-987654321@g.us 'hello world'
+npx mudslide@latest send 123456789-987654321@g.us 'hello world'
 ```
 
 Use `\n` to send a message with a newline, for example:
 
 ```shell
-npx mudslide send me 'hello\nworld'
+npx mudslide@latest send me 'hello\nworld'
 ```
 
 ## Sending an image file
@@ -151,11 +144,11 @@ npx mudslide send me 'hello\nworld'
 Image files (PNG, JPG, GIF) can be sent to individuals or groups:
 
 ```shell
-npx mudslide send-image me image.png
+npx mudslide@latest send-image me image.png
 ```
 
 ```shell
-npx mudslide send-image 123456789-987654321@g.us image.jpg
+npx mudslide@latest send-image 123456789-987654321@g.us image.jpg
 ```
 
 ### Image captions
@@ -163,7 +156,7 @@ npx mudslide send-image 123456789-987654321@g.us image.jpg
 Use the `--caption` option to add a caption to the image:
 
 ```shell
-npx mudslide send-image --caption 'Your text here' me image.png
+npx mudslide@latest send-image --caption 'Your text here' me image.png
 ```
 
 ## Sending other files
@@ -171,11 +164,11 @@ npx mudslide send-image --caption 'Your text here' me image.png
 Single files can be sent to individuals or groups:
 
 ```shell
-npx mudslide send-file me test.json
+npx mudslide@latest send-file me test.json
 ```
 
 ```shell
-npx mudslide send-file 123456789-987654321@g.us document.pdf
+npx mudslide@latest send-file 123456789-987654321@g.us document.pdf
 ```
 
 ## Sending a location
@@ -184,13 +177,13 @@ Geographic locations can be sent to individuals or groups using latitude and
 longitude coordinates. For example, to position yourself at the Eiffel Tower:
 
 ```shell
-npx mudslide send-location me 48.858222 2.2945
+npx mudslide@latest send-location me 48.858222 2.2945
 ```
 
 Or to send your location at the Sydney Opera House to a group:
 
 ```shell
-npx mudslide send-location 123456789-987654321@g.us -33.857058 151.214897
+npx mudslide@latest send-location 123456789-987654321@g.us -33.857058 151.214897
 ```
 
 ## List your groups
@@ -198,17 +191,29 @@ npx mudslide send-location 123456789-987654321@g.us -33.857058 151.214897
 To list all the groups you are participating in:
 
 ```shell
-npx mudslide groups
+npx mudslide@latest groups
 ```
 
 this will show a list of group IDs and subjects.
+
+## Add/remove group participants
+
+Participants can be added/removed from existing groups as follows:
+
+```shell
+npx mudslide@latest add-to-group 123456789-987654321@g.us 3161234567890
+```
+
+```shell
+npx mudslide@latest remove-from-group 123456789-987654321@g.us 3161234567890
+```
 
 ## Show current user details
 
 To get the WhatsApp ID of the logged in user:
 
 ```shell
-npx mudslide me
+npx mudslide@latest me
 ```
 
 # Configuration
