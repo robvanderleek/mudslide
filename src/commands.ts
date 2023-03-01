@@ -113,7 +113,11 @@ export async function mutateGroup(groupId: string, phoneNumber: string, operatio
         const {connection} = update
         if (connection === 'open') {
             const whatsAppId = await getWhatsAppId(socket, phoneNumber);
-            signale.log(`Adding ${whatsAppId} to group ${groupId}`);
+            if (operation === 'add') {
+                signale.log(`Adding ${whatsAppId} to group ${groupId}`);
+            } else {
+                signale.log(`Removing ${whatsAppId} from group ${groupId}`);
+            }
             await socket.groupParticipantsUpdate(groupId, [whatsAppId], operation);
             terminate(socket);
         }
