@@ -20,6 +20,11 @@ export function getAuthStateCacheFolderLocation() {
     }
 }
 
+function clearCacheFolder() {
+    const folder = initAuthStateCacheFolder();
+    fs.readdirSync(folder).forEach(f => f.endsWith(".json") && fs.rmSync(`${folder}/${f}`));
+}
+
 function initAuthStateCacheFolder() {
     const folderLocation = getAuthStateCacheFolderLocation();
     if (!fs.existsSync(folderLocation)) {
@@ -115,21 +120,21 @@ export async function login(waitForWA = false) {
 export async function logout() {
     checkLoggedIn();
     const socket = await initWASocket(false);
-    const folder = initAuthStateCacheFolder();
     socket.ev.on('connection.update', async (update) => {
         const {connection} = update
         if (update.connection === undefined && update.qr) {
-            fs.readdirSync(folder).forEach(f => f.endsWith(".json") && fs.rmSync(`${folder}/${f}`));
+            clearCacheFolder();
             signale.success(`Logged out`);
             terminate(socket);
         }
         if (connection === 'open') {
             await socket.logout();
-            fs.readdirSync(folder).forEach(f => f.endsWith(".json") && fs.rmSync(`${folder}/${f}`));
+            clearCacheFolder();
             signale.success(`Logged out`);
             terminate(socket);
         }
     });
+    process.on('exit', clearCacheFolder);
 }
 
 export async function getWhatsAppId(socket: any, recipient: string) {
