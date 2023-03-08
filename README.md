@@ -68,6 +68,17 @@ for most command it's necessary that you've authorized Mudslide to interact
 with the WhatsApp API on your behalf. This can be done by logging in as
 described below.
 
+### Running behind a proxy server
+
+When the global option `--proxy` is used, Mudslide will use the environment variables `HTTP_PROXY` and `HTTPS_PROXY` to
+proxy all requests. For example:
+
+```shell
+export HTTP_PROXY=http://USER:PASS@proxy.server.com:80 
+export HTTPS_PROXY=http://USER:PASS@proxy.server.com:80
+npx mudslide@latest --proxy login
+```
+
 ## Login
 
 To login you need to authorize Mudslide from another device that has WhatsApp installed and scan the QR code printed

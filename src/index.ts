@@ -2,6 +2,7 @@
 import {program} from "commander";
 import {login, logout} from "./whatsapp";
 import {listGroups, me, mutateGroup, sendFile, sendImage, sendLocation, sendMessage} from "./commands";
+import {bootstrap} from 'global-agent';
 
 const packageJson = require('../package.json');
 
@@ -9,6 +10,14 @@ const packageJson = require('../package.json');
 program.name('mudslide').version(packageJson.version);
 program.option('-c, --cache <folder>', 'Override cache folder');
 program.on('option:cache', (folder) => process.env.MUDSLIDE_CACHE_FOLDER = folder);
+program.option('--proxy', 'Use HTTP/HTTPS proxy');
+program.on('option:proxy', () => {
+    bootstrap();
+    // @ts-ignore
+    global.GLOBAL_AGENT.HTTP_PROXY = process.env.HTTP_PROXY;
+    // @ts-ignore
+    global.GLOBAL_AGENT.HTTPS_PROXY = process.env.HTTPS_PROXY;
+});
 program
     .command('login')
     .description('Login to WhatsApp')
