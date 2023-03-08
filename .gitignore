@@ -5,6 +5,6 @@ yarn-error.log
 mudslide
 mudslide-linuxstatic-*
 mudslide-win-*.exe
-mudslide-macos-*
+mudslide-macos
 *.tgz
 tmp
