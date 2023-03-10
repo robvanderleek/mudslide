@@ -11,7 +11,7 @@ import {
     terminate
 } from "./whatsapp";
 
-export async function sendMessage(recipient: string, message: string) {
+export async function sendMessage(recipient: string, message: string, options: { footer: string | undefined, button: Array<string> }) {
     checkLoggedIn();
     const socket = await initWASocket();
     socket.ev.on('connection.update', async (update) => {
@@ -20,7 +20,18 @@ export async function sendMessage(recipient: string, message: string) {
             const whatsappId = await getWhatsAppId(socket, recipient);
             signale.await(`Sending message: "${message}" to: ${whatsappId}`);
             message = message.replace(/\\n/g, '\n');
-            await socket.sendMessage(whatsappId, {text: message});
+            const buttons = options.button.map((b, idx) => ({
+                buttonId: `button-${idx}`,
+                buttonText: {displayText: b},
+                type: 1
+            }));
+            const whatsappMessage = {
+                text: message,
+                footer: options.footer,
+                buttons: buttons,
+                headerType: 2
+            }
+            await socket.sendMessage(whatsappId, whatsappMessage)
             signale.success('Done');
             terminate(socket, 3);
         }

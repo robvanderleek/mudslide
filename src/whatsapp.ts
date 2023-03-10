@@ -37,7 +37,6 @@ function initAuthStateCacheFolder() {
 export async function initWASocket(printQR = true, message: string | undefined = undefined) {
     const {state, saveCreds} = await useMultiFileAuthState(initAuthStateCacheFolder());
     const os = process.platform === 'darwin' ? 'macOS' : process.platform === 'win32' ? 'Windows' : 'Linux';
-    console.log('OS: ' + os);
     const socket = makeWASocket({
         logger: pino({level: 'silent'}),
         auth: state,
@@ -62,7 +61,7 @@ export function terminate(socket: any, waitSeconds = 0) {
         socket.ws.close();
         process.exit();
     }, waitSeconds * 1000);
-    console.info('⭐️ the repo if you enjoy Mudslide: https://github.com/robvanderleek/mudslide')
+    console.info('⭐️ Please star Mudslide on GitHub! https://github.com/robvanderleek/mudslide')
 }
 
 export function checkLoggedIn() {

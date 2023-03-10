@@ -150,6 +150,22 @@ Use `\n` to send a message with a newline, for example:
 npx mudslide@latest send me 'hello\nworld'
 ```
 
+### Footer text
+
+Use the `--footer` option to include a footer text with your message:
+
+```shell
+npx mudslide@latest send me 'hello\nworld' --footer 'Bye!'
+```
+
+### Buttons
+
+Use the `-b`/`button` option to include a button with your message. This option can be used multiple times:
+
+```shell
+npx mudslide@latest send 123456789-987654321@g.us 'Everyone ready?' -b 'yes' -b 'no'
+```
+
 ## Sending an image file
 
 Image files (PNG, JPG, GIF) can be sent to individuals or groups:
