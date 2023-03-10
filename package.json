@@ -37,7 +37,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@adiwajshing/baileys": "^4.4.0",
+    "@adiwajshing/baileys": "^5.0.0",
     "@hapi/boom": "^10.0.0",
     "commander": "^9.4.1",
     "global-agent": "^3.0.0",
