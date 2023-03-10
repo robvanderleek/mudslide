@@ -36,10 +36,13 @@ function initAuthStateCacheFolder() {
 
 export async function initWASocket(printQR = true, message: string | undefined = undefined) {
     const {state, saveCreds} = await useMultiFileAuthState(initAuthStateCacheFolder());
+    const os = process.platform === 'darwin' ? 'macOS' : process.platform === 'win32' ? 'Windows' : 'Linux';
+    console.log('OS: ' + os);
     const socket = makeWASocket({
         logger: pino({level: 'silent'}),
         auth: state,
         printQRInTerminal: printQR,
+        browser: [os, 'Chrome', '10.15.0'],
         getMessage: async _ => {
             return {
                 conversation: message
