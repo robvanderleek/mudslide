@@ -61,7 +61,7 @@ export function terminate(socket: any, waitSeconds = 0) {
         socket.ws.close();
         process.exit();
     }, waitSeconds * 1000);
-    console.info('⭐️ Please star Mudslide on GitHub! https://github.com/robvanderleek/mudslide')
+    console.info('\u2B50 Please star Mudslide on GitHub! https://github.com/robvanderleek/mudslide')
 }
 
 export function checkLoggedIn() {

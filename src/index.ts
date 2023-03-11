@@ -70,4 +70,12 @@ function configureCommands() {
 }
 
 configureCommands();
+program.addHelpText('after', `
+
+Examples:
+  send --help
+  send me 'hello world'
+  send-file 123456789-987654321@g.us document.pdf --caption 'Please read'
+  send me -b 'Yes' -b 'No' "Are you on your way?"`);
+
 program.parse(process.argv);
