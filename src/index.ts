@@ -49,8 +49,9 @@ function configureCommands() {
         .action((recipient, file, options) => sendImage(recipient, file, options));
     program
         .command('send-file <recipient> <file>')
+        .option('--caption <text>', 'Caption text')
         .description('Send file')
-        .action((recipient, file) => sendFile(recipient, file));
+        .action((recipient, file, options) => sendFile(recipient, file, options));
     program
         .command('send-location <recipient> <latitude> <longitude>')
         .allowUnknownOption()

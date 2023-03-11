@@ -159,11 +159,12 @@ export async function sendImageHelper(socket: any, whatsappId: string, filePath:
     terminate(socket, 3);
 }
 
-export async function sendFileHelper(socket: any, whatsappId: string, filePath: string) {
+export async function sendFileHelper(socket: any, whatsappId: string, filePath: string, options: { caption: string | undefined }) {
     const payload = {
         document: fs.readFileSync(filePath),
         mimetype: mime.getType(filePath),
-        fileName: path.basename(filePath)
+        fileName: path.basename(filePath),
+        caption: options.caption
     }
     await socket.sendMessage(whatsappId, payload);
     signale.success('Done');

@@ -52,7 +52,7 @@ export async function sendImage(recipient: string, path: string, options: { capt
     });
 }
 
-export async function sendFile(recipient: string, path: string) {
+export async function sendFile(recipient: string, path: string, options: { caption: string | undefined }) {
     checkValidFile(path);
     checkLoggedIn();
     const socket = await initWASocket();
@@ -61,7 +61,7 @@ export async function sendFile(recipient: string, path: string) {
         if (connection === 'open') {
             const whatsappId = await getWhatsAppId(socket, recipient);
             signale.await(`Sending file: "${path}" to: ${whatsappId}`);
-            await sendFileHelper(socket, whatsappId, path);
+            await sendFileHelper(socket, whatsappId, path, options);
         }
     });
 }
