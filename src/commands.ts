@@ -21,17 +21,20 @@ export async function sendMessage(recipient: string, message: string, options: {
             signale.await(`Sending message: "${message}" to: ${whatsappId}`);
             message = message.replace(/\\n/g, '\n');
             const buttons = options.button.map((b, idx) => ({
-                buttonId: `button-${idx}`,
+                buttonId: `id${idx}`,
                 buttonText: {displayText: b},
                 type: 1
             }));
-            const whatsappMessage = {
-                text: message,
-                footer: options.footer,
-                buttons: buttons,
-                headerType: 2
+            const whatsappMessage: any = {};
+            whatsappMessage['text'] = message;
+            if (options.footer) {
+                whatsappMessage['footer'] = options.footer;
             }
-            await socket.sendMessage(whatsappId, whatsappMessage)
+            if (buttons.length > 0) {
+                whatsappMessage['buttons'] = buttons;
+                whatsappMessage['headerType'] = 1;
+            }
+            await socket.sendMessage(whatsappId, whatsappMessage);
             signale.success('Done');
             terminate(socket, 3);
         }
