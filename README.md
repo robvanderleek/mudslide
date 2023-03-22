@@ -252,6 +252,12 @@ home directory. This folder is `.local/share/mudslide'` on Linux & macOS and
 A different location for the cache folder can be configured via the environment
 variable `MUDSLIDE_CACHE_FOLDER` or the `-c`/`--cache` options.
 
+# Troubleshooting
+
+In case Mudslide does not give any output or does not behave as expected, try
+removing the local cache folder (see [Configuration section](#configuration)),
+then disconnect the client using your mobile WhatsApp app, and try loging again.
+
 # Development
 
 ## Running unit-tests
