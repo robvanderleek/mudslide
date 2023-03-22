@@ -258,6 +258,13 @@ In case Mudslide does not give any output or does not behave as expected, try
 removing the local cache folder (see [Configuration section](#configuration)),
 then disconnect the client using your mobile WhatsApp app, and login again.
 
+To see what goes on in more detail, the verbosity of Mudslide can be incrased
+with the global option `-v`. Use `-vvv` for the greatest level of detail:
+
+```shell
+npx mudslide@latest -vvv me
+```
+
 # Development
 
 ## Running unit-tests

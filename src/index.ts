@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import {program} from "commander";
-import {login, logout} from "./whatsapp";
+import {globalOptions, login, logout} from "./whatsapp";
 import {listGroups, me, mutateGroup, sendFile, sendImage, sendLocation, sendMessage} from "./commands";
 import {bootstrap} from 'global-agent';
 
@@ -9,6 +9,21 @@ const packageJson = require('../package.json');
 
 program.name('mudslide').version(packageJson.version);
 program.option('-c, --cache <folder>', 'Override cache folder');
+
+function increaseVerbosity(_: string, previous: string) {
+    if (previous === 'silent') {
+        globalOptions.logLevel = 'info';
+        return 'info';
+    } else if (previous === 'info') {
+        globalOptions.logLevel = 'debug';
+        return 'debug';
+    } else {
+        globalOptions.logLevel = 'trace';
+        return 'trace';
+    }
+}
+
+program.option('-v, --verbose', 'Increase verbosity', increaseVerbosity, 'silent')
 program.on('option:cache', (folder) => process.env.MUDSLIDE_CACHE_FOLDER = folder);
 program.option('--proxy', 'Use HTTP/HTTPS proxy');
 program.on('option:proxy', () => {

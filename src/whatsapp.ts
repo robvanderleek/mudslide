@@ -7,6 +7,10 @@ import signale from "signale";
 import * as os from "os";
 import mime from 'mime';
 
+export const globalOptions = {
+    logLevel : 'silent'
+}
+
 export function getAuthStateCacheFolderLocation() {
     if (process.env.MUDSLIDE_CACHE_FOLDER) {
         return process.env.MUDSLIDE_CACHE_FOLDER;
@@ -38,7 +42,7 @@ export async function initWASocket(printQR = true, message: string | undefined =
     const {state, saveCreds} = await useMultiFileAuthState(initAuthStateCacheFolder());
     const os = process.platform === 'darwin' ? 'macOS' : process.platform === 'win32' ? 'Windows' : 'Linux';
     const socket = makeWASocket({
-        logger: pino({level: 'silent'}),
+        logger: pino({level: globalOptions.logLevel}),
         auth: state,
         printQRInTerminal: printQR,
         browser: [os, 'Chrome', '10.15.0'],
