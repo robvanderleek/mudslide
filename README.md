@@ -256,7 +256,7 @@ variable `MUDSLIDE_CACHE_FOLDER` or the `-c`/`--cache` options.
 
 In case Mudslide does not give any output or does not behave as expected, try
 removing the local cache folder (see [Configuration section](#configuration)),
-then disconnect the client using your mobile WhatsApp app, and try loging again.
+then disconnect the client using your mobile WhatsApp app, and login again.
 
 # Development
 
