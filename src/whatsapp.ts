@@ -11,6 +11,8 @@ export const globalOptions = {
     logLevel : 'silent'
 }
 
+export const mudslideFooter = '\u2B50 Please star Mudslide on GitHub! https://github.com/robvanderleek/mudslide';
+
 export function getAuthStateCacheFolderLocation() {
     if (process.env.MUDSLIDE_CACHE_FOLDER) {
         return process.env.MUDSLIDE_CACHE_FOLDER;
@@ -65,7 +67,7 @@ export function terminate(socket: any, waitSeconds = 0) {
         socket.ws.close();
         process.exit();
     }, waitSeconds * 1000);
-    console.info('\u2B50 Please star Mudslide on GitHub! https://github.com/robvanderleek/mudslide')
+    console.info(mudslideFooter);
 }
 
 export function checkLoggedIn() {

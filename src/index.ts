@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import {program} from "commander";
-import {globalOptions, login, logout} from "./whatsapp";
+import {globalOptions, login, logout, mudslideFooter} from "./whatsapp";
 import {listGroups, me, mutateGroup, sendFile, sendImage, sendLocation, sendMessage} from "./commands";
 import {bootstrap} from 'global-agent';
 
@@ -91,6 +91,8 @@ Examples:
   send --help
   send me 'hello world'
   send-file 123456789-987654321@g.us document.pdf --caption 'Please read'
-  send me -b 'Yes' -b 'No' "Are you on your way?"`);
+  send me -b 'Yes' -b 'No' "Are you on your way?"
+  
+${mudslideFooter}`);
 
 program.parse(process.argv);
