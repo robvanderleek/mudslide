@@ -1,12 +1,16 @@
 # Mudslide
 
+> **Warning**
+> This project can stop working without notice since a core dependency [has been removed](https://github.com/adiwajshing/Baileys) from GitHub and NPM.
+
 ![Logo](https://github.com/robvanderleek/mudslide/blob/main/doc/mudslide-logo-180x180.png?raw=true)
 
 Send WhatsApp messages from the command-line, see also
 this [Medium post](https://levelup.gitconnected.com/how-to-send-whatsapp-messages-from-the-command-line-d1afd8b55de5).
 
-This project is based on [Baileys](https://github.com/adiwajshing/Baileys), a full-featured WhatsApp Web+Multi-Device
-API library (in case you're wondering about the name, a Mudslide is a Baileys cocktail).
+This project is based on [Baileys](https://github.com/adiwajshing/Baileys), a
+full-featured WhatsApp Web+Multi-Device API library (in case you're wondering
+about the name, a Mudslide is a Baileys cocktail).
 
 Keep in mind that the working of Mudslide depends on the Baileys library and
 since that is not an official supported library by WhatsApp it could stop
