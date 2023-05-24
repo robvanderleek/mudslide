@@ -4,4 +4,4 @@ ENV MUDSLIDE_CACHE_FOLDER /usr/src/app/cache
 RUN apt-get update && apt-get install -y --no-install-recommends git
 RUN git config --global url."https://github".insteadOf ssh://git@github
 RUN npm install -g mudslide@latest
-CMD ["mudslide"]
+ENTRYPOINT ["/usr/local/bin/mudslide"]
