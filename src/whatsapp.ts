@@ -1,4 +1,4 @@
-import makeWASocket, {DisconnectReason, useMultiFileAuthState} from "@adiwajshing/baileys";
+import makeWASocket, {DisconnectReason, useMultiFileAuthState} from "@whiskeysockets/baileys";
 import pino from "pino";
 import path from "path";
 import * as fs from "fs";
