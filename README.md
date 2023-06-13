@@ -183,8 +183,8 @@ npx mudslide@latest send-image 123456789-987654321@g.us image.jpg
 ```
 
 > **Note** 
-> In case there is a space in the path of the file, enclose the entire path in 
-> quotes (")
+> In case there is a space in the path or the file name, enclose the entire 
+> path and file name in quotes (")
 
 ### Image captions
 
@@ -207,8 +207,8 @@ npx mudslide@latest send-file 123456789-987654321@g.us document.pdf
 ```
 
 > **Note** 
-> In case there is a space in the path of the file, enclose the entire path in 
-> quotes (")
+> In case there is a space in the path or the file name, enclose the entire 
+> path and file name in quotes (")
 
 ## Sending a location
 
