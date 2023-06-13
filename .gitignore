@@ -2,9 +2,5 @@ dist/
 dist-ncc/
 node_modules/
 yarn-error.log
-mudslide
-mudslide-linuxstatic-*
-mudslide-win-*.exe
-mudslide-macos
-*.tgz
 tmp
+binaries/
