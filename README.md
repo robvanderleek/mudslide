@@ -182,6 +182,10 @@ npx mudslide@latest send-image me image.png
 npx mudslide@latest send-image 123456789-987654321@g.us image.jpg
 ```
 
+> **Note** 
+> In case there is a space in the path of the file, enclose the entire path in 
+> quotes (")
+
 ### Image captions
 
 Use the `--caption` option to add a caption to the image:
@@ -201,6 +205,10 @@ npx mudslide@latest send-file me test.json
 ```shell
 npx mudslide@latest send-file 123456789-987654321@g.us document.pdf
 ```
+
+> **Note** 
+> In case there is a space in the path of the file, enclose the entire path in 
+> quotes (")
 
 ## Sending a location
 
