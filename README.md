@@ -57,7 +57,7 @@ Since Mudslide keeps authentication state on disk you need to mount a state
 directory outside the container, for example:
 
 ```shell
-docker run -v /home/<USERNAME>/.local/share/mudslide:/usr/src/app/cache login
+docker run -v /home/<USERNAME>/.local/share/mudslide:/usr/src/app/cache mudslide login
 ```
 
 # Usage
