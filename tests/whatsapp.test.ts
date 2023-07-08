@@ -1,4 +1,4 @@
-import {getWhatsAppId, parseGeoLocation} from "../src/whatsapp";
+import {getWhatsAppId, handleNewlines, parseGeoLocation} from "../src/whatsapp";
 
 test('get whatsapp id', async () => {
     expect(await getWhatsAppId({}, '3161234567890')).toBe('3161234567890@s.whatsapp.net');
@@ -33,4 +33,11 @@ test('parse geo location, round coords', () => {
 
     expect(result[0]).toBe(5.1234568);
     expect(result[1]).toBe(10.1234568);
+})
+
+test('handle newlines', () => {
+    expect(handleNewlines('hello world')).toBe('hello world');
+    expect(handleNewlines('hello\\nworld')).toBe('hello\nworld');
+    expect(handleNewlines('hello\\nworld\\n')).toBe('hello\nworld\n');
+    expect(handleNewlines()).toBeUndefined();
 })

@@ -8,7 +8,7 @@ import * as os from "os";
 import mime from 'mime';
 
 export const globalOptions = {
-    logLevel : 'silent'
+    logLevel: 'silent'
 }
 
 export const mudslideFooter = '\u2B50 Please star Mudslide on GitHub! https://github.com/robvanderleek/mudslide';
@@ -158,21 +158,31 @@ export async function getWhatsAppId(socket: any, recipient: string) {
     return `${recipient}@s.whatsapp.net`;
 }
 
-export async function sendImageHelper(socket: any, whatsappId: string, filePath: string, options: { caption: string | undefined }) {
-    const payload = {image: fs.readFileSync(filePath), caption: options.caption}
+export async function sendImageHelper(socket: any, whatsappId: string, filePath: string, options: {
+    caption: string | undefined
+}) {
+    const payload = {image: fs.readFileSync(filePath), caption: handleNewlines(options.caption)}
     await socket.sendMessage(whatsappId, payload);
     signale.success('Done');
     terminate(socket, 3);
 }
 
-export async function sendFileHelper(socket: any, whatsappId: string, filePath: string, options: { caption: string | undefined }) {
+export async function sendFileHelper(socket: any, whatsappId: string, filePath: string, options: {
+    caption: string | undefined
+}) {
     const payload = {
         document: fs.readFileSync(filePath),
         mimetype: mime.getType(filePath),
         fileName: path.basename(filePath),
-        caption: options.caption
+        caption: handleNewlines(options.caption)
     }
     await socket.sendMessage(whatsappId, payload);
     signale.success('Done');
     terminate(socket, 3);
+}
+
+export function handleNewlines(s?: string): string | undefined {
+    if (s) {
+        return s.replace(/\\n/g, '\n');
+    }
 }
