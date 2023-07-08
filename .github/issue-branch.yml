@@ -1,3 +1,4 @@
 autoCloseIssue: false
 mode: auto
 conventionalPrTitles: true
+conventionalStyle: semver
