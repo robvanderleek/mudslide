@@ -167,14 +167,22 @@ export async function sendImageHelper(socket: any, whatsappId: string, filePath:
     terminate(socket, 3);
 }
 
-export async function sendFileHelper(socket: any, whatsappId: string, filePath: string, options: {
-    caption: string | undefined
-}) {
-    const payload = {
-        document: fs.readFileSync(filePath),
+export async function sendFileHelper(socket: any, whatsappId: string, filePath: string,
+                                     options: { caption: string | undefined, type: 'audio' | 'video' | 'document' }) {
+    const payload: any = {
         mimetype: mime.getType(filePath),
-        fileName: path.basename(filePath),
         caption: handleNewlines(options.caption)
+    };
+    switch (options.type) {
+        case "audio":
+            payload['audio'] = fs.readFileSync(filePath);
+            break;
+        case "video":
+            payload['video'] = fs.readFileSync(filePath);
+            break;
+        default:
+            payload['document'] = fs.readFileSync(filePath);
+            payload['fileName'] = path.basename(filePath)
     }
     await socket.sendMessage(whatsappId, payload);
     signale.success('Done');

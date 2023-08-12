@@ -65,6 +65,7 @@ function configureCommands() {
     program
         .command('send-file <recipient> <file>')
         .option('--caption <text>', 'Caption text')
+        .option('--type <document|audio|video>', 'File type', 'document')
         .description('Send file')
         .action((recipient, file, options) => sendFile(recipient, file, options));
     program

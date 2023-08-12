@@ -1,7 +1,8 @@
 # Mudslide
 
 > **Warning**
-> DO NOT USE THIS TOOL FOR IMPORTANT THINGS. This tool can stop working without notice since it depends on libraries that could be removed any time from GitHub/NPM.
+> DO NOT USE THIS TOOL FOR IMPORTANT THINGS. This tool can stop working without notice since it depends on libraries
+> that could be removed any time from GitHub/NPM.
 
 ![Logo](https://github.com/robvanderleek/mudslide/blob/main/doc/mudslide-logo-180x180.png?raw=true)
 
@@ -182,8 +183,8 @@ npx mudslide@latest send-image me image.png
 npx mudslide@latest send-image 123456789-987654321@g.us image.jpg
 ```
 
-> **Note** 
-> In case there is a space in the path or the file name, enclose the entire 
+> **Note**
+> In case there is a space in the path or the file name, enclose the entire
 > path and file name in quotes (")
 
 ### Image captions
@@ -206,9 +207,18 @@ npx mudslide@latest send-file me test.json
 npx mudslide@latest send-file 123456789-987654321@g.us document.pdf
 ```
 
-> **Note** 
-> In case there is a space in the path or the file name, enclose the entire 
+> **Note**
+> In case there is a space in the path or the file name, enclose the entire
 > path and file name in quotes (")
+
+### File types
+
+By default, files will be sent as "documents" and show as a download link in the chat.
+The `--type` option can be used for audio and video files that show as a playable message in the chat:
+
+```shell
+npx mudslide@latest send-file --type audio 123456789-987654321@g.us music.mp3
+```
 
 ## Sending a location
 
