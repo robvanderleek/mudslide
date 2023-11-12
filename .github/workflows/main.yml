@@ -7,10 +7,10 @@ on:
     branches: ["main"]
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-    - name: "Force HTTPS"
-      run: git config --global url."https://github".insteadOf ssh://git@github
+  # setup:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: "Force HTTPS"
+  #     run: git config --global url."https://github".insteadOf ssh://git@github
   ci:
     uses: robvanderleek/repo-meister/.github/workflows/nodejs-yarn.yml@main
