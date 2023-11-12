@@ -1,11 +1,11 @@
-name: 'main'
+name: main
 
 on:
   push:
-    branches: [main]
+    branches: ["main"]
   pull_request:
-    branches: [main]
+    branches: ["main"]
 
 jobs:
   test:
-    uses: robvanderleek/repo-meister/.github/workflows/nodejs-yarn-test.yml@main
+    uses: robvanderleek/repo-meister/.github/workflows/nodejs-yarn.yml@main
