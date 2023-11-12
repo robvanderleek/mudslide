@@ -8,4 +8,7 @@ on:
 
 jobs:
   test:
-    uses: robvanderleek/repo-meister/.github/workflows/nodejs-yarn.yml@main
+    steps:
+    - name: "Force HTTPS"
+      run: git config --global url."https://github".insteadOf ssh://git@github
+    - uses: robvanderleek/repo-meister/.github/workflows/nodejs-yarn.yml@main
