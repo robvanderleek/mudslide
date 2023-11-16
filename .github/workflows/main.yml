@@ -12,4 +12,4 @@ jobs:
     steps:
     - name: "Force HTTPS"
       run: git config --global url."https://github".insteadOf ssh://git@github
-    - uses: repo-meister/npmjs-yarn@main
+    - uses: repo-meister/nodejs-yarn@main
