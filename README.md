@@ -1,6 +1,6 @@
 # Mudslide
 
-> **Warning**
+> [!WARNING]
 > DO NOT USE THIS TOOL FOR IMPORTANT THINGS. This tool can stop working without notice since it depends on libraries
 > that could be removed any time from GitHub/NPM.
 
