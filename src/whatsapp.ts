@@ -146,6 +146,9 @@ export async function logout() {
 }
 
 export async function getWhatsAppId(socket: any, recipient: string) {
+    if (recipient.startsWith('+')) {
+        recipient = recipient.substring(1);
+    }
     if (recipient.endsWith('@s.whatsapp.net') || recipient.endsWith('@g.us')) {
         return recipient;
     } else if (recipient === 'me') {
