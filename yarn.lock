@@ -1281,10 +1281,10 @@
     "@wasm-audio-decoders/common" "9.0.1"
     codec-parser "2.4.3"
 
-"@whiskeysockets/baileys@^6.4.0":
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/@whiskeysockets/baileys/-/baileys-6.4.0.tgz#7effbec2d0d7529ce4ee338024fb65fb28b87089"
-  integrity sha512-SdCoVpILWX7z2WEe40BwNjMqpI6Guf0gbG80NNfsJBcRcDQIS9pkmazIhTvNKytWZm7BFZR+QNKcBUxdPqdLsQ==
+"@whiskeysockets/baileys@^6.5.0":
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/@whiskeysockets/baileys/-/baileys-6.5.0.tgz#1da0e7f68c8e2261d550b0197d1312214a4f72ba"
+  integrity sha512-ary0RNivsrl56wnn0ta37LwVGpCDabthERCV5lHHsbhJJFfp04g6+reiQAKvxo61oYxwxKjqq33kvID+AOr++A==
   dependencies:
     "@adiwajshing/keyed-db" "^0.2.4"
     "@hapi/boom" "^9.1.3"
