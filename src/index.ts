@@ -54,8 +54,6 @@ function configureCommands() {
     program
         .command('send <recipient> <message>')
         .description('Send message')
-        .option('-b, --button <text>', 'Button text (repeatable option)', (val, prev: Array<string>) => prev.concat([val]), [])
-        .option('--footer <text>', 'Footer text')
         .action((recipient, message, options) => sendMessage(recipient, message, options));
     program
         .command('send-image <recipient> <file>')
