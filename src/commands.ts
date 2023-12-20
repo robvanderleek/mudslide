@@ -23,11 +23,11 @@ export async function sendMessage(recipient: string, message: string, options: {
         if (connection === 'open') {
             const whatsappId = await getWhatsAppId(socket, recipient);
             signale.await(`Sending message: "${message}" to: ${whatsappId}`);
-            const buttons = options.button.map((b, idx) => ({
+            const buttons = options.button ? options.button.map((b, idx) => ({
                 buttonId: `id${idx}`,
                 buttonText: {displayText: b},
                 type: 1
-            }));
+            })) : [];
             const whatsappMessage: any = {};
             whatsappMessage['text'] = handleNewlines(message);
             if (options.footer) {
