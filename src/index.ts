@@ -89,8 +89,9 @@ program.addHelpText('after', `
 Examples:
   send --help
   send me 'hello world'
+  send-image 123456789-987654321@g.us pizza.png --caption 'How about Pizza?'
   send-file 123456789-987654321@g.us document.pdf --caption 'Please read'
-  send me -b 'Yes' -b 'No' "Are you on your way?"
+  send-file me audio.mp3 --type audio
   
 ${mudslideFooter}`);
 
