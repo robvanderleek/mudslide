@@ -43,7 +43,7 @@ Ubuntu 22.04 / Linux Mint 21
 
 Libreoffice calc [ macros enabled ] Tools → Options → Security → Macro Security → Set to “Medium” or “Low" as per your case	
 
-### Other detailed information is mentioned in How_To_Use sheet of [Libreoffice_Calc_To_Whatsapp.ods](https://github.com/robvanderleek/mudslide/releases/latest](https://github.com/pharmankur/mudslide/blob/main/Calc_To_Whatsapp_Utility/Linux/Libreoffice_Calc_To_Whatsapp.ods))
+### Other detailed information is mentioned in How_To_Use sheet of [Libreoffice_Calc_To_Whatsapp.ods](https://github.com/pharmankur/mudslide/raw/main/Calc_To_Whatsapp_Utility/Linux/Libreoffice_Calc_To_Whatsapp.ods)
 
 
 
