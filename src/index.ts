@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 import {program} from "commander";
 import {globalOptions, login, logout, mudslideFooter} from "./whatsapp";
-import {listGroups, me, mutateGroup, sendFile, sendImage, sendLocation, sendPoll, sendMessage} from "./commands";
+import {listGroups, me, mutateGroup, sendFile, sendImage, sendLocation, sendMessage, sendPoll} from "./commands";
 import {bootstrap} from 'global-agent';
 
 const packageJson = require('../package.json');
-
 
 program.name('mudslide').version(packageJson.version);
 program.option('-c, --cache <folder>', 'Override cache folder');
@@ -72,9 +71,9 @@ function configureCommands() {
         .description('Send location')
         .action((recipient, latitude, longitude) => sendLocation(recipient, latitude, longitude));
     program
-        .command('send-poll <recipient> <pollName>')
-        .option('--values [values...]', 'Poll: Values')
-        .option('--selectableCount <count>', 'Poll: Selectable Count')
+        .command('send-poll <recipient> <name>')
+        .option('--item <text>', 'Poll item (repeatable option)', (val, prev: Array<string>) => prev.concat([val]), [])
+        .option('--selectable <count>', 'Number of selectable items', '1')
         .description('Send poll')
         .action((recipient, name, options) => sendPoll(recipient, name, options));
     program
@@ -98,16 +97,8 @@ Examples:
   send-image 123456789-987654321@g.us pizza.png --caption 'How about Pizza?'
   send-file 123456789-987654321@g.us document.pdf --caption 'Please read'
   send-file me audio.mp3 --type audio
-
-Examples using npm:  
-  npm run start -- send-poll me 'Training on Friday' --values '🏓 Yeeeessss!' '⏳ Yes, but I'll run late …' '👎 Nope.' '❓Donno …' --selectableCount 1
+  send-poll 123456789-987654321@g.us 'Training on Friday' --item '🏓 Yeeeessss!' --item '👎 Nope.'
   
 ${mudslideFooter}`);
 
 program.parse(process.argv);
-
-// Debug options and args
-/**
-console.log('Options: ', program.opts());
-console.log('Remaining arguments: ', program.args);
-//*/
