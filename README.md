@@ -61,6 +61,32 @@ directory outside the container, for example:
 docker run -v /home/<USERNAME>/.local/share/mudslide:/usr/src/app/cache mudslide login
 ```
 
+## Docker Compose
+
+If you chose to use `docker-compose` instead of `docker` you can build the
+Docker image using the supplied `docker-compose.yml` file (which in turn depends on
+the supplied `Dockerfile`): 
+
+
+```shell
+docker-compose build
+```
+
+Test if the build was successful:
+
+```shell
+docker-compose run mudslide
+```
+
+Since Mudslide keeps authentication state on disk you need to mount a state
+directory outside the container, for example in `~/.local/share/mudslide`:
+
+See respective lines in `docker-compose.yml`
+```shell
+    volumes:
+        - ~/.local/share/mudslide:/usr/src/app/cache
+```
+
 # Usage
 
 Available commands and options can be listed with `--help` flag:
