@@ -97,6 +97,39 @@ export async function sendLocation(recipient: string, latitude: string, longitud
     );
 }
 
+export async function sendPoll(recipient: string, name: string, options: {
+    item: Array<string>,
+    selectable: number
+}) {
+    if (options.item.length <= 1) {
+        signale.error('Not enough poll options provided');
+        process.exit(1);
+    }
+    if (options.selectable < 0 || options.selectable > options.item.length) {
+        signale.error(`Selectable should be >= 0 and <= ${options.item.length}`);
+        process.exit(1);
+    }
+    checkLoggedIn();
+    const socket = await initWASocket();
+    socket.ev.on('connection.update', async (update) => {
+            const {connection} = update
+            if (connection === 'open') {
+                const whatsappId = await getWhatsAppId(socket, recipient);
+                signale.await(`Sending poll: "${name}" to: ${whatsappId}`);
+                await socket.sendMessage(whatsappId, {
+                    poll: {
+                        name: name,
+                        selectableCount: options.selectable,
+                        values: options.item,
+                    }
+                });
+                signale.success('Done');
+                terminate(socket, 3);
+            }
+        }
+    );
+}
+
 export async function me() {
     checkLoggedIn();
     signale.log(`Cache folder: ${getAuthStateCacheFolderLocation()}`);

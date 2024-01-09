@@ -79,7 +79,7 @@ When the global option `--proxy` is used, Mudslide will use the environment vari
 proxy all requests. For example:
 
 ```shell
-export HTTP_PROXY=http://USER:PASS@proxy.server.com:80 
+export HTTP_PROXY=http://USER:PASS@proxy.server.com:80
 export HTTPS_PROXY=http://USER:PASS@proxy.server.com:80
 npx mudslide@latest --proxy login
 ```
@@ -96,13 +96,13 @@ npx mudslide@latest login
 █ ▀▀▀ █ ▀█▀▀▄▀█▀▀ █ ▀▀▀ █
 ▀▀▀▀▀▀▀ ▀▄▀▄▀▄█▄▀ ▀▀▀▀▀▀▀
 ▀███▄ ▀▄▀▄   ▀▀ █▀ ▄▀▀▀▄▀
-█▄▄▄▄ ▀ ▄  ▄▄▄█▄ ▄█▀ ▄▄  
+█▄▄▄▄ ▀ ▄  ▄▄▄█▄ ▄█▀ ▄▄
 ▀▄ ▄▀ ▀ ▄█▄█ ▄ ▄ ██▄█ ▀▀█
 ▄▀▄██▀▀██▄▀ █▄▀▄▄█▀▄█ ▀▀▄
     ▀▀▀ ███▀▄▄  █▀▀▀█▀█▀█
 █▀▀▀▀▀█   ▀▀█  ▄█ ▀ █ ▀██
 █ ███ █ ▄▄█▀██▄▄▀██▀██▄▄▄
-█ ▀▀▀ █ █▀▀▀▀▀ ▀▀█▀ █ █▀ 
+█ ▀▀▀ █ █▀▀▀▀▀ ▀▀█▀ █ █▀
 ▀▀▀▀▀▀▀ ▀▀▀ ▀ ▀  ▀ ▀▀▀▀▀▀
 ```
 
@@ -217,6 +217,24 @@ Or to send your location at the Sydney Opera House to a group:
 
 ```shell
 npx mudslide@latest send-location 123456789-987654321@g.us -33.857058 151.214897
+```
+
+## Sending a poll
+
+Polls can be sent to individuals or groups, and allow participants to select 1
+or more items.
+
+For example, to send a poll for the summer holiday destination, allowing
+participants to select 2 items, use:
+
+```shell
+npx mudslide@latest send-poll 123456789-987654321@g.us 'Summer holiday destination' --item '🇫🇷 France', --item '🇪🇸 Spain' --item '🇮🇹 Italy' --item '🇨🇭 Switzerland' --selectable 2
+```
+
+Or to send a quick poll to check who's going training on Friday:
+
+```shell
+npx mudslide@latest send-poll 123456789-987654321@g.us 'Training on Friday' --item 'Yeeeess!' --item 'Nope' --item 'Maybe...'
 ```
 
 ## List your groups
