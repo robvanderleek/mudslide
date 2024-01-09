@@ -1,0 +1,10 @@
+version: '2.2'
+
+services:
+
+  mudslide:
+    build: ./
+    network_mode: host
+    volumes:
+        - ~/.local/share/mudslide:/usr/src/app/cache
+    container_name: mudslide
