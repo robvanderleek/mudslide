@@ -64,9 +64,8 @@ docker run -v /home/<USERNAME>/.local/share/mudslide:/usr/src/app/cache mudslide
 ## Docker Compose
 
 If you chose to use `docker-compose` instead of `docker` you can build the
-Docker image using the supplied `docker-compose.yml` file (which in turn depends on
-the supplied `Dockerfile`): 
-
+Docker image using the supplied `docker-compose.yml` file (which in turn
+depends on the supplied `Dockerfile`): 
 
 ```shell
 docker-compose build
@@ -82,7 +81,7 @@ Since Mudslide keeps authentication state on disk you need to mount a state
 directory outside the container, for example in `~/.local/share/mudslide`:
 
 See respective lines in `docker-compose.yml`
-```shell
+```yaml
     volumes:
         - ~/.local/share/mudslide:/usr/src/app/cache
 ```
