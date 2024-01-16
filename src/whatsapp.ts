@@ -52,7 +52,8 @@ export async function initWASocket(printQR = true, message: string | undefined =
             return {
                 conversation: message
             }
-        }
+        },
+        markOnlineOnConnect: false
     });
     socket.ev.on('creds.update', async () => await saveCreds());
     return socket;
