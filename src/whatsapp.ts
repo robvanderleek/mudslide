@@ -58,9 +58,9 @@ export async function initWASocket(printQR = true, message: string | undefined =
     return socket;
 }
 
-export function terminate(socket: any, waitSeconds = 0) {
+export function terminate(socket: any, waitSeconds = 1) {
     if (waitSeconds > 0) {
-        signale.await(`Waiting ${waitSeconds} second(s) for successful delivery...`);
+        signale.await(`Closing WA connection, waiting for ${waitSeconds} second(s)...`);
     }
     setTimeout(() => {
         socket.end(undefined);
