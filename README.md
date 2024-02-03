@@ -92,6 +92,26 @@ See respective lines in `docker-compose.yml`
         - ~/.local/share/mudslide:/usr/src/app/cache
 ```
 
+# Configuration
+
+By default WhatsApp credentials are cached in a folder located in the user's
+home directory. This folder is `.local/share/mudslide'` on Linux & macOS and
+`AppData\Local\mudslide\Data` on Windows.
+
+A different location for the cache folder can be configured via the environment
+variable `MUDSLIDE_CACHE_FOLDER` or the `-c`/`--cache` options.
+
+## Running behind a proxy server
+
+When the global option `--proxy` is used, Mudslide will use the environment variables `HTTP_PROXY` and `HTTPS_PROXY` to
+proxy all requests. For example:
+
+```shell
+export HTTP_PROXY=http://USER:PASS@proxy.server.com:80
+export HTTPS_PROXY=http://USER:PASS@proxy.server.com:80
+npx mudslide@latest --proxy login
+```
+
 # Usage
 
 Available commands and options can be listed with `--help` flag:
@@ -103,17 +123,6 @@ npx mudslide@latest --help
 for most command it's necessary that you've authorized Mudslide to interact
 with the WhatsApp API on your behalf. This can be done by logging in as
 described below.
-
-### Running behind a proxy server
-
-When the global option `--proxy` is used, Mudslide will use the environment variables `HTTP_PROXY` and `HTTPS_PROXY` to
-proxy all requests. For example:
-
-```shell
-export HTTP_PROXY=http://USER:PASS@proxy.server.com:80
-export HTTPS_PROXY=http://USER:PASS@proxy.server.com:80
-npx mudslide@latest --proxy login
-```
 
 ## Login
 
@@ -297,15 +306,6 @@ To get the WhatsApp ID of the logged in user:
 ```shell
 npx mudslide@latest me
 ```
-
-# Configuration
-
-By default WhatsApp credentials are cached in a folder located in the user's
-home directory. This folder is `.local/share/mudslide'` on Linux & macOS and
-`AppData\Local\mudslide\Data` on Windows.
-
-A different location for the cache folder can be configured via the environment
-variable `MUDSLIDE_CACHE_FOLDER` or the `-c`/`--cache` options.
 
 # Troubleshooting
 
