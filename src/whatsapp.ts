@@ -104,8 +104,10 @@ export async function waitForKey(message: string) {
 }
 
 export async function login(waitForWA = false) {
-    signale.info('In the WhatsApp mobile app go to "Settings > Connected Devices > ');
-    signale.info('Connect Device" and scan the QR code below');
+    if (!waitForWA) {
+        signale.info('In the WhatsApp mobile app go to "Settings > Connected Devices > ');
+        signale.info('Connect Device" and scan the QR code below');
+    }
     const socket = await initWASocket();
     socket.ev.on('connection.update', async (update) => {
         const {connection, lastDisconnect} = update
