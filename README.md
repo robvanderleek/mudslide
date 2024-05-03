@@ -268,7 +268,7 @@ For example, to send a poll for the summer holiday destination, allowing
 participants to select 2 items, use:
 
 ```shell
-npx mudslide@latest send-poll 123456789-987654321@g.us 'Summer holiday destination' --item ':flag_fr: France' --item ':flag_es: Spain' --item ':flag_it: Italy' --item ':flag_ch: Switzerland' --selectable 2
+npx mudslide@latest send-poll 123456789-987654321@g.us 'Summer holiday destination' --item 'France' --item 'Spain' --item 'Italy' --item 'Switzerland' --selectable 2
 ```
 
 Or to send a quick poll to check who's going training on Friday:
