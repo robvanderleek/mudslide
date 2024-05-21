@@ -115,6 +115,7 @@ export async function login(waitForWA = false) {
             if ((lastDisconnect?.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut) {
                 await login(true);
             } else {
+		signale.error('Device was disconnected from WhatsApp, use "logout" command first');
                 return;
             }
         } else if (connection === 'open') {
