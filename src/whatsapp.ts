@@ -44,6 +44,7 @@ export async function initWASocket(printQR = true, message: string | undefined =
     const {state, saveCreds} = await useMultiFileAuthState(initAuthStateCacheFolder());
     const os = process.platform === 'darwin' ? 'macOS' : process.platform === 'win32' ? 'Windows' : 'Linux';
     const socket = makeWASocket({
+        version: [2, 2413, 1],
         logger: pino({level: globalOptions.logLevel}),
         auth: state,
         printQRInTerminal: printQR,
