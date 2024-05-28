@@ -21,7 +21,7 @@ jobs:
       - name: 'Compile TypeScript'
         run: yarn build
       - name: 'Semantic Release'
-        uses: cycjimmy/semantic-release-action@v3
+        uses: cycjimmy/semantic-release-action@v4
         id: semantic
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
