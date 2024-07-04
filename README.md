@@ -334,6 +334,12 @@ yarn test
 
 Please create an issue here: https://github.com/robvanderleek/mudslide/issues
 
+If you like this software, please star :star: it.
+
+## Star history
+
+[![Star History Chart](https://api.star-history.com/svg?repos=robvanderleek/mudslide&type=Date)](https://star-history.com/#robvanderleek/mudslide&Date)
+
 # Contributing
 
 If you have suggestions for how Mudslide could be improved, or want to report a
