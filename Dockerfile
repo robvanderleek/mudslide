@@ -7,4 +7,5 @@ RUN mkdir /app
 COPY . /app
 WORKDIR /app 
 RUN yarn install
-ENTRYPOINT ["yarn", "start"]
+RUN yarn build
+ENTRYPOINT ["node", "./dist/index.js"]

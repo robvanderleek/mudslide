@@ -41,8 +41,28 @@ release page](https://github.com/robvanderleek/mudslide/releases/latest).
 
 ## Docker
 
-Mudslide can also run inside a Docker container, you can build the Docker image
-using the supplied `Dockerfile`:
+Mudslide can also run inside a Docker container:
+
+```shell
+docker run robvanderleek/mudslide
+```
+
+Since Mudslide keeps authentication state on disk you need to mount a state
+directory outside the container, for example:
+
+```shell
+docker run -v $HOME/.local/share/mudslide:/usr/src/app/cache -it robvanderleek/mudslide login
+```
+
+or:
+
+```shell
+docker run -v $HOME/.local/share/mudslide:/usr/src/app/cache robvanderleek/mudslide me
+```
+
+### Build image 
+
+You can build the Docker image using the supplied `Dockerfile`:
 
 ```shell
 docker build -t mudslide .
@@ -52,19 +72,6 @@ Test if the build was successful:
 
 ```shell
 docker run -it mudslide
-```
-
-Since Mudslide keeps authentication state on disk you need to mount a state
-directory outside the container, for example:
-
-```shell
-docker run -v $HOME/.local/share/mudslide:/usr/src/app/cache -it mudslide login
-```
-
-or:
-
-```shell
-docker run -v $HOME/.local/share/mudslide:/usr/src/app/cache mudslide me
 ```
 
 ## Docker Compose

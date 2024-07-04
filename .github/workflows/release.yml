@@ -64,4 +64,6 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: robvanderleek/mudslide:${{ steps.semantic.outputs.new_release_version }}
+          tags: 
+            - robvanderleek/mudslide:latest
+            - robvanderleek/mudslide:${{ steps.semantic.outputs.new_release_version }}
