@@ -4,8 +4,9 @@
 > DO NOT USE THIS TOOL FOR IMPORTANT THINGS. This tool can stop working without notice since it depends on libraries
 > that could be removed any time from GitHub/NPM.
 
-![Logo](https://github.com/robvanderleek/mudslide/blob/main/doc/mudslide-logo-180x180.png?raw=true)
+![Logo](https://github.com/robvanderleek/mudslide/blob/main/assets/mudslide-logo-180x180.png?raw=true)
 
+[![npm version](https://badge.fury.io/js/mudslide.svg)](https://badge.fury.io/js/mudslide)
 [![DockerHub image pulls](https://img.shields.io/docker/pulls/robvanderleek/mudslide)](https://hub.docker.com/repository/docker/robvanderleek/mudslide)
 
 Send WhatsApp messages from the command-line, see also
@@ -18,6 +19,14 @@ about the name, a Mudslide is a Baileys cocktail).
 Keep in mind that the working of Mudslide depends on the Baileys library and
 since that is not an official supported library by WhatsApp it could stop
 working without notice.
+
+* [Installation](#installation)
+* [Usage](#usage)
+* [Configuration](#configuration)
+* [Development](#development)
+* [Feedback, suggestions and bug reports](#feedback-suggestions-and-bug-reports)
+* [Contributing](#contributing)
+* [License](#license)
 
 # Installation
 
@@ -79,10 +88,11 @@ docker run -it mudslide
 ## Docker Compose
 
 If you chose to use `docker-compose` instead of `docker` you can build the
-Docker image using the supplied `docker-compose.yml` file (which in turn
+Docker image using the supplied `assets/docker-compose.yml` file (which in turn
 depends on the supplied `Dockerfile`): 
 
 ```shell
+cd assets/
 docker-compose build
 ```
 
@@ -99,26 +109,6 @@ See respective lines in `docker-compose.yml`
 ```yaml
     volumes:
         - ~/.local/share/mudslide:/usr/src/app/cache
-```
-
-# Configuration
-
-By default WhatsApp credentials are cached in a folder located in the user's
-home directory. This folder is `.local/share/mudslide'` on Linux & macOS and
-`AppData\Local\mudslide\Data` on Windows.
-
-A different location for the cache folder can be configured via the environment
-variable `MUDSLIDE_CACHE_FOLDER` or the `-c`/`--cache` options.
-
-## Running behind a proxy server
-
-When the global option `--proxy` is used, Mudslide will use the environment variables `HTTP_PROXY` and `HTTPS_PROXY` to
-proxy all requests. For example:
-
-```shell
-export HTTP_PROXY=http://USER:PASS@proxy.server.com:80
-export HTTPS_PROXY=http://USER:PASS@proxy.server.com:80
-npx mudslide@latest --proxy login
 ```
 
 # Usage
@@ -316,6 +306,26 @@ To get the WhatsApp ID of the logged in user:
 npx mudslide@latest me
 ```
 
+# Configuration
+
+By default WhatsApp credentials are cached in a folder located in the user's
+home directory. This folder is `.local/share/mudslide'` on Linux & macOS and
+`AppData\Local\mudslide\Data` on Windows.
+
+A different location for the cache folder can be configured via the environment
+variable `MUDSLIDE_CACHE_FOLDER` or the `-c`/`--cache` options.
+
+## Running behind a proxy server
+
+When the global option `--proxy` is used, Mudslide will use the environment variables `HTTP_PROXY` and `HTTPS_PROXY` to
+proxy all requests. For example:
+
+```shell
+export HTTP_PROXY=http://USER:PASS@proxy.server.com:80
+export HTTPS_PROXY=http://USER:PASS@proxy.server.com:80
+npx mudslide@latest --proxy login
+```
+
 # Troubleshooting
 
 In case Mudslide does not give any output or does not behave as expected, try
@@ -328,6 +338,14 @@ with the global option `-v`. Use `-vvv` for the greatest level of detail:
 ```shell
 npx mudslide@latest -vvv me
 ```
+
+# FAQ
+
+## How can I read messages?
+
+Mudslide is for sending messages *only*. If you want to read messages (e.g.
+when building a chat bot), have a look at the [Baileys
+library](https://github.com/WhiskeySockets/Baileys). 
 
 # Development
 

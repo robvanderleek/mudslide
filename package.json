@@ -31,8 +31,8 @@
     "start": "yarn build && node ./dist/index.js",
     "dist": "yarn build && yarn dist:build && yarn dist:pkg:linux && yarn dist:pkg:windows && yarn dist:pkg:macos && yarn dist:bundle:macos",
     "dist:build": "ncc build dist/index.js -o dist-ncc",
-    "dist:pkg:linux": "pkg -c pkg-linux.json -o binaries/mudslide-linuxstatic dist-ncc/index.js",
-    "dist:pkg:windows": "pkg -c pkg-win-x64.json -o binaries/mudslide dist-ncc/index.js",
+    "dist:pkg:linux": "pkg -c assets/pkg-linux.json -o binaries/mudslide-linuxstatic dist-ncc/index.js",
+    "dist:pkg:windows": "pkg -c assets/pkg-win-x64.json -o binaries/mudslide dist-ncc/index.js",
     "dist:pkg:macos": "pkg -t node16-macos-x64 -o binaries/mudslide dist-ncc/index.js",
     "dist:bundle:macos": "cd binaries && tar czf mudslide-macos.tgz mudslide"
   },
@@ -60,5 +60,9 @@
     "semantic-release": "^23.1.1",
     "ts-jest": "^29.0.5",
     "typescript": "^4.9.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   }
 }
