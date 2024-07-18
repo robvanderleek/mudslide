@@ -23,6 +23,8 @@ working without notice.
 * [Installation](#installation)
 * [Usage](#usage)
 * [Configuration](#configuration)
+* [Troubleshooting](#troubleshooting)
+* [FAQ](#faq)
 * [Development](#development)
 * [Feedback, suggestions and bug reports](#feedback-suggestions-and-bug-reports)
 * [Contributing](#contributing)
