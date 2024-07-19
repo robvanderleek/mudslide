@@ -116,7 +116,7 @@ export async function login(waitForWA = false) {
             if ((lastDisconnect?.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut) {
                 await login(true);
             } else {
-		signale.error('Device was disconnected from WhatsApp, use "logout" command first');
+                signale.error('Device was disconnected from WhatsApp, use "logout" command first');
                 return;
             }
         } else if (connection === 'open') {
@@ -155,7 +155,7 @@ export async function getWhatsAppId(socket: any, recipient: string) {
     if (recipient.startsWith('+')) {
         recipient = recipient.substring(1);
     }
-    if (recipient.endsWith('@s.whatsapp.net') || recipient.endsWith('@g.us')) {
+    if (recipient.endsWith('@s.whatsapp.net') || recipient.endsWith('@g.us') || recipient.endsWith('@broadcast')) {
         return recipient;
     } else if (recipient === 'me') {
         const user = await socket.user;

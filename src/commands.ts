@@ -37,7 +37,11 @@ export async function sendMessage(recipient: string, message: string, options: {
                 whatsappMessage['buttons'] = buttons;
                 whatsappMessage['headerType'] = 1;
             }
-            await socket.sendMessage(whatsappId, whatsappMessage);
+            const sendOptions: any = {};
+            if (whatsappId.endsWith('@broadcast')) {
+                sendOptions['broadcast'] = true;
+            }
+            await socket.sendMessage(whatsappId, whatsappMessage, sendOptions);
             signale.success('Done');
             terminate(socket, 3);
         }
