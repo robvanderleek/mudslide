@@ -8,6 +8,7 @@
 
 [![npm version](https://badge.fury.io/js/mudslide.svg)](https://badge.fury.io/js/mudslide)
 [![DockerHub image pulls](https://img.shields.io/docker/pulls/robvanderleek/mudslide)](https://hub.docker.com/repository/docker/robvanderleek/mudslide)
+[![Dependabot](https://badgen.net/badge/Dependabot/enabled/green?icon=dependabot)](https://dependabot.com/)
 
 Send WhatsApp messages from the command-line, see also
 this [Medium post](https://levelup.gitconnected.com/how-to-send-whatsapp-messages-from-the-command-line-d1afd8b55de5).
