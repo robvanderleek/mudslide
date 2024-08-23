@@ -44,7 +44,7 @@ export async function initWASocket(printQR = true, message: string | undefined =
     const {state, saveCreds} = await useMultiFileAuthState(initAuthStateCacheFolder());
     const os = process.platform === 'darwin' ? 'macOS' : process.platform === 'win32' ? 'Windows' : 'Linux';
     const socket = makeWASocket({
-        version: [2, 2413, 1],
+        version: [2, 3000, 1015901307],
         logger: pino({level: globalOptions.logLevel}),
         auth: state,
         printQRInTerminal: printQR,
@@ -116,7 +116,7 @@ export async function login(waitForWA = false) {
             if ((lastDisconnect?.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut) {
                 await login(true);
             } else {
-		signale.error('Device was disconnected from WhatsApp, use "logout" command first');
+                signale.error('Device was disconnected from WhatsApp, use "logout" command first');
                 return;
             }
         } else if (connection === 'open') {

@@ -40,7 +40,7 @@
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",
     "@hapi/boom": "^10.0.0",
-    "@whiskeysockets/baileys": "^6.7.6",
+    "@whiskeysockets/baileys": "^6.7.7",
     "commander": "^9.4.1",
     "global-agent": "^3.0.0",
     "mime": "^3.0.0",
