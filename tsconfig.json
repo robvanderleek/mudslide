@@ -4,7 +4,7 @@
   ],
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "dist",
+    "outDir": "build",
     "strict": true,
     "target": "es6",
     "resolveJsonModule": true,

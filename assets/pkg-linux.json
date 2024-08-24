@@ -1,6 +1,5 @@
 {
   "pkg": {
-    "assets": "dist-ncc/*.js",
-    "targets": [ "node16-linuxstatic-x64", "node16-linuxstatic-arm64" ]
+    "targets": [ "node20-linuxstatic-x64", "node20-linuxstatic-arm64" ]
   }
 }

@@ -1,6 +1,5 @@
 {
   "pkg": {
-    "assets": "dist-ncc/*.js",
-    "targets": [ "node16-win-x64" ]
+    "targets": [ "node20-win-x64" ]
   }
 }
