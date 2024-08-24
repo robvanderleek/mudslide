@@ -43,7 +43,7 @@
     "@whiskeysockets/baileys": "^6.7.7",
     "commander": "^9.4.1",
     "global-agent": "^3.0.0",
-    "mime": "^3.0.0",
+    "mime": "^4.0.4",
     "pino": "^7.0.0",
     "qrcode-terminal": "^0.12.0",
     "signale": "^1.4.0"
@@ -51,7 +51,7 @@
   "devDependencies": {
     "@types/global-agent": "^2.1.1",
     "@types/jest": "^29.5.12",
-    "@types/mime": "^3.0.1",
+    "@types/mime": "^4.0.0",
     "@types/node": "^18.11.10",
     "@types/signale": "^1.4.4",
     "@yao-pkg/pkg": "^5.12.1",
