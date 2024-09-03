@@ -43,6 +43,7 @@
     "@whiskeysockets/baileys": "^6.7.7",
     "commander": "^9.4.1",
     "global-agent": "^3.0.0",
+    "link-preview-js": "^3.0.5",
     "mime": "^3.0.0",
     "pino": "^7.0.0",
     "qrcode-terminal": "^0.12.0",
