@@ -4,14 +4,24 @@
 > DO NOT USE THIS TOOL FOR IMPORTANT THINGS. This tool can stop working without notice since it depends on libraries
 > that could be removed any time from GitHub/NPM.
 
-![Logo](https://github.com/robvanderleek/mudslide/blob/main/assets/mudslide-logo-180x180.png?raw=true)
+<p align="center">
+  <img src="https://github.com/robvanderleek/mudslide/blob/main/assets/mudslide-logo-180x180.png?raw=true"/>
+</p>
+
+<p align="center">
+  <em>Send WhatsApp messages from the command-line</em>
+</p>
+
+<div align="center">
 
 [![npm version](https://badge.fury.io/js/mudslide.svg)](https://badge.fury.io/js/mudslide)
 [![DockerHub image pulls](https://img.shields.io/docker/pulls/robvanderleek/mudslide)](https://hub.docker.com/repository/docker/robvanderleek/mudslide)
 [![Dependabot](https://badgen.net/badge/Dependabot/enabled/green?icon=dependabot)](https://dependabot.com/)
 
-Send WhatsApp messages from the command-line, see also
-this [Medium post](https://levelup.gitconnected.com/how-to-send-whatsapp-messages-from-the-command-line-d1afd8b55de5).
+</div>
+
+For an introduction please read this [Medium
+post](https://levelup.gitconnected.com/how-to-send-whatsapp-messages-from-the-command-line-d1afd8b55de5).
 
 This project is based on [Baileys](https://github.com/WhiskeySockets/Baileys),
 a full-featured WhatsApp Web+Multi-Device API library (in case you're wondering
