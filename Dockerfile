@@ -8,4 +8,4 @@ COPY . /app
 WORKDIR /app 
 RUN yarn install
 RUN yarn build
-ENTRYPOINT ["node", "./dist/index.js"]
+ENTRYPOINT ["node", "./build/index.js"]
