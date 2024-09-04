@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <em>Send WhatsApp messages from the command-line</em>
+  <em>Send WhatsApp messages from the command-line 📯</em>
 </p>
 
 <div align="center">
