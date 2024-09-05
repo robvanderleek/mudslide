@@ -21,12 +21,16 @@
       ]
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robvanderleek/mudslide.git"
+  },
   "bin": {
     "mudslide": "build/index.js"
   },
   "main": "build/index.js",
   "scripts": {
-    "postinstall": "yarn build",
+    "postinstall": "echo 'hello world'",
     "build": "tsc && chmod a+x ./build/index.js",
     "test": "jest",
     "start": "yarn build && node ./build/index.js",
