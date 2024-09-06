@@ -9,6 +9,8 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
     - name: "Force HTTPS"
       run: git config --global url."https://github".insteadOf ssh://git@github
