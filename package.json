@@ -30,7 +30,6 @@
   },
   "main": "build/index.js",
   "scripts": {
-    "postinstall": "echo 'hello world'",
     "build": "tsc && chmod a+x ./build/index.js",
     "test": "jest",
     "start": "yarn build && node ./build/index.js",

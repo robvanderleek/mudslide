@@ -12,15 +12,20 @@ jobs:
     steps:
     - name: "Force HTTPS"
       run: git config --global url."https://github".insteadOf ssh://git@github
+
     - name: "Checkout sources"
       uses: actions/checkout@v4
+
     - name: "Setup NodeJS"
       uses: actions/setup-node@v4
       with:
         node-version: "20.x"
+
     - name: "Install dependencies"
       run: yarn install
+
     - name: "Build"
       run: yarn build
+
     - name: "Run tests"
       run: yarn test
