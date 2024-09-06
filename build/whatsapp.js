@@ -84,6 +84,7 @@ function initWASocket(printQR = true, message = undefined) {
             auth: state,
             printQRInTerminal: printQR,
             browser: [os, 'Chrome', '10.15.0'],
+            generateHighQualityLinkPreview: true,
             getMessage: (_) => __awaiter(this, void 0, void 0, function* () {
                 return {
                     conversation: message
