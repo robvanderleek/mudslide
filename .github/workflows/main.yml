@@ -29,3 +29,17 @@ jobs:
 
     - name: "Run tests"
       run: yarn test
+
+    - name: 'Commit build'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add build
+        git commit -m "Build by GitHub Actions" || true
+
+    - name: 'Push changes'
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
+        force: true
