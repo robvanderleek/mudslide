@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.mutateGroup = exports.listGroups = exports.me = exports.sendPoll = exports.sendLocation = exports.sendFile = exports.sendImage = exports.sendMessage = void 0;
 const signale_1 = __importDefault(require("signale"));
 const whatsapp_1 = require("./whatsapp");
+const baileys_1 = require("@whiskeysockets/baileys");
 function sendMessage(recipient, message, options) {
     return __awaiter(this, void 0, void 0, function* () {
         (0, whatsapp_1.checkLoggedIn)();
@@ -38,6 +39,13 @@ function sendMessage(recipient, message, options) {
                     whatsappMessage['buttons'] = buttons;
                     whatsappMessage['headerType'] = 1;
                 }
+                whatsappMessage['linkPreview'] = yield (0, baileys_1.getUrlInfo)(message, {
+                    thumbnailWidth: 1024,
+                    fetchOpts: {
+                        timeout: 5000,
+                    },
+                    uploadImage: socket.waUploadToServer,
+                });
                 yield socket.sendMessage(whatsappId, whatsappMessage);
                 signale_1.default.success('Done');
                 (0, whatsapp_1.terminate)(socket, 3);

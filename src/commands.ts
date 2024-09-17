@@ -11,6 +11,7 @@ import {
     sendImageHelper,
     terminate
 } from "./whatsapp";
+import {getUrlInfo} from "@whiskeysockets/baileys";
 
 export async function sendMessage(recipient: string, message: string, options: {
     footer: string | undefined,
@@ -37,6 +38,13 @@ export async function sendMessage(recipient: string, message: string, options: {
                 whatsappMessage['buttons'] = buttons;
                 whatsappMessage['headerType'] = 1;
             }
+            whatsappMessage['linkPreview'] = await getUrlInfo(message, {
+                thumbnailWidth: 1024,
+                fetchOpts: {
+                    timeout: 5000,
+                },
+                uploadImage: socket.waUploadToServer,
+            });
             await socket.sendMessage(whatsappId, whatsappMessage);
             signale.success('Done');
             terminate(socket, 3);
