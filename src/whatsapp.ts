@@ -49,6 +49,7 @@ export async function initWASocket(printQR = true, message: string | undefined =
         auth: state,
         printQRInTerminal: printQR,
         browser: [os, 'Chrome', '10.15.0'],
+        generateHighQualityLinkPreview: true,
         getMessage: async _ => {
             return {
                 conversation: message
