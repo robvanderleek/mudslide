@@ -1463,10 +1463,10 @@
     uuid "^10.0.0"
     ws "^8.13.0"
 
-"@yao-pkg/pkg-fetch@3.5.9":
-  version "3.5.9"
-  resolved "https://registry.yarnpkg.com/@yao-pkg/pkg-fetch/-/pkg-fetch-3.5.9.tgz#dbdb12f683183cba568b620ace660903222fae5a"
-  integrity sha512-usMwwqFCd2B7k+V87u6kiTesyDSlw+3LpiuYBWe+UgryvSOk/NXjx3XVCub8hQoi0bCREbdQ6NDBqminyHJJrg==
+"@yao-pkg/pkg-fetch@3.5.13":
+  version "3.5.13"
+  resolved "https://registry.yarnpkg.com/@yao-pkg/pkg-fetch/-/pkg-fetch-3.5.13.tgz#99f982a759ab3b7e046d69c294703574e354d436"
+  integrity sha512-KFIumJxNZIXoNKxJstSXbqQjdPqsxI4CKUGL/6GntsQ4U9bBAawkpkJh4s4vMUjGmx7otPvstdgYcO/3TerzzQ==
   dependencies:
     chalk "^4.1.2"
     fs-extra "^9.1.0"
@@ -1478,14 +1478,14 @@
     yargs "^16.2.0"
 
 "@yao-pkg/pkg@^5.12.1":
-  version "5.12.1"
-  resolved "https://registry.yarnpkg.com/@yao-pkg/pkg/-/pkg-5.12.1.tgz#5bc1c5eb4a6ef45befc9212dea9ffdfac7a61b9f"
-  integrity sha512-vqp8Z9o39LDKTpjfeDjJsLf4mi0zS4jkbTTZbptfc/K1KKDU2hosex64TaattPO9NLkibc6EJldmSjVmc63ooA==
+  version "5.15.0"
+  resolved "https://registry.yarnpkg.com/@yao-pkg/pkg/-/pkg-5.15.0.tgz#3e5084f4ef6565d65a853d2ae75468eb8f0370b2"
+  integrity sha512-VKgSO7Djch98NEByNJucpuqVlGre5cyhCHeQ1CfhetMCOrl5X146lJCDNsRyq9vP7KpajPunTgVYvAIbV+Z+8g==
   dependencies:
     "@babel/generator" "7.23.0"
     "@babel/parser" "7.23.0"
     "@babel/types" "7.23.0"
-    "@yao-pkg/pkg-fetch" "3.5.9"
+    "@yao-pkg/pkg-fetch" "3.5.13"
     chalk "^4.1.2"
     fs-extra "^9.1.0"
     globby "^11.1.0"
