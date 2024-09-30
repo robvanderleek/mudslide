@@ -97,9 +97,11 @@ export function parseGeoLocation(latitude: string, longitude: string): Array<num
 
 export async function waitForKey(message: string) {
     signale.pause(message);
-    process.stdin.setRawMode(true);
+    if (process.stdin.isTTY)
+        process.stdin.setRawMode(true);
     return new Promise(resolve => process.stdin.once('data', () => {
-        process.stdin.setRawMode(false);
+        if (process.stdin.isTTY)
+            process.stdin.setRawMode(false);
         resolve(undefined);
     }));
 }
