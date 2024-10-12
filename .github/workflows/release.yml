@@ -7,9 +7,11 @@ jobs:
   release:
     name: Semantic Release
     runs-on: macos-latest
+    outputs:
+      release_version: ${{ steps.semantic.outputs.new_release_version }}
     steps:
       - name: 'Checkout sources'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 'Setup NodeJS'
         uses: actions/setup-node@v4
@@ -62,6 +64,13 @@ jobs:
             binaries/mudslide-linuxstatic-arm64
             binaries/mudslide.exe
             binaries/mudslide-macos.tgz
+  
+  dockerhub_release:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout sources'
+        uses: actions/checkout@v4
 
       - name: 'Login to DockerHub'
         if: steps.semantic.outputs.new_release_published == 'true'
@@ -79,4 +88,4 @@ jobs:
           push: true
           tags: |
             robvanderleek/mudslide:latest
-            robvanderleek/mudslide:${{ steps.semantic.outputs.new_release_version }}
+            robvanderleek/mudslide:${{ needs.release.outputs.release_version }}
