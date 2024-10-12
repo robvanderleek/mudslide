@@ -10,37 +10,48 @@ jobs:
     steps:
       - name: 'Checkout sources'
         uses: actions/checkout@v3
+
       - name: 'Setup NodeJS'
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
+
       - name: 'Force HTTPS'
         run: git config --global url."https://github".insteadOf ssh://git@github
+
       - name: 'Install dependencies'
         run: yarn install
+
       - name: 'Compile TypeScript'
         run: yarn build
+
       - name: 'Semantic Release'
         uses: cycjimmy/semantic-release-action@v4
         id: semantic
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: 'Create distribution build'
         if: steps.semantic.outputs.new_release_published == 'true'
         run: yarn dist:build
+
       - name: 'Create Linux binaries'
         if: steps.semantic.outputs.new_release_published == 'true'
         run: yarn dist:pkg:linux
+
       - name: 'Create Windows binary'
         if: steps.semantic.outputs.new_release_published == 'true'
         run: yarn dist:pkg:windows
+
       - name: 'Create macOS binary'
         if: steps.semantic.outputs.new_release_published == 'true'
         run: yarn dist:pkg:macos
+
       - name: 'Bundle macOS binary'
         if: steps.semantic.outputs.new_release_published == 'true'
         run: yarn dist:bundle:macos
+
       - name: 'Add assets to release'
         if: steps.semantic.outputs.new_release_published == 'true'
         uses: softprops/action-gh-release@v1
@@ -51,12 +62,14 @@ jobs:
             binaries/mudslide-linuxstatic-arm64
             binaries/mudslide.exe
             binaries/mudslide-macos.tgz
+
       - name: 'Login to DockerHub'
         if: steps.semantic.outputs.new_release_published == 'true'
         uses: docker/login-action@v3
         with:
           username: robvanderleek
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: 'Build and push Docker image'
         if: steps.semantic.outputs.new_release_published == 'true'
         uses: docker/build-push-action@v6
