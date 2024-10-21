@@ -176,3 +176,18 @@ export async function mutateGroup(groupId: string, phoneNumber: string, operatio
         }
     });
 }
+
+export async function listGroupParticipants(groupId: string) {
+    checkLoggedIn();
+    const socket = await initWASocket();
+    socket.ev.on('connection.update', async (update) => {
+        const {connection} = update
+        if (connection === 'open') {
+            const groupMetadata = await socket.groupMetadata(groupId);
+            groupMetadata.participants.forEach((participant) => {
+               signale.log(`{"id": "${participant.id}"}`);
+            });
+            terminate(socket);
+        }
+    });
+}
