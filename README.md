@@ -311,6 +311,14 @@ npx mudslide@latest add-to-group 123456789-987654321@g.us 3161234567890
 npx mudslide@latest remove-from-group 123456789-987654321@g.us 3161234567890
 ```
 
+## List group participants
+
+Group participants can be listed as follows:
+
+```shell
+npx mudslide@latest list-group 123456789-987654321@g.us 
+```
+
 ## Show current user details
 
 To get the WhatsApp ID of the logged in user:

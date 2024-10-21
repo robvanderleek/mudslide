@@ -1,7 +1,17 @@
 #!/usr/bin/env node
 import {program} from "commander";
 import {globalOptions, login, logout, mudslideFooter} from "./whatsapp";
-import {listGroups, me, mutateGroup, sendFile, sendImage, sendLocation, sendMessage, sendPoll} from "./commands";
+import {
+    listGroupParticipants,
+    listGroups,
+    me,
+    mutateGroup,
+    sendFile,
+    sendImage,
+    sendLocation,
+    sendMessage,
+    sendPoll
+} from "./commands";
 import {bootstrap} from 'global-agent';
 
 const packageJson = require('../package.json');
@@ -86,6 +96,10 @@ function configureCommands() {
         .allowUnknownOption()
         .description('Remove group participant')
         .action((groupId, phoneNumber) => mutateGroup(groupId, phoneNumber, 'remove'));
+    program
+        .command('list-group <group-id>')
+        .description('List group participants')
+        .action((groupId) => listGroupParticipants(groupId));
 }
 
 configureCommands();
