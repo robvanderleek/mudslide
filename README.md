@@ -370,9 +370,33 @@ library](https://github.com/WhiskeySockets/Baileys).
 
 # Development
 
+## Setting up your environment
+
+1. Clone the repository:
+
+    ```shell
+    git clone git@github.com:robvanderleek/mudslide.git
+    ```
+
+    ```shell
+    cd mudslide
+    ```
+
+2. Install dependencies:
+
+    ```shell
+    yarn install
+    ```
+
+3. Run Mudslide:
+
+    ```shell
+    yarn start
+    ```
+
 ## Running unit-tests
 
-To run the unit-tests run this command:
+To run the unit-tests:
 
 ```shell
 yarn test
