@@ -171,7 +171,10 @@ export async function mutateGroup(groupId: string, phoneNumber: string, operatio
             } else {
                 signale.log(`Removing ${whatsAppId} from group ${groupId}`);
             }
-            await socket.groupParticipantsUpdate(groupId, [whatsAppId], operation);
+            const updateResult = await socket.groupParticipantsUpdate(groupId, [whatsAppId], operation);
+            updateResult.forEach((entry) => {
+                signale.log(`{"id": "${entry.jid}", "status": "${entry.status}"}`);
+            });
             terminate(socket);
         }
     });
@@ -185,7 +188,7 @@ export async function listGroupParticipants(groupId: string) {
         if (connection === 'open') {
             const groupMetadata = await socket.groupMetadata(groupId);
             groupMetadata.participants.forEach((participant) => {
-               signale.log(`{"id": "${participant.id}"}`);
+                signale.log(`{"id": "${participant.id}"}`);
             });
             terminate(socket);
         }
