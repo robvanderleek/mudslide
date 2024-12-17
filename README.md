@@ -14,6 +14,8 @@
 
 <div align="center">
 
+[![main](https://github.com/robvanderleek/mudslide/actions/workflows/main.yml/badge.svg)](https://github.com/robvanderleek/mudslide/actions/workflows/main.yml)
+[![CodeLimit](https://github.com/robvanderleek/mudslide/blob/_codelimit_reports/main/badge.svg)](https://github.com/robvanderleek/mudslide/blob/_codelimit_reports/main/codelimit.md)
 [![npm version](https://badge.fury.io/js/mudslide.svg)](https://badge.fury.io/js/mudslide)
 [![DockerHub image pulls](https://img.shields.io/docker/pulls/robvanderleek/mudslide)](https://hub.docker.com/repository/docker/robvanderleek/mudslide)
 [![Dependabot](https://badgen.net/badge/Dependabot/enabled/green?icon=dependabot)](https://dependabot.com/)
