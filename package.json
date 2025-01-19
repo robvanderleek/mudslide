@@ -41,7 +41,7 @@
     "test": "jest",
     "start": "yarn build && node ./build/index.js",
     "dist": "yarn build && yarn dist:build && yarn dist:pkg:linux && yarn dist:pkg:windows && yarn dist:pkg:macos && yarn dist:bundle:macos",
-    "dist:build": "esbuild build/index.js --bundle --platform=node --outfile=dist/index.js",
+    "dist:build": "esbuild build/index.js --bundle --external:jimp --external:sharp --external:link-preview-js --platform=node --outfile=dist/index.js",
     "dist:pkg:linux": "pkg -c assets/pkg-linux.json -o binaries/mudslide-linuxstatic dist/index.js",
     "dist:pkg:windows": "pkg -c assets/pkg-win-x64.json -o binaries/mudslide dist/index.js",
     "dist:pkg:macos": "pkg -t node20-macos-x64 -o binaries/mudslide dist/index.js",
