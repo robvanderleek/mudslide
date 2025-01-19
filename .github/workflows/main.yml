@@ -29,6 +29,3 @@ jobs:
 
     - name: "Run tests"
       run: yarn test
-
-    - name: 'Run CodeLimit'
-      uses: getcodelimit/codelimit-action@v1
