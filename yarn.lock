@@ -1528,10 +1528,10 @@
     "@typescript-eslint/parser" "^7.15.0"
     eslint-plugin-simple-import-sort "^12.1.1"
 
-"@yao-pkg/pkg-fetch@3.5.16":
-  version "3.5.16"
-  resolved "https://registry.yarnpkg.com/@yao-pkg/pkg-fetch/-/pkg-fetch-3.5.16.tgz#ae94a3c5f77de6ee5bc8407403294d3305a747ba"
-  integrity sha512-mCnZvZz0/Ylpk4TGyt34pqWJyBGYJM8c3dPoMRV8Knodv2QhcYS4iXb5kB/JNWkrRtCKukGZIKkMLXZ3TQlzPg==
+"@yao-pkg/pkg-fetch@3.5.18":
+  version "3.5.18"
+  resolved "https://registry.yarnpkg.com/@yao-pkg/pkg-fetch/-/pkg-fetch-3.5.18.tgz#a76510026b4f53485bbc13f4f31b58eb06ccecd3"
+  integrity sha512-tdUT7zS2lyXeJwkA8lDI4aVxHwauAc5lKj6Xui3/BtDe6vDsQ8KP+f66u07AI28DuTzKxjRJKNNXVdyGv2Ndsg==
   dependencies:
     https-proxy-agent "^5.0.0"
     node-fetch "^2.6.6"
@@ -1541,15 +1541,15 @@
     tar-fs "^2.1.1"
     yargs "^16.2.0"
 
-"@yao-pkg/pkg@^5.12.1":
-  version "5.16.1"
-  resolved "https://registry.yarnpkg.com/@yao-pkg/pkg/-/pkg-5.16.1.tgz#accbca26208ba8bbd56881c41f212d83aefc83ce"
-  integrity sha512-crUlnNFSReFNFuXDc4f3X2ignkFlc9kmEG7Bp/mJMA1jYyqR0lqjZGLgrSDYTYiNsYud8AzgA3RY1DrMdcUZWg==
+"@yao-pkg/pkg@^6.2.0":
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/@yao-pkg/pkg/-/pkg-6.2.0.tgz#f4c70df5566ec6d60f984f8f2b6803e4941f3881"
+  integrity sha512-kq1aDs9aa+fEtKQQ2AsxcL4Z82LsYw9ZQIwD3Q/wDq8ZPN69wCf2+OQp271lnqMybYInXwwBJ3swIb/nvaXS/g==
   dependencies:
     "@babel/generator" "^7.23.0"
     "@babel/parser" "^7.23.0"
     "@babel/types" "^7.23.0"
-    "@yao-pkg/pkg-fetch" "3.5.16"
+    "@yao-pkg/pkg-fetch" "3.5.18"
     into-stream "^6.0.0"
     minimist "^1.2.6"
     multistream "^4.1.0"
@@ -1558,7 +1558,9 @@
     prebuild-install "^7.1.1"
     resolve "^1.22.0"
     stream-meter "^1.0.4"
+    tar "^7.4.3"
     tinyglobby "^0.2.9"
+    unzipper "^0.12.3"
 
 abbrev@^2.0.0:
   version "2.0.0"
@@ -1851,6 +1853,11 @@ bl@^4.0.3:
     buffer "^5.5.0"
     inherits "^2.0.4"
     readable-stream "^3.4.0"
+
+bluebird@~3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
+  integrity sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==
 
 boolean@^3.0.1:
   version "3.2.0"
@@ -2369,7 +2376,7 @@ dot-prop@^5.1.0:
   dependencies:
     is-obj "^2.0.0"
 
-duplexer2@~0.1.0:
+duplexer2@~0.1.0, duplexer2@~0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer2/-/duplexer2-0.1.4.tgz#8b12dab878c0d69e3e7891051662a32fc6bddcc1"
   integrity sha512-asLFVfWWtJ90ZyOUHMqk7/S2w2guQKxUI2itj3d92ADHhxUSbCMGi1f1cBcJ7xM1To+pE/Khbwo1yuNbMEPKeA==
@@ -2782,7 +2789,7 @@ fs-constants@^1.0.0:
   resolved "https://registry.yarnpkg.com/fs-constants/-/fs-constants-1.0.0.tgz#6be0de9be998ce16af8afc24497b9ee9b7ccd9ad"
   integrity sha512-y6OAwoSIf7FyjMIv94u+b5rdheZEjzR63GTyZJm5qh4Bi+2YgwLCcI/fPFZkL5PSixOt6ZNKm+w+Hfp/Bciwow==
 
-fs-extra@^11.0.0:
+fs-extra@^11.0.0, fs-extra@^11.2.0:
   version "11.3.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-11.3.0.tgz#0daced136bbaf65a555a326719af931adc7a314d"
   integrity sha512-Z4XaCL6dUDHfP/jT25jJKMmtxvuwbkrD1vNSMFlo9lNLY2c5FHYSQgHPRZUjAB26TpDEoW9HCOgplrdbaPV/ew==
@@ -2975,7 +2982,7 @@ graceful-fs@4.2.10:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.10.tgz#147d3a006da4ca3ce14728c7aefc287c367d7a6c"
   integrity sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==
 
-graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.11, graceful-fs@^4.2.6, graceful-fs@^4.2.9:
+graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.11, graceful-fs@^4.2.2, graceful-fs@^4.2.6, graceful-fs@^4.2.9:
   version "4.2.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.11.tgz#4183e4e8bf08bb6e05bbb2f7d2e0c8f712ca40e3"
   integrity sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==
@@ -6149,6 +6156,17 @@ universalify@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-2.0.1.tgz#168efc2180964e6386d061e094df61afe239b18d"
   integrity sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==
+
+unzipper@^0.12.3:
+  version "0.12.3"
+  resolved "https://registry.yarnpkg.com/unzipper/-/unzipper-0.12.3.tgz#31958f5eed7368ed8f57deae547e5a673e984f87"
+  integrity sha512-PZ8hTS+AqcGxsaQntl3IRBw65QrBI6lxzqDEL7IAo/XCEqRTKGfOX56Vea5TH9SZczRVxuzk1re04z/YjuYCJA==
+  dependencies:
+    bluebird "~3.7.2"
+    duplexer2 "~0.1.4"
+    fs-extra "^11.2.0"
+    graceful-fs "^4.2.2"
+    node-int64 "^0.4.0"
 
 update-browserslist-db@^1.1.1:
   version "1.1.2"
