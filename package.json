@@ -1,6 +1,6 @@
 {
   "name": "mudslide",
-  "version": "0.31.0",
+  "version": "0.31.1",
   "author": "robvanderleek@gmail.com",
   "description": "WhatsApp CLI",
   "release": {
@@ -13,7 +13,10 @@
         {
           "preset": "angular",
           "releaseRules": [
-            { "type": "build", "release": "patch" }
+            {
+              "type": "build",
+              "release": "patch"
+            }
           ]
         }
       ],
