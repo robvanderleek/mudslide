@@ -1,8 +1,16 @@
 # Mudslide
 
-> [!WARNING]
-> DO NOT USE THIS TOOL FOR IMPORTANT THINGS. This tool can stop working without notice since it depends on libraries
-> that could be removed any time from GitHub/NPM.
+> [!IMPORTANT] The maintainers of this software cannot be held liable for
+> misuse of this application, as stated in the [ISC
+> license](https://github.com/robvanderleek/mudslide/blob/main/LICENSE). The
+> maintainers of Mudslide do not in any way condone the use of this application
+> in practices that violate the Terms of Service of WhatsApp. The maintainers
+> of this application call upon the personal responsibility of its users to use
+> this application in a fair way, as it is intended to be used.
+
+> [!WARNING] DO NOT USE THIS TOOL FOR IMPORTANT THINGS. This tool can stop
+> working without notice since it depends on libraries that could be removed
+> any time from GitHub/NPM. 
 
 <p align="center">
   <img src="https://github.com/robvanderleek/mudslide/blob/main/assets/mudslide-logo-180x180.png?raw=true"/>
