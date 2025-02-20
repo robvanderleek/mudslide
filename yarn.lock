@@ -5416,9 +5416,9 @@ safe-stable-stringify@^2.1.0:
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
 semantic-release@^24.2.1:
-  version "24.2.1"
-  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-24.2.1.tgz#ee4599fa9f0a5de0c9d3b99d5d155758c5be4bea"
-  integrity sha512-z0/3cutKNkLQ4Oy0HTi3lubnjTsdjjgOqmxdPjeYWe6lhFqUPfwslZxRHv3HDZlN4MhnZitb9SLihDkZNxOXfQ==
+  version "24.2.3"
+  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-24.2.3.tgz#fd5ac3b0c27fa7bd994eb89eacc26fa385caa1a6"
+  integrity sha512-KRhQG9cUazPavJiJEFIJ3XAMjgfd0fcK3B+T26qOl8L0UG5aZUjeRfREO0KM5InGtYwxqiiytkJrbcYoLDEv0A==
   dependencies:
     "@semantic-release/commit-analyzer" "^13.0.0-beta.1"
     "@semantic-release/error" "^4.0.0"
