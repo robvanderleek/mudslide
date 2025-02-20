@@ -1498,9 +1498,9 @@
     codec-parser "2.5.0"
 
 "@whiskeysockets/baileys@^6.7.9":
-  version "6.7.9"
-  resolved "https://registry.yarnpkg.com/@whiskeysockets/baileys/-/baileys-6.7.9.tgz#b64939602156d8b0c4206f524a4bf41f1e12b05c"
-  integrity sha512-+23DOlzgRYvDYPq5qTDRCho6EqyRMaSWL2OadvhY+nE4Ew8HCNTwpDASIaGoFPqGyQgzAJUNgwOFvBsdJlORpA==
+  version "6.7.13"
+  resolved "https://registry.yarnpkg.com/@whiskeysockets/baileys/-/baileys-6.7.13.tgz#87520e84cdbebd782db5ec124c802ef28ab5d1c8"
+  integrity sha512-R1NzW0n4Dc329Dby9Z1OOLQ8bNKFP8bH1HV9GLlNyDmCqaft/DNDf8nnAYJDqgRYIz0hrrEwkRLk0JECdKfSnQ==
   dependencies:
     "@adiwajshing/keyed-db" "^0.2.4"
     "@hapi/boom" "^9.1.3"
