@@ -1297,10 +1297,10 @@
   dependencies:
     "@babel/types" "^7.20.7"
 
-"@types/global-agent@^2.1.1":
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/@types/global-agent/-/global-agent-2.1.3.tgz#3812ed7db4a6897e5c9ad986403589aa17aa23b3"
-  integrity sha512-rGtZZcgZcKWuKNTkGBGsqyOQ7Nn2MjXh4+xeZbf+5b5KMUx8H1rTqLRackxos7pUlreszbYjQcop5JvqCnZlLw==
+"@types/global-agent@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/global-agent/-/global-agent-3.0.0.tgz#ca9551f456bd816df2a924fe86f9ada8199aa772"
+  integrity sha512-OmvaPJtTaY/wd1hxelLJmf8oKQpmKZdrlfQ+MWL59eKSEHJDDEifIo69248bdJ0yLIN+iMNQ6sKMtnwU6AxajA==
 
 "@types/graceful-fs@^4.1.3":
   version "4.1.9"
