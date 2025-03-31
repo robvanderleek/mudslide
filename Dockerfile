@@ -1,4 +1,4 @@
-FROM node:lts-bullseye-slim AS builder
+FROM node:20-slim AS builder
 ENV GIT_SSL_NO_VERIFY=1
 RUN apt-get update && apt-get install -y --no-install-recommends git
 RUN git config --global url."https://github".insteadOf ssh://git@github
@@ -8,7 +8,7 @@ WORKDIR /app
 RUN yarn install
 RUN yarn build
 
-FROM node:lts-bullseye-slim AS runtime
+FROM node:20-slim AS runtime
 COPY --from=builder /app /app
 WORKDIR /app
 ENV MUDSLIDE_CACHE_FOLDER=/usr/src/app/cache
