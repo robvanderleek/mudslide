@@ -342,11 +342,13 @@ npx mudslide@latest me
 # Configuration
 
 By default WhatsApp credentials are cached in a folder located in the user's
-home directory. This folder is `.local/share/mudslide'` on Linux & macOS and
+home directory. This folder is `~/.local/share/mudslide'` on Linux & macOS and
 `AppData\Local\mudslide\Data` on Windows.
 
 A different location for the cache folder can be configured via the environment
 variable `MUDSLIDE_CACHE_FOLDER` or the `-c`/`--cache` options.
+
+You can see the location of the cache folder by running `mudslide me`.
 
 ## Running behind a proxy server
 
