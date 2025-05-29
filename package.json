@@ -52,7 +52,7 @@
     "@adiwajshing/keyed-db": "^0.2.4",
     "@hapi/boom": "^10.0.0",
     "baileys": "6.7.18",
-    "commander": "^13.0.0",
+    "commander": "^14.0.0",
     "global-agent": "^3.0.0",
     "mime": "^3.0.0",
     "pino": "^7.0.0",
