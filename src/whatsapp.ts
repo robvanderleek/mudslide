@@ -1,4 +1,4 @@
-import makeWASocket, {DisconnectReason, useMultiFileAuthState} from "@whiskeysockets/baileys";
+import makeWASocket, {DisconnectReason, useMultiFileAuthState, WASocket} from "baileys";
 import pino from "pino";
 import path from "path";
 import * as fs from "fs";
@@ -6,6 +6,7 @@ import {Boom} from "@hapi/boom";
 import signale from "signale";
 import * as os from "os";
 import mime from 'mime';
+import * as QRCode from 'qrcode-terminal';
 
 export const globalOptions = {
     logLevel: 'silent'
@@ -40,15 +41,14 @@ function initAuthStateCacheFolder() {
     return folderLocation;
 }
 
-export async function initWASocket(printQR = true, message: string | undefined = undefined) {
+export async function initWASocket(message?: string): Promise<WASocket> {
     const {state, saveCreds} = await useMultiFileAuthState(initAuthStateCacheFolder());
     const os = process.platform === 'darwin' ? 'macOS' : process.platform === 'win32' ? 'Windows' : 'Linux';
     const socket = makeWASocket({
-        version: [2, 3000, 1015901307],
         logger: pino({level: globalOptions.logLevel}),
         auth: state,
-        printQRInTerminal: printQR,
         browser: [os, 'Chrome', '10.15.0'],
+        syncFullHistory: false,
         getMessage: async _ => {
             return {
                 conversation: message
@@ -113,7 +113,12 @@ export async function login(waitForWA = false) {
     }
     const socket = await initWASocket();
     socket.ev.on('connection.update', async (update) => {
-        const {connection, lastDisconnect} = update
+        const {connection, lastDisconnect, qr} = update;
+
+        if (qr) {
+            QRCode.generate(qr, {small: true});
+        }
+
         if (connection === 'close') {
             if ((lastDisconnect?.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut) {
                 await login(true);
@@ -135,7 +140,7 @@ export async function login(waitForWA = false) {
 
 export async function logout() {
     checkLoggedIn();
-    const socket = await initWASocket(false);
+    const socket = await initWASocket();
     socket.ev.on('connection.update', async (update) => {
         const {connection} = update
         if (update.connection === undefined && update.qr) {

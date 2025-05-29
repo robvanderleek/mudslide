@@ -51,7 +51,7 @@
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",
     "@hapi/boom": "^10.0.0",
-    "@whiskeysockets/baileys": "6.7.16",
+    "baileys": "6.7.18",
     "commander": "^13.0.0",
     "global-agent": "^3.0.0",
     "mime": "^3.0.0",
@@ -64,6 +64,7 @@
     "@types/jest": "^29.5.12",
     "@types/mime": "^3.0.1",
     "@types/node": "^22.10.7",
+    "@types/qrcode-terminal": "^0.12.2",
     "@types/signale": "^1.4.4",
     "@yao-pkg/pkg": "^5.12.1",
     "esbuild": "^0.24.2",
