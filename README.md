@@ -219,6 +219,12 @@ Use `\n` to send a message with a newline, for example:
 npx mudslide@latest send me 'hello\nworld'
 ```
 
+Messages are processed as Unicode strings:
+
+```shell
+npx mudslide@latest send me 'âêô'
+```
+
 ## Sending an image file
 
 Image files (PNG, JPG, GIF) can be sent to individuals or groups:
