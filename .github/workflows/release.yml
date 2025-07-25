@@ -7,6 +7,7 @@ jobs:
     name: Semantic Release
     runs-on: macos-latest
     outputs:
+      release_published: ${{ steps.semantic.outputs.new_release_published }}
       release_version: ${{ steps.semantic.outputs.new_release_version }}
     steps:
       - name: 'Checkout sources'
@@ -68,20 +69,21 @@ jobs:
     needs: release
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout sources'
+      - name: Checkout sources
         uses: actions/checkout@v4
 
-      - name: 'Login to DockerHub'
-        if: steps.semantic.outputs.new_release_published == 'true'
+      - name: Login to DockerHub
+        if: needs.release.outputs.release_published == 'true'
         uses: docker/login-action@v3
         with:
           username: robvanderleek
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: 'Build and push Docker image'
-        if: steps.semantic.outputs.new_release_published == 'true'
+      - name: Build and push Docker image
+        if: needs.release.outputs.release_published == 'true'
         uses: docker/build-push-action@v6
         with:
+          platforms: linux/amd64,linux/arm64
           context: .
           file: Dockerfile
           push: true
