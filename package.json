@@ -63,7 +63,7 @@
     "@types/global-agent": "^2.1.1",
     "@types/jest": "^29.5.12",
     "@types/mime": "^3.0.1",
-    "@types/node": "^22.10.7",
+    "@types/node": "^24.3.0",
     "@types/qrcode-terminal": "^0.12.2",
     "@types/signale": "^1.4.4",
     "@yao-pkg/pkg": "^5.12.1",
