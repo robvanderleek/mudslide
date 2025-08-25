@@ -44,6 +44,29 @@ export async function sendMessage(recipient: string, message: string, options: {
     });
 }
 
+export async function setStatus(message: string) {
+    checkLoggedIn();
+    const socket = await initWASocket();
+    socket.ev.on('connection.update', async (update) => {
+        const {connection} = update
+        if (connection === 'open') {
+            const whatsappId = 'status@broadcast';
+            signale.await(`Setting status: "${message}"`);
+            const whatsappMessage: any = {};
+            whatsappMessage['text'] = handleNewlines(message);
+            const userId = socket.user?.id;
+            if (!userId) {
+                signale.error('Could not get current user id');
+            } else {
+                await socket.sendMessage(whatsappId, whatsappMessage,
+                    {backgroundColor: '#FF0000"', font: 2, statusJidList: [userId], broadcast: true});
+                signale.success('Done');
+            }
+            terminate(socket, 3);
+        }
+    });
+}
+
 export async function sendImage(recipient: string, path: string, options: { caption: string | undefined }) {
     checkValidFile(path);
     checkLoggedIn();
@@ -137,7 +160,7 @@ export async function me() {
     socket.ev.on('connection.update', async (update) => {
         const {connection} = update
         if (connection === 'open') {
-            const user = await socket.user
+            const user = socket.user
             signale.log(`Current user: ${user?.id}`);
             terminate(socket);
         }

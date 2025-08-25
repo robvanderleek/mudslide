@@ -10,7 +10,8 @@ import {
     sendImage,
     sendLocation,
     sendMessage,
-    sendPoll
+    sendPoll,
+    setStatus
 } from "./commands";
 import {bootstrap} from 'global-agent';
 
@@ -60,6 +61,10 @@ function configureCommands() {
         .command('groups')
         .description('List all your groups')
         .action(() => listGroups());
+    program
+        .command('status <message>')
+        .description('Set status')
+        .action((message) => setStatus(message));
     program
         .command('send <recipient> <message>')
         .description('Send message')
