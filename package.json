@@ -55,7 +55,7 @@
     "commander": "^13.0.0",
     "global-agent": "^3.0.0",
     "mime": "^3.0.0",
-    "pino": "^7.0.0",
+    "pino": "^9.10.0",
     "qrcode-terminal": "^0.12.0",
     "signale": "^1.4.0"
   },
