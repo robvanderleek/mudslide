@@ -10,9 +10,8 @@
 > this application in a fair way, as it is intended to be used.
 
 > [!WARNING] 
-> DO NOT USE THIS TOOL FOR IMPORTANT THINGS. This tool can stop working without
-> notice since it depends on libraries that could be removed any time from
-> GitHub/NPM. 
+> DO NOT USE THIS TOOL FOR IMPORTANT THINGS. 
+> This tool can stop working without notice. 
 
 <p align="center">
   <img src="https://github.com/robvanderleek/mudslide/blob/main/assets/mudslide-logo-180x180.png?raw=true"/>
