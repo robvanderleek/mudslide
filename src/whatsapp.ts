@@ -48,6 +48,7 @@ export async function initWASocket(message?: string): Promise<WASocket> {
         logger: pino({level: globalOptions.logLevel}),
         auth: state,
         browser: [os, 'Chrome', '10.15.0'],
+        version: [2, 3000, 1027934701],
         syncFullHistory: false,
         getMessage: async _ => {
             return {
