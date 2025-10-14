@@ -1,7 +1,7 @@
 {
   "version": "0.20.2",
-  "uuid": "777bd329-93a5-4b73-8d74-a309a71fa621",
-  "timestamp": "2025-10-06T07:16:23+00:00",
+  "uuid": "7ad4e9d9-fbac-44f8-987a-6d3036d1a4b8",
+  "timestamp": "2025-10-14T09:00:36+00:00",
   "root": "/github/workspace",
   "repository": {
     "owner": "robvanderleek",
@@ -12,7 +12,7 @@
     "totals": {
       "TypeScript": {
         "files": 3,
-        "lines_of_code": 313,
+        "lines_of_code": 314,
         "functions": 26,
         "hard_to_maintain": 1,
         "unmaintainable": 0
@@ -23,7 +23,7 @@
         "entries": [
           "src/"
         ],
-        "profile": [157, 106, 50, 0]
+        "profile": [157, 107, 50, 0]
       },
       "src/": {
         "entries": [
@@ -31,7 +31,7 @@
           "index.ts",
           "whatsapp.ts"
         ],
-        "profile": [157, 106, 50, 0]
+        "profile": [157, 107, 50, 0]
       }
     },
     "files": {
@@ -63,26 +63,26 @@
         ]
       },
       "src/whatsapp.ts": {
-        "checksum": "22de0bb96f29b8fff42fabeba03b10c2",
+        "checksum": "6954a3aaa210ea03ad6a21570d48ea7a",
         "language": "TypeScript",
-        "loc": 156,
-        "profile": [91, 65, 0, 0],
+        "loc": 157,
+        "profile": [91, 66, 0, 0],
         "measurements": [
           {"unit_name": "getAuthStateCacheFolderLocation", "start": {"line": 17, "column": 17}, "end": {"line": 28, "column": 2}, "value": 12},
           {"unit_name": "clearCacheFolder", "start": {"line": 30, "column": 10}, "end": {"line": 33, "column": 2}, "value": 4},
           {"unit_name": "initAuthStateCacheFolder", "start": {"line": 35, "column": 10}, "end": {"line": 42, "column": 2}, "value": 8},
-          {"unit_name": "initWASocket", "start": {"line": 44, "column": 23}, "end": {"line": 60, "column": 2}, "value": 17},
-          {"unit_name": "terminate", "start": {"line": 62, "column": 17}, "end": {"line": 72, "column": 2}, "value": 11},
-          {"unit_name": "checkLoggedIn", "start": {"line": 74, "column": 17}, "end": {"line": 79, "column": 2}, "value": 6},
-          {"unit_name": "checkValidFile", "start": {"line": 81, "column": 17}, "end": {"line": 86, "column": 2}, "value": 6},
-          {"unit_name": "parseGeoLocation", "start": {"line": 88, "column": 17}, "end": {"line": 96, "column": 2}, "value": 9},
-          {"unit_name": "waitForKey", "start": {"line": 98, "column": 23}, "end": {"line": 107, "column": 2}, "value": 10},
-          {"unit_name": "login", "start": {"line": 109, "column": 23}, "end": {"line": 139, "column": 2}, "value": 29},
-          {"unit_name": "logout", "start": {"line": 141, "column": 23}, "end": {"line": 159, "column": 2}, "value": 19},
-          {"unit_name": "getWhatsAppId", "start": {"line": 161, "column": 23}, "end": {"line": 175, "column": 2}, "value": 15},
-          {"unit_name": "sendImageHelper", "start": {"line": 177, "column": 23}, "end": {"line": 179, "column": 2}, "value": 3},
-          {"unit_name": "sendFileHelper", "start": {"line": 186, "column": 23}, "end": {"line": 187, "column": 116}, "value": 2},
-          {"unit_name": "handleNewlines", "start": {"line": 208, "column": 17}, "end": {"line": 212, "column": 2}, "value": 5}
+          {"unit_name": "initWASocket", "start": {"line": 44, "column": 23}, "end": {"line": 61, "column": 2}, "value": 18},
+          {"unit_name": "terminate", "start": {"line": 63, "column": 17}, "end": {"line": 73, "column": 2}, "value": 11},
+          {"unit_name": "checkLoggedIn", "start": {"line": 75, "column": 17}, "end": {"line": 80, "column": 2}, "value": 6},
+          {"unit_name": "checkValidFile", "start": {"line": 82, "column": 17}, "end": {"line": 87, "column": 2}, "value": 6},
+          {"unit_name": "parseGeoLocation", "start": {"line": 89, "column": 17}, "end": {"line": 97, "column": 2}, "value": 9},
+          {"unit_name": "waitForKey", "start": {"line": 99, "column": 23}, "end": {"line": 108, "column": 2}, "value": 10},
+          {"unit_name": "login", "start": {"line": 110, "column": 23}, "end": {"line": 140, "column": 2}, "value": 29},
+          {"unit_name": "logout", "start": {"line": 142, "column": 23}, "end": {"line": 160, "column": 2}, "value": 19},
+          {"unit_name": "getWhatsAppId", "start": {"line": 162, "column": 23}, "end": {"line": 176, "column": 2}, "value": 15},
+          {"unit_name": "sendImageHelper", "start": {"line": 178, "column": 23}, "end": {"line": 180, "column": 2}, "value": 3},
+          {"unit_name": "sendFileHelper", "start": {"line": 187, "column": 23}, "end": {"line": 188, "column": 116}, "value": 2},
+          {"unit_name": "handleNewlines", "start": {"line": 209, "column": 17}, "end": {"line": 213, "column": 2}, "value": 5}
         ]
       }
     }
