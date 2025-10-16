@@ -1691,10 +1691,10 @@
     "@typescript-eslint/parser" "^8.37.0"
     eslint-plugin-simple-import-sort "^12.1.1"
 
-"@yao-pkg/pkg-fetch@3.5.28":
-  version "3.5.28"
-  resolved "https://registry.yarnpkg.com/@yao-pkg/pkg-fetch/-/pkg-fetch-3.5.28.tgz#dac2b0ed6368ffcfb1a0624b3717211dc99e728a"
-  integrity sha512-0dTu0yFgAuOp3OJBiwSZVkTMuGmvExwmG9mHKQhHkaNate5BWh6rBTzfQ0WId9DHXmg7GiT/kIyejEV0G3EHUQ==
+"@yao-pkg/pkg-fetch@3.5.29":
+  version "3.5.29"
+  resolved "https://registry.yarnpkg.com/@yao-pkg/pkg-fetch/-/pkg-fetch-3.5.29.tgz#24e6a208f112f00b2349167de46d60c972deeb4d"
+  integrity sha512-Kpfpx9/XBkOZ/Nb41ybBGO+IaD9lu9svFxwqNt2xN0zwkxIQbaWU2gS5kOzkKPFlk2WUHoqtTkaDyYRARSOkkg==
   dependencies:
     https-proxy-agent "^5.0.0"
     node-fetch "^2.6.6"
@@ -1705,14 +1705,14 @@
     yargs "^16.2.0"
 
 "@yao-pkg/pkg@^6.8.0":
-  version "6.8.0"
-  resolved "https://registry.yarnpkg.com/@yao-pkg/pkg/-/pkg-6.8.0.tgz#b3c0b39326c88b45c94413b20e39603d0db417fc"
-  integrity sha512-QQcMbQHlaw7dFy3Nk7XQ7Gm8DlczTBcgSQB1V068L5/2rSZ3TO4CMc7rU7DeIOOR0Pm+mb5TDR3yH4jT6nfkpw==
+  version "6.9.0"
+  resolved "https://registry.yarnpkg.com/@yao-pkg/pkg/-/pkg-6.9.0.tgz#02991a612013459377b48912de393eb5fbb7b7f0"
+  integrity sha512-8K4P5ZRPtOIneylzmCgTWTNwxOuzju+ds/wSDli8EokmAYCG/Flr/NliFjfZ8I9t//FcG1Di7rBldyjEhPtKvQ==
   dependencies:
     "@babel/generator" "^7.23.0"
     "@babel/parser" "^7.23.0"
     "@babel/types" "^7.23.0"
-    "@yao-pkg/pkg-fetch" "3.5.28"
+    "@yao-pkg/pkg-fetch" "3.5.29"
     into-stream "^6.0.0"
     minimist "^1.2.6"
     multistream "^4.1.0"
