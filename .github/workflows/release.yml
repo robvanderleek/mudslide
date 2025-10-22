@@ -13,50 +13,50 @@ jobs:
       release_published: ${{ steps.semantic.outputs.new_release_published }}
       release_version: ${{ steps.semantic.outputs.new_release_version }}
     steps:
-      - name: 'Checkout sources'
-        uses: actions/checkout@v4
+      - name: Checkout sources
+        uses: actions/checkout@v5
 
-      - name: 'Setup NodeJS'
-        uses: actions/setup-node@v4
+      - name: Setup NodeJS
+        uses: actions/setup-node@v6
         with:
-          node-version: '20.x'
+          node-version: '22.x'
 
-      - name: 'Force HTTPS'
+      - name: Force HTTPS
         run: git config --global url."https://github".insteadOf ssh://git@github
 
-      - name: 'Install dependencies'
+      - name: Install dependencies
         run: yarn install
 
-      - name: 'Compile TypeScript'
+      - name: Compile TypeScript
         run: yarn build
 
-      - name: 'Semantic Release'
+      - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v4
         id: semantic
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 'Create distribution build'
+      - name: Create distribution build
         if: steps.semantic.outputs.new_release_published == 'true'
         run: yarn dist:build
 
-      - name: 'Create Linux binaries'
+      - name: Create Linux binaries
         if: steps.semantic.outputs.new_release_published == 'true'
         run: yarn dist:pkg:linux
 
-      - name: 'Create Windows binary'
+      - name: Create Windows binary
         if: steps.semantic.outputs.new_release_published == 'true'
         run: yarn dist:pkg:windows
 
-      - name: 'Create macOS binary'
+      - name: Create macOS binary
         if: steps.semantic.outputs.new_release_published == 'true'
         run: yarn dist:pkg:macos
 
-      - name: 'Bundle macOS binary'
+      - name: Bundle macOS binary
         if: steps.semantic.outputs.new_release_published == 'true'
         run: yarn dist:bundle:macos
 
-      - name: 'Add assets to release'
+      - name: Add assets to release
         if: steps.semantic.outputs.new_release_published == 'true'
         uses: softprops/action-gh-release@v1
         with:
@@ -73,7 +73,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3

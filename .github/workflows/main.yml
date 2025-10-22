@@ -2,30 +2,32 @@ name: main
 
 on:
   push:
-    branches: ["main"]
+    branches: 
+    - main
   pull_request:
-    branches: ["main"]
+    branches: 
+    - main
 
 jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-    - name: "Force HTTPS"
+    - name: Checkout sources
+      uses: actions/checkout@v5
+
+    - name: Setup NodeJS
+      uses: actions/setup-node@v6
+      with:
+        node-version: "22.x"
+
+    - name: Force HTTPS
       run: git config --global url."https://github".insteadOf ssh://git@github
 
-    - name: "Checkout sources"
-      uses: actions/checkout@v4
-
-    - name: "Setup NodeJS"
-      uses: actions/setup-node@v4
-      with:
-        node-version: "20.x"
-
-    - name: "Install dependencies"
+    - name: Install dependencies
       run: yarn install
 
-    - name: "Build"
+    - name: Build
       run: yarn build
 
-    - name: "Run tests"
+    - name: Run tests
       run: yarn test
