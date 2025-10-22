@@ -6,6 +6,8 @@ jobs:
   release:
     name: Semantic Release
     runs-on: macos-latest
+    permissions:
+      id-token: write
     outputs:
       release_published: ${{ steps.semantic.outputs.new_release_published }}
       release_version: ${{ steps.semantic.outputs.new_release_version }}
@@ -32,7 +34,6 @@ jobs:
         id: semantic
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 'Create distribution build'
         if: steps.semantic.outputs.new_release_published == 'true'
