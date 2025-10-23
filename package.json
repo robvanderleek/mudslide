@@ -3,6 +3,10 @@
   "version": "0.32.0",
   "author": "robvanderleek@gmail.com",
   "description": "WhatsApp CLI",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robvanderleek/mudslide.git"
+  },
   "release": {
     "branches": [
       "main"
