@@ -358,8 +358,8 @@ You can see the location of the cache folder by running `mudslide me`.
 
 ## Running behind a proxy server
 
-When the global option `--proxy` is used, Mudslide will use the environment variables `HTTP_PROXY` and `HTTPS_PROXY` to
-proxy all requests. For example:
+When the global option `--proxy` is used, Mudslide will use the environment
+variables `HTTP_PROXY` and `HTTPS_PROXY` to proxy all requests. For example:
 
 ```shell
 export HTTP_PROXY=http://USER:PASS@proxy.server.com:80
