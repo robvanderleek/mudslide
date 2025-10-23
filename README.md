@@ -266,8 +266,9 @@ npx mudslide@latest send-file 123456789-987654321@g.us document.pdf
 
 ### File types
 
-By default, files will be sent as "documents" and show as a download link in the chat.
-The `--type` option can be used for audio and video files that show as a playable message in the chat:
+By default, files will be sent as "documents" and show as a download link in
+the chat.  The `--type` option can be used for audio and video files that show
+as a playable message in the chat:
 
 ```shell
 npx mudslide@latest send-file --type audio 123456789-987654321@g.us music.mp3
