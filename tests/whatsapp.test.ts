@@ -1,3 +1,4 @@
+import {expect, test} from 'vitest';
 import {getWhatsAppId, handleNewlines, parseGeoLocation} from "../src/whatsapp";
 
 test('get whatsapp id', async () => {

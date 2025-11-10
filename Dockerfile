@@ -5,8 +5,8 @@ RUN git config --global url."https://github".insteadOf ssh://git@github
 RUN mkdir /app
 COPY . /app
 WORKDIR /app 
-RUN yarn install
-RUN yarn build
+RUN npm install
+RUN npm run build
 
 FROM node:22-slim AS runtime
 COPY --from=builder /app /app

@@ -42,9 +42,9 @@
   "main": "build/index.js",
   "scripts": {
     "build": "tsc && chmod a+x ./build/index.js",
-    "test": "jest",
-    "start": "yarn build && node ./build/index.js",
-    "dist": "yarn build && yarn dist:build && yarn dist:pkg:linux && yarn dist:pkg:windows && yarn dist:pkg:macos && yarn dist:bundle:macos",
+    "test": "vitest",
+    "start": "npm run build && node ./build/index.js",
+    "dist": "npm run build && npm run dist:build && npm run dist:pkg:linux && npm run dist:pkg:windows && npm run dist:pkg:macos && npm run dist:bundle:macos",
     "dist:build": "esbuild build/index.js --bundle --external:jimp --external:sharp --external:link-preview-js --platform=node --outfile=dist/index.js",
     "dist:pkg:linux": "pkg -c assets/pkg-linux.json -o binaries/mudslide-linuxstatic dist/index.js",
     "dist:pkg:windows": "pkg -c assets/pkg-win-x64.json -o binaries/mudslide dist/index.js",
@@ -55,31 +55,26 @@
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",
     "@hapi/boom": "^10.0.0",
-    "baileys": "6.7.18",
+    "baileys": "6.7.21",
     "commander": "^14.0.2",
     "global-agent": "^3.0.0",
-    "mime": "^3.0.0",
+    "mime": "^4.1.0",
     "pino": "^10.0.0",
     "qrcode-terminal": "^0.12.0",
     "signale": "^1.4.0"
   },
   "devDependencies": {
     "@types/global-agent": "^2.1.1",
-    "@types/jest": "^30.0.0",
-    "@types/mime": "^3.0.1",
+    "@types/mime": "^4.0.0",
     "@types/node": "^24.9.2",
     "@types/qrcode-terminal": "^0.12.2",
     "@types/signale": "^1.4.4",
     "@yao-pkg/pkg": "^6.10.0",
     "esbuild": "^0.25.10",
-    "jest": "^30.2.0",
     "semantic-release": "^25.0.1",
-    "ts-jest": "^29.4.2",
-    "typescript": "^5.9.3"
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node"
+    "typescript": "^5.9.3",
+    "vite": "^7.2.2",
+    "vitest": "^4.0.8"
   },
   "engines": {
     "node": ">=22.14.0"

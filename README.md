@@ -415,13 +415,13 @@ library](https://github.com/WhiskeySockets/Baileys).
 2. Install dependencies:
 
     ```shell
-    yarn install
+    npm install
     ```
 
 3. Run Mudslide:
 
     ```shell
-    yarn start
+    npm start
     ```
 
 ## Running unit-tests
