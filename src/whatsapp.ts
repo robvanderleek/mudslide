@@ -1,4 +1,4 @@
-import makeWASocket, {DisconnectReason, useMultiFileAuthState, WASocket} from "baileys";
+import makeWASocket, {delay, DisconnectReason, fetchLatestWaWebVersion, useMultiFileAuthState, WASocket} from "baileys";
 import pino from "pino";
 import path from "path";
 import * as fs from "fs";
@@ -6,6 +6,7 @@ import {Boom} from "@hapi/boom";
 import signale from "signale";
 import * as os from "os";
 import mime from 'mime';
+import {readPhoneNumber} from "./utils";
 import * as QRCode from 'qrcode-terminal';
 
 export const globalOptions = {
@@ -44,11 +45,12 @@ function initAuthStateCacheFolder() {
 export async function initWASocket(message?: string): Promise<WASocket> {
     const {state, saveCreds} = await useMultiFileAuthState(initAuthStateCacheFolder());
     const os = process.platform === 'darwin' ? 'macOS' : process.platform === 'win32' ? 'Windows' : 'Linux';
+    const {version} = await fetchLatestWaWebVersion({});
     const socket = makeWASocket({
         logger: pino({level: globalOptions.logLevel}),
         auth: state,
         browser: [os, 'Chrome', '10.15.0'],
-        version: [2, 3000, 1027934701],
+        version: version,
         syncFullHistory: false,
         getMessage: async _ => {
             return {
@@ -107,33 +109,60 @@ export async function waitForKey(message: string) {
     }));
 }
 
-export async function login(waitForWA = false) {
-    if (!waitForWA) {
-        signale.info('In the WhatsApp mobile app go to "Settings > Connected Devices > ');
-        signale.info('Connect Device" and scan the QR code below');
-    }
+async function loginSecondPass() {
+    signale.info('Restart required, logging in again...');
     const socket = await initWASocket();
     socket.ev.on('connection.update', async (update) => {
-        const {connection, lastDisconnect, qr} = update;
-
-        if (qr) {
-            QRCode.generate(qr, {small: true});
+        const {connection} = update;
+        if (connection === 'open') {
+            await waitForKey("Wait until WhatsApp finishes connecting, then press any key to exit");
+            terminate(socket);
+            signale.success('Logged in');
         }
+    });
+}
 
-        if (connection === 'close') {
-            if ((lastDisconnect?.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut) {
-                await login(true);
+export async function loginWithPairingCode() {
+    const number = await readPhoneNumber();
+    const socket = await initWASocket();
+    socket.ev.on('connection.update', async (update) => {
+        console.log('Received connection update: ' + update.connection);
+        const {connection, lastDisconnect} = update;
+        if (connection == "connecting") {
+            signale.await('Waiting 5 seconds before requesting pairing code');
+            await delay(5000);
+            const pairingCode = await socket.requestPairingCode(number);
+            if (pairingCode && pairingCode.length === 8) {
+                signale.info('In the WhatsApp mobile app go to "Settings > Connected Devices > ');
+                signale.info('Connect Device" and enter the following pairing code:');
+                signale.info(pairingCode.substring(0, 4) + '-' + pairingCode.substring(4, 8));
+            }
+        } else if (connection === 'close') {
+            if ((lastDisconnect?.error as Boom)?.output?.statusCode === DisconnectReason.restartRequired) {
+                await loginSecondPass();
             } else {
                 signale.error('Device was disconnected from WhatsApp, use "logout" command first');
                 return;
             }
-        } else if (connection === 'open') {
-            signale.success('Logged in');
-            if (waitForWA) {
-                await waitForKey("Wait until WhatsApp finishes connecting, then press any key to exit");
-                terminate(socket);
+        }
+    });
+}
+
+export async function loginWithQrCode() {
+    const socket = await initWASocket();
+    socket.ev.on('connection.update', async (update) => {
+        const {connection, lastDisconnect, qr} = update;
+        if (qr) {
+            signale.info('In the WhatsApp mobile app go to "Settings > Connected Devices > ');
+            signale.info('Connect Device" and scan the QR code below');
+            QRCode.generate(qr, {small: true});
+        }
+        if (connection === 'close') {
+            if ((lastDisconnect?.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut) {
+                await loginSecondPass();
             } else {
-                terminate(socket);
+                signale.error('Device was disconnected from WhatsApp, use "logout" command first');
+                return;
             }
         }
     });

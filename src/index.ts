@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import {program} from "commander";
-import {globalOptions, login, logout, mudslideFooter} from "./whatsapp";
+import {globalOptions, loginWithPairingCode, loginWithQrCode, logout, mudslideFooter} from "./whatsapp";
 import {
     listGroupParticipants,
     listGroups,
@@ -45,7 +45,8 @@ program.on('option:proxy', () => {
 program
     .command('login')
     .description('Login to WhatsApp')
-    .action(() => login());
+    .option('--pairing-code', 'Use pairing code instead of QR code')
+    .action((options) => options.pairingCode ? loginWithPairingCode() : loginWithQrCode());
 program
     .command('logout')
     .description('Logout from WhatsApp')
@@ -112,7 +113,7 @@ Examples:
   send-file 123456789-987654321@g.us document.pdf --caption 'Please read'
   send-file me audio.mp3 --type audio
   send-poll 123456789-987654321@g.us 'Training on Friday' --item '🏓 Yeeeessss!' --item '👎 Nope.'
-  
+
 ${mudslideFooter}`);
 
 program.parse(process.argv);
