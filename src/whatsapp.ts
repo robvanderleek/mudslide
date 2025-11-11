@@ -126,7 +126,6 @@ export async function loginWithPairingCode() {
     const number = await readPhoneNumber();
     const socket = await initWASocket();
     socket.ev.on('connection.update', async (update) => {
-        console.log('Received connection update: ' + update.connection);
         const {connection, lastDisconnect} = update;
         if (connection == "connecting") {
             signale.await('Waiting 5 seconds before requesting pairing code');
@@ -173,12 +172,11 @@ export async function logout() {
     const socket = await initWASocket();
     socket.ev.on('connection.update', async (update) => {
         const {connection} = update
-        if (update.connection === undefined && update.qr) {
+        if ((update.connection === undefined && update.qr) || connection === 'close') {
             clearCacheFolder();
             signale.success(`Logged out`);
             terminate(socket);
-        }
-        if (connection === 'open') {
+        } else if (connection === 'open') {
             await socket.logout();
             clearCacheFolder();
             signale.success(`Logged out`);
