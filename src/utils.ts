@@ -6,7 +6,7 @@ const ri = readline.createInterface({
     output: process.stdout
 });
 
-export async function question(query: string): Promise<string> {
+async function question(query: string): Promise<string> {
     return new Promise((res) => ri.question(query, res));
 }
 
@@ -22,5 +22,6 @@ export async function readPhoneNumber(): Promise<string> {
         result = await question(query);
     }
     ri.close();
+    process.stdin.resume();
     return result;
 }

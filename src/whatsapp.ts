@@ -62,16 +62,17 @@ export async function initWASocket(message?: string): Promise<WASocket> {
     return socket;
 }
 
-export function terminate(socket: any, waitSeconds = 1) {
+export async function terminate(socket: any, waitSeconds = 1) {
     if (waitSeconds > 0) {
         signale.await(`Closing WA connection, waiting for ${waitSeconds} second(s)...`);
     }
-    setTimeout(() => {
-        socket.end(undefined);
-        socket.ws.close();
-        process.exit();
-    }, waitSeconds * 1000);
+    await delay(waitSeconds * 1000);
+    socket.end(undefined);
+    if (socket.ws && socket.ws.isOpen) {
+        await socket.ws.close();
+    }
     console.info(mudslideFooter);
+    process.exit();
 }
 
 export function checkLoggedIn() {
@@ -116,7 +117,7 @@ async function loginSecondPass() {
         const {connection} = update;
         if (connection === 'open') {
             await waitForKey("Wait until WhatsApp finishes connecting, then press any key to exit");
-            terminate(socket);
+            await terminate(socket);
             signale.success('Logged in');
         }
     });
@@ -170,17 +171,22 @@ export async function loginWithQrCode() {
 export async function logout() {
     checkLoggedIn();
     const socket = await initWASocket();
+    let exiting = false;
     socket.ev.on('connection.update', async (update) => {
         const {connection} = update
-        if ((update.connection === undefined && update.qr) || connection === 'close') {
+        if (exiting) {
+            return;
+        } else if ((update.connection === undefined && update.qr) || connection === 'close') {
+            exiting = true;
             clearCacheFolder();
             signale.success(`Logged out`);
-            terminate(socket);
+            await terminate(socket);
         } else if (connection === 'open') {
+            exiting = true;
             await socket.logout();
             clearCacheFolder();
             signale.success(`Logged out`);
-            terminate(socket);
+            await terminate(socket);
         }
     });
     process.on('exit', clearCacheFolder);
@@ -208,7 +214,7 @@ export async function sendImageHelper(socket: any, whatsappId: string, filePath:
     const payload = {image: fs.readFileSync(filePath), caption: handleNewlines(options.caption)}
     await socket.sendMessage(whatsappId, payload);
     signale.success('Done');
-    terminate(socket, 3);
+    await terminate(socket, 3);
 }
 
 export async function sendFileHelper(socket: any, whatsappId: string, filePath: string,
@@ -230,7 +236,7 @@ export async function sendFileHelper(socket: any, whatsappId: string, filePath: 
     }
     await socket.sendMessage(whatsappId, payload);
     signale.success('Done');
-    terminate(socket, 3);
+    await terminate(socket, 3);
 }
 
 export function handleNewlines(s?: string): string | undefined {
