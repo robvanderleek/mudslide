@@ -1,3 +1,4 @@
+import {expect, test} from 'vitest';
 import {isValidE164PhoneNumber} from "../src/utils";
 
 test('is valid phone number', () => {
