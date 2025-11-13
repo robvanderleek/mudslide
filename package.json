@@ -70,7 +70,7 @@
     "@types/qrcode-terminal": "^0.12.2",
     "@types/signale": "^1.4.4",
     "@yao-pkg/pkg": "^6.10.0",
-    "esbuild": "^0.25.10",
+    "esbuild": "^0.27.0",
     "semantic-release": "^25.0.1",
     "typescript": "^5.9.3",
     "vite": "^7.2.2",
