@@ -1,7 +1,9 @@
 # Mudslide
 
-> [!IMPORTANT] The maintainers of this software cannot be held liable for
-> misuse of this application, as stated in the [ISC
+> [!IMPORTANT] 
+>
+> The maintainers of this software cannot be held liable for misuse of this
+> application, as stated in the [ISC
 > license](https://github.com/robvanderleek/mudslide/blob/main/LICENSE). The
 > maintainers of Mudslide do not in any way condone the use of this application
 > in practices that violate the Terms of Service of WhatsApp. The maintainers
@@ -11,7 +13,9 @@
 > or automated messaging usage.
 
 > [!WARNING] 
+>
 > DO NOT USE THIS TOOL FOR IMPORTANT THINGS. 
+>
 > This tool can stop working without notice. 
 
 <p align="center">
