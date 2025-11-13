@@ -1,13 +1,14 @@
 # Mudslide
 
-> [!IMPORTANT] 
-> The maintainers of this software cannot be held liable for misuse of this
-> application, as stated in the [ISC
+> [!IMPORTANT] The maintainers of this software cannot be held liable for
+> misuse of this application, as stated in the [ISC
 > license](https://github.com/robvanderleek/mudslide/blob/main/LICENSE). The
 > maintainers of Mudslide do not in any way condone the use of this application
 > in practices that violate the Terms of Service of WhatsApp. The maintainers
 > of this application call upon the personal responsibility of its users to use
-> this application in a fair way, as it is intended to be used.
+> this application in a fair way, as it is intended to be used. Use at your own
+> discretion. Do not spam people with this. We discourage any stalkerware, bulk
+> or automated messaging usage.
 
 > [!WARNING] 
 > DO NOT USE THIS TOOL FOR IMPORTANT THINGS. 
@@ -27,7 +28,7 @@
 [![CodeLimit](https://github.com/robvanderleek/mudslide/blob/_codelimit_reports/main/badge.svg)](https://github.com/robvanderleek/mudslide/blob/_codelimit_reports/main/codelimit.md)
 [![npm version](https://badge.fury.io/js/mudslide.svg)](https://badge.fury.io/js/mudslide)
 [![DockerHub image pulls](https://img.shields.io/docker/pulls/robvanderleek/mudslide)](https://hub.docker.com/repository/docker/robvanderleek/mudslide)
-[![Dependabot](https://badgen.net/badge/Dependabot/enabled/green?icon=dependabot)](https://dependabot.com/)
+[![Dependabot](https://img.shields.io/badge/dependabot-enabled-025E8C?logo=dependabot&logoColor=white)](https://dependabot.com/)
 
 </div>
 
@@ -150,28 +151,28 @@ described below.
 ## Login
 
 To login you need to authorize Mudslide from another device that has WhatsApp
-installed and scan the QR code printed in the terminal:
+installed and either scan the QR-code, or enter the pairing-code printed in the
+terminal:
+
+### With QR-Code
 
 ```shell
 npx mudslide@latest login
-█▀▀▀▀▀█ ▀▀   ▀  █ █▀▀▀▀▀█
-█ ███ █ █▄ █▀▀▀▀  █ ███ █
-█ ▀▀▀ █ ▀█▀▀▄▀█▀▀ █ ▀▀▀ █
-▀▀▀▀▀▀▀ ▀▄▀▄▀▄█▄▀ ▀▀▀▀▀▀▀
-▀███▄ ▀▄▀▄   ▀▀ █▀ ▄▀▀▀▄▀
-█▄▄▄▄ ▀ ▄  ▄▄▄█▄ ▄█▀ ▄▄
-▀▄ ▄▀ ▀ ▄█▄█ ▄ ▄ ██▄█ ▀▀█
-▄▀▄██▀▀██▄▀ █▄▀▄▄█▀▄█ ▀▀▄
-    ▀▀▀ ███▀▄▄  █▀▀▀█▀█▀█
-█▀▀▀▀▀█   ▀▀█  ▄█ ▀ █ ▀██
-█ ███ █ ▄▄█▀██▄▄▀██▀██▄▄▄
-█ ▀▀▀ █ █▀▀▀▀▀ ▀▀█▀ █ █▀
-▀▀▀▀▀▀▀ ▀▀▀ ▀ ▀  ▀ ▀▀▀▀▀▀
 ```
 
 In the WhatsApp mobile app go to "Settings > Connected Devices > Connect
 Device" and scan the QR code. Wait until the status is "active", then you can
 exit Mudslide.
+
+### With Pairing-Code
+
+```shell
+npx mudslide@latest login --pairing-code
+```
+
+In the WhatsApp mobile app go to "Settings > Connected Devices > Connect
+Device" and enter the pairing code. Wait until the status is "active", then you
+can exit Mudslide.
 
 ## Logout
 

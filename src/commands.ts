@@ -39,7 +39,7 @@ export async function sendMessage(recipient: string, message: string, options: {
             }
             await socket.sendMessage(whatsappId, whatsappMessage);
             signale.success('Done');
-            terminate(socket, 3);
+            await terminate(socket, 3);
         }
     });
 }
@@ -91,7 +91,7 @@ export async function sendLocation(recipient: string, latitude: string, longitud
                     }
                 });
                 signale.success('Done');
-                terminate(socket, 3);
+                await terminate(socket, 3);
             }
         }
     );
@@ -124,7 +124,7 @@ export async function sendPoll(recipient: string, name: string, options: {
                     }
                 });
                 signale.success('Done');
-                terminate(socket, 3);
+                await terminate(socket, 3);
             }
         }
     );
@@ -139,7 +139,7 @@ export async function me() {
         if (connection === 'open') {
             const user = await socket.user
             signale.log(`Current user: ${user?.id}`);
-            terminate(socket);
+            await terminate(socket);
         }
     });
 }
@@ -154,7 +154,7 @@ export async function listGroups() {
             for (const group in groupData) {
                 signale.log(`{"id": "${groupData[group].id}", "subject": "${groupData[group].subject}"}`);
             }
-            terminate(socket);
+            await terminate(socket);
         }
     });
 }
@@ -175,7 +175,7 @@ export async function mutateGroup(groupId: string, phoneNumber: string, operatio
             updateResult.forEach((entry) => {
                 signale.log(`{"id": "${entry.jid}", "status": "${entry.status}"}`);
             });
-            terminate(socket);
+            await terminate(socket);
         }
     });
 }
@@ -190,7 +190,7 @@ export async function listGroupParticipants(groupId: string) {
             groupMetadata.participants.forEach((participant) => {
                 signale.log(`{"id": "${participant.id}"}`);
             });
-            terminate(socket);
+            await terminate(socket);
         }
     });
 }
