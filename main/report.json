@@ -1,7 +1,7 @@
 {
   "version": "0.21.0",
-  "uuid": "234e1d95-2760-4ad2-8566-adac8419cb05",
-  "timestamp": "2025-11-10T21:20:24+00:00",
+  "uuid": "7f66b31a-a744-41a0-8c85-685ea18a0d61",
+  "timestamp": "2025-11-13T12:15:48+00:00",
   "root": "/github/workspace",
   "repository": {
     "owner": "robvanderleek",
@@ -11,9 +11,9 @@
   "codebase": {
     "totals": {
       "TypeScript": {
-        "files": 3,
-        "lines_of_code": 314,
-        "functions": 26,
+        "files": 4,
+        "lines_of_code": 363,
+        "functions": 31,
         "hard_to_maintain": 1,
         "unmaintainable": 0
       }
@@ -23,20 +23,21 @@
         "entries": [
           "src/"
         ],
-        "profile": [157, 107, 50, 0]
+        "profile": [187, 126, 50, 0]
       },
       "src/": {
         "entries": [
           "commands.ts",
           "index.ts",
+          "utils.ts",
           "whatsapp.ts"
         ],
-        "profile": [157, 107, 50, 0]
+        "profile": [187, 126, 50, 0]
       }
     },
     "files": {
       "src/commands.ts": {
-        "checksum": "bcb3dc552e8ef51d4a987118f42a541a",
+        "checksum": "ec7bb365b30dc7233738ce10dfee47e7",
         "language": "TypeScript",
         "loc": 95,
         "profile": [54, 41, 0, 0],
@@ -53,36 +54,49 @@
         ]
       },
       "src/index.ts": {
-        "checksum": "f391891b07deeb525379588d725f9115",
+        "checksum": "2845ac5bbeb5f48b862d0eae4fcdd5e1",
         "language": "TypeScript",
         "loc": 62,
         "profile": [12, 0, 50, 0],
         "measurements": [
           {"unit_name": "increaseVerbosity", "start": {"line": 22, "column": 10}, "end": {"line": 33, "column": 2}, "value": 12},
-          {"unit_name": "configureCommands", "start": {"line": 54, "column": 10}, "end": {"line": 103, "column": 2}, "value": 50}
+          {"unit_name": "configureCommands", "start": {"line": 55, "column": 10}, "end": {"line": 104, "column": 2}, "value": 50}
+        ]
+      },
+      "src/utils.ts": {
+        "checksum": "b1981533e3dc75b66f9f7fe8837db9c5",
+        "language": "TypeScript",
+        "loc": 17,
+        "profile": [17, 0, 0, 0],
+        "measurements": [
+          {"unit_name": "question", "start": {"line": 9, "column": 16}, "end": {"line": 11, "column": 2}, "value": 3},
+          {"unit_name": "isValidE164PhoneNumber", "start": {"line": 13, "column": 17}, "end": {"line": 15, "column": 2}, "value": 3},
+          {"unit_name": "readPhoneNumber", "start": {"line": 17, "column": 23}, "end": {"line": 27, "column": 2}, "value": 11}
         ]
       },
       "src/whatsapp.ts": {
-        "checksum": "6954a3aaa210ea03ad6a21570d48ea7a",
+        "checksum": "fad9aa42f237c7efb314cfd735b4c3ec",
         "language": "TypeScript",
-        "loc": 157,
-        "profile": [91, 66, 0, 0],
+        "loc": 189,
+        "profile": [104, 85, 0, 0],
         "measurements": [
-          {"unit_name": "getAuthStateCacheFolderLocation", "start": {"line": 17, "column": 17}, "end": {"line": 28, "column": 2}, "value": 12},
-          {"unit_name": "clearCacheFolder", "start": {"line": 30, "column": 10}, "end": {"line": 33, "column": 2}, "value": 4},
-          {"unit_name": "initAuthStateCacheFolder", "start": {"line": 35, "column": 10}, "end": {"line": 42, "column": 2}, "value": 8},
-          {"unit_name": "initWASocket", "start": {"line": 44, "column": 23}, "end": {"line": 61, "column": 2}, "value": 18},
-          {"unit_name": "terminate", "start": {"line": 63, "column": 17}, "end": {"line": 73, "column": 2}, "value": 11},
-          {"unit_name": "checkLoggedIn", "start": {"line": 75, "column": 17}, "end": {"line": 80, "column": 2}, "value": 6},
-          {"unit_name": "checkValidFile", "start": {"line": 82, "column": 17}, "end": {"line": 87, "column": 2}, "value": 6},
-          {"unit_name": "parseGeoLocation", "start": {"line": 89, "column": 17}, "end": {"line": 97, "column": 2}, "value": 9},
-          {"unit_name": "waitForKey", "start": {"line": 99, "column": 23}, "end": {"line": 108, "column": 2}, "value": 10},
-          {"unit_name": "login", "start": {"line": 110, "column": 23}, "end": {"line": 140, "column": 2}, "value": 29},
-          {"unit_name": "logout", "start": {"line": 142, "column": 23}, "end": {"line": 160, "column": 2}, "value": 19},
-          {"unit_name": "getWhatsAppId", "start": {"line": 162, "column": 23}, "end": {"line": 176, "column": 2}, "value": 15},
-          {"unit_name": "sendImageHelper", "start": {"line": 178, "column": 23}, "end": {"line": 180, "column": 2}, "value": 3},
-          {"unit_name": "sendFileHelper", "start": {"line": 187, "column": 23}, "end": {"line": 188, "column": 116}, "value": 2},
-          {"unit_name": "handleNewlines", "start": {"line": 209, "column": 17}, "end": {"line": 213, "column": 2}, "value": 5}
+          {"unit_name": "getAuthStateCacheFolderLocation", "start": {"line": 18, "column": 17}, "end": {"line": 29, "column": 2}, "value": 12},
+          {"unit_name": "clearCacheFolder", "start": {"line": 31, "column": 10}, "end": {"line": 34, "column": 2}, "value": 4},
+          {"unit_name": "initAuthStateCacheFolder", "start": {"line": 36, "column": 10}, "end": {"line": 43, "column": 2}, "value": 8},
+          {"unit_name": "initWASocket", "start": {"line": 45, "column": 23}, "end": {"line": 63, "column": 2}, "value": 19},
+          {"unit_name": "terminate", "start": {"line": 65, "column": 23}, "end": {"line": 76, "column": 2}, "value": 12},
+          {"unit_name": "checkLoggedIn", "start": {"line": 78, "column": 17}, "end": {"line": 83, "column": 2}, "value": 6},
+          {"unit_name": "checkValidFile", "start": {"line": 85, "column": 17}, "end": {"line": 90, "column": 2}, "value": 6},
+          {"unit_name": "parseGeoLocation", "start": {"line": 92, "column": 17}, "end": {"line": 100, "column": 2}, "value": 9},
+          {"unit_name": "waitForKey", "start": {"line": 102, "column": 23}, "end": {"line": 111, "column": 2}, "value": 10},
+          {"unit_name": "loginSecondPass", "start": {"line": 113, "column": 16}, "end": {"line": 124, "column": 2}, "value": 12},
+          {"unit_name": "loginWithPairingCode", "start": {"line": 126, "column": 23}, "end": {"line": 149, "column": 2}, "value": 24},
+          {"unit_name": "loginWithQrCode", "start": {"line": 151, "column": 23}, "end": {"line": 169, "column": 2}, "value": 19},
+          {"unit_name": "logout", "start": {"line": 171, "column": 23}, "end": {"line": 193, "column": 2}, "value": 23},
+          {"unit_name": "getWhatsAppId", "start": {"line": 195, "column": 23}, "end": {"line": 209, "column": 2}, "value": 15},
+          {"unit_name": "sendImageHelper", "start": {"line": 211, "column": 23}, "end": {"line": 213, "column": 2}, "value": 3},
+          {"unit_name": "sendFileHelper", "start": {"line": 220, "column": 23}, "end": {"line": 221, "column": 116}, "value": 2},
+          {"unit_name": "handleNewlines", "start": {"line": 242, "column": 17}, "end": {"line": 246, "column": 2}, "value": 5}
         ]
       }
     }
