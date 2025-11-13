@@ -244,3 +244,14 @@ export function handleNewlines(s?: string): string | undefined {
         return s.replace(/\\n/g, '\n');
     }
 }
+
+export async function withOpenConnection(func: (socket: WASocket) => Promise<void>) {
+    checkLoggedIn();
+    const socket = await initWASocket();
+    socket.ev.on('connection.update', async (update) => {
+        const {connection} = update
+        if (connection === 'open') {
+            await func(socket);
+        }
+    });
+}

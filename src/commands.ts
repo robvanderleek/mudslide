@@ -9,7 +9,7 @@ import {
     parseGeoLocation,
     sendFileHelper,
     sendImageHelper,
-    terminate
+    terminate, withOpenConnection
 } from "./whatsapp";
 
 export async function sendMessage(recipient: string, message: string, options: {
@@ -131,31 +131,29 @@ export async function sendPoll(recipient: string, name: string, options: {
 }
 
 export async function me() {
-    checkLoggedIn();
-    signale.log(`Cache folder: ${getAuthStateCacheFolderLocation()}`);
-    const socket = await initWASocket();
-    socket.ev.on('connection.update', async (update) => {
-        const {connection} = update
-        if (connection === 'open') {
-            const user = await socket.user
-            signale.log(`Current user: ${user?.id}`);
-            await terminate(socket);
-        }
+    await withOpenConnection(async socket => {
+        signale.log(`Cache folder: ${getAuthStateCacheFolderLocation()}`);
+        const user = await socket.user;
+        signale.log(`Current user: ${user?.id}`);
+        await terminate(socket);
     });
 }
 
 export async function listGroups() {
-    checkLoggedIn();
-    const socket = await initWASocket();
-    socket.ev.on('connection.update', async (update) => {
-        const {connection} = update
-        if (connection === 'open') {
-            const groupData = await socket.groupFetchAllParticipating()
-            for (const group in groupData) {
-                signale.log(`{"id": "${groupData[group].id}", "subject": "${groupData[group].subject}"}`);
-            }
-            await terminate(socket);
+    await withOpenConnection(async socket => {
+        const groupData = await socket.groupFetchAllParticipating();
+        for (const group in groupData) {
+            signale.log(`{"id": "${groupData[group].id}", "subject": "${groupData[group].subject}"}`);
         }
+        await terminate(socket);
+    });
+}
+
+export async function createGroup(subject: string) {
+    await withOpenConnection(async socket => {
+        const groupData = await socket.groupCreate(subject, []);
+        signale.success(`Created group:\n${JSON.stringify(groupData)}`);
+        terminate(socket);
     });
 }
 

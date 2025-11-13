@@ -2,6 +2,7 @@
 import {program} from "commander";
 import {globalOptions, loginWithPairingCode, loginWithQrCode, logout, mudslideFooter} from "./whatsapp";
 import {
+    createGroup,
     listGroupParticipants,
     listGroups,
     me,
@@ -87,6 +88,10 @@ function configureCommands() {
         .option('--selectable <count>', 'Number of selectable items', '1')
         .description('Send poll')
         .action((recipient, name, options) => sendPoll(recipient, name, options));
+    program
+        .command('create-group <subject>')
+        .description('Create new group')
+        .action((subject) => createGroup(subject));
     program
         .command('add-to-group <group-id> <phone-number>')
         .allowUnknownOption()
