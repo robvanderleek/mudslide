@@ -66,7 +66,7 @@
   "devDependencies": {
     "@types/global-agent": "^2.1.1",
     "@types/mime": "^4.0.0",
-    "@types/node": "^24.9.2",
+    "@types/node": "^25.0.0",
     "@types/qrcode-terminal": "^0.12.2",
     "@types/signale": "^1.4.4",
     "@yao-pkg/pkg": "^6.10.0",
