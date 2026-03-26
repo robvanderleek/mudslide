@@ -72,7 +72,7 @@
     "@yao-pkg/pkg": "^6.10.0",
     "esbuild": "^0.25.10",
     "semantic-release": "^25.0.1",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.2",
     "vite": "^7.2.2",
     "vitest": "^4.0.8"
   },
