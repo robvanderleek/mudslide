@@ -5,7 +5,7 @@
   "description": "WhatsApp CLI",
   "repository": {
     "type": "git",
-    "url": "https://github.com/robvanderleek/mudslide.git"
+    "url": "git+https://github.com/robvanderleek/mudslide.git"
   },
   "release": {
     "branches": [

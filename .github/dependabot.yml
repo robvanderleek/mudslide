@@ -1,12 +1,22 @@
 version: 2
 updates:
-- package-ecosystem: "npm"
-  directory: "/"
-  schedule:
-    interval: weekly
-    day: thursday
-    time: "04:00"
-    timezone: Europe/Amsterdam
-  open-pull-requests-limit: 10
-  commit-message:
-    prefix: "build"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: sunday
+      time: "13:15"
+      timezone: Europe/Amsterdam
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "build"
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: thursday
+      time: "04:00"
+      timezone: Europe/Amsterdam
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "build"
