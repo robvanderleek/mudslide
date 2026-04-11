@@ -434,7 +434,7 @@ library](https://github.com/WhiskeySockets/Baileys).
 To run the unit-tests:
 
 ```shell
-yarn test
+npm test
 ```
 
 # Feedback, suggestions and bug reports
