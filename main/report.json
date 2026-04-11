@@ -1,7 +1,7 @@
 {
   "version": "0.21.0",
-  "uuid": "95cfd3a4-cb88-4903-8bed-39886e0798b8",
-  "timestamp": "2025-11-13T21:33:43+00:00",
+  "uuid": "ccb09c4e-4ed7-451b-9f43-ddd04d4e8c47",
+  "timestamp": "2026-04-11T07:44:26+00:00",
   "root": "/github/workspace",
   "repository": {
     "owner": "robvanderleek",
@@ -27,42 +27,15 @@
       },
       "src/": {
         "entries": [
-          "commands.ts",
-          "index.ts",
           "utils.ts",
-          "whatsapp.ts"
+          "whatsapp.ts",
+          "index.ts",
+          "commands.ts"
         ],
         "profile": [187, 126, 50, 0]
       }
     },
     "files": {
-      "src/commands.ts": {
-        "checksum": "ec7bb365b30dc7233738ce10dfee47e7",
-        "language": "TypeScript",
-        "loc": 95,
-        "profile": [54, 41, 0, 0],
-        "measurements": [
-          {"unit_name": "sendMessage", "start": {"line": 15, "column": 23}, "end": {"line": 18, "column": 2}, "value": 4},
-          {"unit_name": "sendImage", "start": {"line": 47, "column": 23}, "end": {"line": 47, "column": 106}, "value": 1},
-          {"unit_name": "sendFile", "start": {"line": 61, "column": 23}, "end": {"line": 64, "column": 2}, "value": 4},
-          {"unit_name": "sendLocation", "start": {"line": 78, "column": 23}, "end": {"line": 98, "column": 2}, "value": 21},
-          {"unit_name": "sendPoll", "start": {"line": 100, "column": 23}, "end": {"line": 103, "column": 2}, "value": 4},
-          {"unit_name": "me", "start": {"line": 133, "column": 23}, "end": {"line": 145, "column": 2}, "value": 13},
-          {"unit_name": "listGroups", "start": {"line": 147, "column": 23}, "end": {"line": 160, "column": 2}, "value": 14},
-          {"unit_name": "mutateGroup", "start": {"line": 162, "column": 23}, "end": {"line": 181, "column": 2}, "value": 20},
-          {"unit_name": "listGroupParticipants", "start": {"line": 183, "column": 23}, "end": {"line": 196, "column": 2}, "value": 14}
-        ]
-      },
-      "src/index.ts": {
-        "checksum": "2845ac5bbeb5f48b862d0eae4fcdd5e1",
-        "language": "TypeScript",
-        "loc": 62,
-        "profile": [12, 0, 50, 0],
-        "measurements": [
-          {"unit_name": "increaseVerbosity", "start": {"line": 22, "column": 10}, "end": {"line": 33, "column": 2}, "value": 12},
-          {"unit_name": "configureCommands", "start": {"line": 55, "column": 10}, "end": {"line": 104, "column": 2}, "value": 50}
-        ]
-      },
       "src/utils.ts": {
         "checksum": "b1981533e3dc75b66f9f7fe8837db9c5",
         "language": "TypeScript",
@@ -97,6 +70,33 @@
           {"unit_name": "sendImageHelper", "start": {"line": 211, "column": 23}, "end": {"line": 213, "column": 2}, "value": 3},
           {"unit_name": "sendFileHelper", "start": {"line": 220, "column": 23}, "end": {"line": 221, "column": 116}, "value": 2},
           {"unit_name": "handleNewlines", "start": {"line": 242, "column": 17}, "end": {"line": 246, "column": 2}, "value": 5}
+        ]
+      },
+      "src/index.ts": {
+        "checksum": "2845ac5bbeb5f48b862d0eae4fcdd5e1",
+        "language": "TypeScript",
+        "loc": 62,
+        "profile": [12, 0, 50, 0],
+        "measurements": [
+          {"unit_name": "increaseVerbosity", "start": {"line": 22, "column": 10}, "end": {"line": 33, "column": 2}, "value": 12},
+          {"unit_name": "configureCommands", "start": {"line": 55, "column": 10}, "end": {"line": 104, "column": 2}, "value": 50}
+        ]
+      },
+      "src/commands.ts": {
+        "checksum": "ec7bb365b30dc7233738ce10dfee47e7",
+        "language": "TypeScript",
+        "loc": 95,
+        "profile": [54, 41, 0, 0],
+        "measurements": [
+          {"unit_name": "sendMessage", "start": {"line": 15, "column": 23}, "end": {"line": 18, "column": 2}, "value": 4},
+          {"unit_name": "sendImage", "start": {"line": 47, "column": 23}, "end": {"line": 47, "column": 106}, "value": 1},
+          {"unit_name": "sendFile", "start": {"line": 61, "column": 23}, "end": {"line": 64, "column": 2}, "value": 4},
+          {"unit_name": "sendLocation", "start": {"line": 78, "column": 23}, "end": {"line": 98, "column": 2}, "value": 21},
+          {"unit_name": "sendPoll", "start": {"line": 100, "column": 23}, "end": {"line": 103, "column": 2}, "value": 4},
+          {"unit_name": "me", "start": {"line": 133, "column": 23}, "end": {"line": 145, "column": 2}, "value": 13},
+          {"unit_name": "listGroups", "start": {"line": 147, "column": 23}, "end": {"line": 160, "column": 2}, "value": 14},
+          {"unit_name": "mutateGroup", "start": {"line": 162, "column": 23}, "end": {"line": 181, "column": 2}, "value": 20},
+          {"unit_name": "listGroupParticipants", "start": {"line": 183, "column": 23}, "end": {"line": 196, "column": 2}, "value": 14}
         ]
       }
     }
