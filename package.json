@@ -48,7 +48,7 @@
     "dist:build": "esbuild build/index.js --bundle --external:jimp --external:sharp --external:link-preview-js --platform=node --outfile=dist/index.js",
     "dist:pkg:linux": "pkg -c assets/pkg-linux.json -o binaries/mudslide-linuxstatic dist/index.js",
     "dist:pkg:windows": "pkg -c assets/pkg-win-x64.json -o binaries/mudslide dist/index.js",
-    "dist:pkg:macos": "pkg -t node20-macos-x64 -o binaries/mudslide dist/index.js",
+    "dist:pkg:macos": "pkg -t node24-macos-x64 -o binaries/mudslide dist/index.js",
     "dist:bundle:macos": "cd binaries && tar czf mudslide-macos.tgz mudslide"
   },
   "license": "ISC",
