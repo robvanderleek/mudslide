@@ -1,5 +1,0 @@
-{
-  "pkg": {
-    "targets": [ "node24-linuxstatic-x64", "node24-linuxstatic-arm64" ]
-  }
-}
