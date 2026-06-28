@@ -1,7 +1,7 @@
 {
   "version": "0.21.0",
-  "uuid": "29670106-ee22-422f-ab87-81c2bd8b5e72",
-  "timestamp": "2026-05-31T13:21:19+00:00",
+  "uuid": "59a42d0a-f7ca-49ba-abd3-edda208f4827",
+  "timestamp": "2026-06-28T21:32:02+00:00",
   "root": "/github/workspace",
   "repository": {
     "owner": "robvanderleek",
@@ -27,8 +27,8 @@
       },
       "src/": {
         "entries": [
-          "index.ts",
           "utils.ts",
+          "index.ts",
           "commands.ts",
           "whatsapp.ts"
         ],
@@ -36,16 +36,6 @@
       }
     },
     "files": {
-      "src/index.ts": {
-        "checksum": "2845ac5bbeb5f48b862d0eae4fcdd5e1",
-        "language": "TypeScript",
-        "loc": 62,
-        "profile": [12, 0, 50, 0],
-        "measurements": [
-          {"unit_name": "increaseVerbosity", "start": {"line": 22, "column": 10}, "end": {"line": 33, "column": 2}, "value": 12},
-          {"unit_name": "configureCommands", "start": {"line": 55, "column": 10}, "end": {"line": 104, "column": 2}, "value": 50}
-        ]
-      },
       "src/utils.ts": {
         "checksum": "b1981533e3dc75b66f9f7fe8837db9c5",
         "language": "TypeScript",
@@ -55,6 +45,16 @@
           {"unit_name": "question", "start": {"line": 9, "column": 16}, "end": {"line": 11, "column": 2}, "value": 3},
           {"unit_name": "isValidE164PhoneNumber", "start": {"line": 13, "column": 17}, "end": {"line": 15, "column": 2}, "value": 3},
           {"unit_name": "readPhoneNumber", "start": {"line": 17, "column": 23}, "end": {"line": 27, "column": 2}, "value": 11}
+        ]
+      },
+      "src/index.ts": {
+        "checksum": "2845ac5bbeb5f48b862d0eae4fcdd5e1",
+        "language": "TypeScript",
+        "loc": 62,
+        "profile": [12, 0, 50, 0],
+        "measurements": [
+          {"unit_name": "increaseVerbosity", "start": {"line": 22, "column": 10}, "end": {"line": 33, "column": 2}, "value": 12},
+          {"unit_name": "configureCommands", "start": {"line": 55, "column": 10}, "end": {"line": 104, "column": 2}, "value": 50}
         ]
       },
       "src/commands.ts": {
