@@ -14,7 +14,7 @@ jobs:
       release_version: ${{ steps.semantic.outputs.new_release_version }}
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup NodeJS
         uses: actions/setup-node@v6
@@ -42,7 +42,9 @@ jobs:
 
       - name: Create Linux binaries
         if: steps.semantic.outputs.new_release_published == 'true'
-        run: npm run dist:pkg:linux
+        run: |
+          npm run dist:pkg:linux-x64
+          npm run dist:pkg:linux-arm64
 
       - name: Create Windows binary
         if: steps.semantic.outputs.new_release_published == 'true'
