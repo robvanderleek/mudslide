@@ -49,7 +49,7 @@ working without notice.
 
 * [Installation](#installation)
 * [Usage](#usage)
-* [Configuration](#configuration)
+* [Global configuration options](#global-configuration-options)
 * [Troubleshooting](#troubleshooting)
 * [FAQ](#faq)
 * [Development](#development)
@@ -350,7 +350,16 @@ To get the WhatsApp ID of the logged in user:
 npx mudslide@latest me
 ```
 
-# Configuration
+# Global configuration options
+
+The global configuration options must precede the command.
+For example:
+
+```shell
+npx mudslide@latest --timeout 3 send me 'hello world'
+```
+
+## Location of cache folder
 
 By default WhatsApp credentials are cached in a folder located in the user's
 home directory. This folder is `~/.local/share/mudslide` on Linux & macOS and
@@ -370,6 +379,15 @@ variables `HTTP_PROXY` and `HTTPS_PROXY` to proxy all requests. For example:
 export HTTP_PROXY=http://USER:PASS@proxy.server.com:80
 export HTTPS_PROXY=http://USER:PASS@proxy.server.com:80
 npx mudslide@latest --proxy login
+```
+
+## Timeout
+
+The default timeout for commands is 10 seconds. This duration can be changed
+using the `--timeout <seconds>` flag:
+
+```shell
+npx mudslide@latest --timeout 3 send me 'hello world'
 ```
 
 # Troubleshooting

@@ -47,6 +47,8 @@ export async function initWASocket(message?: string): Promise<WASocket> {
     const os = process.platform === 'darwin' ? 'macOS' : process.platform === 'win32' ? 'Windows' : 'Linux';
     const {version} = await fetchLatestWaWebVersion({});
     const socket = makeWASocket({
+        connectTimeoutMs: 3_000,
+        defaultQueryTimeoutMs: 6_000,
         logger: pino({level: globalOptions.logLevel}),
         auth: state,
         browser: [os, 'Chrome', '10.15.0'],
