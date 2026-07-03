@@ -43,7 +43,7 @@ program.on('option:proxy', () => {
     // @ts-ignore
     global.GLOBAL_AGENT.HTTPS_PROXY = process.env.HTTPS_PROXY;
 });
-program.addOption(new Option('--timeout <sec>', 'Command timeout').default(10).argParser(parseInt));
+program.addOption(new Option('--timeout <sec>', 'Command timeout').default(60).argParser(parseInt));
 
 program.hook('preAction', (command: Command) => {
     const timeout = command.getOptionValue('timeout');

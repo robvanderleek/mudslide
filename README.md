@@ -383,7 +383,7 @@ npx mudslide@latest --proxy login
 
 ## Timeout
 
-The default timeout for commands is 10 seconds. This duration can be changed
+The default timeout for commands is 60 seconds. This duration can be changed
 using the `--timeout <seconds>` flag:
 
 ```shell
