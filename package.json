@@ -71,7 +71,7 @@
     "@types/signale": "^1.4.4",
     "@yao-pkg/pkg": "^6.20.0",
     "esbuild": "^0.28.1",
-    "typescript": "^6.0.2",
+    "typescript": "^7.0.2",
     "vitest": "^4.1.9"
   },
   "engines": {
