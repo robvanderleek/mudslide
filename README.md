@@ -463,7 +463,7 @@ If you like this software, please star :star: it.
 
 ## Star history
 
-[![Star History Chart](https://api.star-history.com/svg?repos=robvanderleek/mudslide&type=Date)](https://star-history.com/#robvanderleek/mudslide&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=robvanderleek/mudslide&type=Date)](https://star-history.dera.page/#robvanderleek/mudslide&Date)
 
 # Contributing
 
