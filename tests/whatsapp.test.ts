@@ -1,5 +1,6 @@
 import {expect, test} from 'vitest';
-import {getWhatsAppId, handleNewlines, parseGeoLocation} from "../src/whatsapp";
+import {WAMessageStatus} from "baileys";
+import {checkNumberExistsOnWhatsApp, getWhatsAppId, handleNewlines, parseGeoLocation, waitForDeliveryAck} from "../src/whatsapp";
 
 test('get whatsapp id', async () => {
     expect(await getWhatsAppId({}, '3161234567890')).toBe('3161234567890@s.whatsapp.net');
@@ -42,4 +43,20 @@ test('handle newlines', () => {
     expect(handleNewlines('hello\\nworld')).toBe('hello\nworld');
     expect(handleNewlines('hello\\nworld\\n')).toBe('hello\nworld\n');
     expect(handleNewlines()).toBeUndefined();
+})
+
+test('check number exists on whatsapp', async () => {
+    const socket = {onWhatsApp: async () => [{jid: '3161234567890@s.whatsapp.net', exists: true}]};
+
+    expect(await checkNumberExistsOnWhatsApp(socket, '3161234567890@s.whatsapp.net')).toBe(true);
+})
+
+test('wait for delivery ack, resolves once the status update arrives', async () => {
+    let onUpdate: (updates: any[]) => void;
+    const socket = {ev: {on: (_: string, cb: any) => onUpdate = cb, off: () => {}}};
+
+    const result = waitForDeliveryAck(socket, {id: 'abc'}, 1000);
+    onUpdate!([{key: {id: 'abc'}, update: {status: WAMessageStatus.DELIVERY_ACK}}]);
+
+    expect(await result).toBe(true);
 })

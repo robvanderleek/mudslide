@@ -1,4 +1,4 @@
-import makeWASocket, {delay, DisconnectReason, fetchLatestWaWebVersion, useMultiFileAuthState, WASocket} from "baileys";
+import makeWASocket, {delay, DisconnectReason, fetchLatestWaWebVersion, useMultiFileAuthState, WAMessageStatus, WASocket} from "baileys";
 import pino from "pino";
 import path from "path";
 import * as fs from "fs";
@@ -210,17 +210,80 @@ export async function getWhatsAppId(socket: any, recipient: string) {
     return `${recipient}@s.whatsapp.net`;
 }
 
-export async function sendImageHelper(socket: any, whatsappId: string, filePath: string, options: {
-    caption: string | undefined
-}) {
-    const payload = {image: fs.readFileSync(filePath), caption: handleNewlines(options.caption)}
-    await socket.sendMessage(whatsappId, payload);
+export type SendChecksOptions = {
+    liveCheck?: boolean,
+    typing?: number,
+    waitAck?: number
+}
+
+export async function checkNumberExistsOnWhatsApp(socket: any, whatsappId: string): Promise<boolean> {
+    const result = await socket.onWhatsApp(whatsappId);
+    return !!result?.[0]?.exists;
+}
+
+export async function simulateTyping(socket: any, whatsappId: string, ms: number) {
+    await socket.sendPresenceUpdate('composing', whatsappId);
+    await delay(ms);
+    await socket.sendPresenceUpdate('paused', whatsappId);
+}
+
+export async function waitForDeliveryAck(socket: any, key: any, timeoutMs: number): Promise<boolean> {
+    return new Promise(resolve => {
+        const cleanup = () => {
+            clearTimeout(timer);
+            socket.ev.off('messages.update', onUpdate);
+        };
+        const onUpdate = (updates: any[]) => {
+            for (const {key: updateKey, update} of updates) {
+                if (updateKey.id === key.id && update.status >= WAMessageStatus.DELIVERY_ACK) {
+                    cleanup();
+                    resolve(true);
+                    return;
+                }
+            }
+        };
+        const timer = setTimeout(() => {
+            cleanup();
+            resolve(false);
+        }, timeoutMs);
+        socket.ev.on('messages.update', onUpdate);
+    });
+}
+
+export async function sendPayload(socket: any, whatsappId: string, payload: any, options: SendChecksOptions = {}) {
+    if (options.liveCheck) {
+        const exists = await checkNumberExistsOnWhatsApp(socket, whatsappId);
+        if (!exists) {
+            signale.error(`Recipient does not exist on WhatsApp: ${whatsappId}`);
+            socket.end(undefined);
+            process.exit(1);
+        }
+    }
+    if (options.typing) {
+        await simulateTyping(socket, whatsappId, options.typing);
+    }
+    const result = await socket.sendMessage(whatsappId, payload);
     signale.success('Done');
+    if (options.waitAck) {
+        const delivered = await waitForDeliveryAck(socket, result.key, options.waitAck);
+        if (delivered) {
+            signale.success('Delivered');
+        } else {
+            signale.error(`No delivery acknowledgement within ${options.waitAck}ms`);
+        }
+    }
     await terminate(socket, 3);
 }
 
+export async function sendImageHelper(socket: any, whatsappId: string, filePath: string, options: {
+    caption: string | undefined
+} & SendChecksOptions) {
+    const payload = {image: fs.readFileSync(filePath), caption: handleNewlines(options.caption)}
+    await sendPayload(socket, whatsappId, payload, options);
+}
+
 export async function sendFileHelper(socket: any, whatsappId: string, filePath: string,
-                                     options: { caption: string | undefined, type: 'audio' | 'video' | 'document' }) {
+                                     options: { caption: string | undefined, type: 'audio' | 'video' | 'document' } & SendChecksOptions) {
     const payload: any = {
         mimetype: mime.getType(filePath),
         caption: handleNewlines(options.caption)
@@ -236,9 +299,7 @@ export async function sendFileHelper(socket: any, whatsappId: string, filePath: 
             payload['document'] = fs.readFileSync(filePath);
             payload['fileName'] = path.basename(filePath)
     }
-    await socket.sendMessage(whatsappId, payload);
-    signale.success('Done');
-    await terminate(socket, 3);
+    await sendPayload(socket, whatsappId, payload, options);
 }
 
 export function handleNewlines(s?: string): string | undefined {
