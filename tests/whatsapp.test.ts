@@ -1,5 +1,5 @@
 import {expect, test} from 'vitest';
-import {getWhatsAppId, handleNewlines, parseGeoLocation} from "../src/whatsapp";
+import {getWhatsAppId, handleNewlines, isLoggedOutDisconnect, parseGeoLocation} from "../src/whatsapp";
 
 test('get whatsapp id', async () => {
     expect(await getWhatsAppId({}, '3161234567890')).toBe('3161234567890@s.whatsapp.net');
@@ -42,4 +42,9 @@ test('handle newlines', () => {
     expect(handleNewlines('hello\\nworld')).toBe('hello\nworld');
     expect(handleNewlines('hello\\nworld\\n')).toBe('hello\nworld\n');
     expect(handleNewlines()).toBeUndefined();
+})
+
+test('detect logged-out disconnect', () => {
+    expect(isLoggedOutDisconnect({error: {output: {statusCode: 401}}})).toBe(true);
+    expect(isLoggedOutDisconnect({error: {output: {statusCode: 500}}})).toBe(false);
 })
