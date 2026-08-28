@@ -8,6 +8,7 @@ import * as os from "os";
 import mime from 'mime';
 import {readPhoneNumber} from "./utils";
 import * as QRCode from 'qrcode-terminal';
+import {GeneralSendOptions} from "./entities/GeneralSendOptions";
 
 export const globalOptions = {
     logLevel: 'silent'
@@ -210,12 +211,6 @@ export async function getWhatsAppId(socket: any, recipient: string) {
     return `${recipient}@s.whatsapp.net`;
 }
 
-export type SendChecksOptions = {
-    liveCheck?: boolean,
-    typing?: number,
-    waitAck?: number
-}
-
 export async function checkNumberExistsOnWhatsApp(socket: any, whatsappId: string): Promise<boolean> {
     const result = await socket.onWhatsApp(whatsappId);
     return !!result?.[0]?.exists;
@@ -250,7 +245,7 @@ export async function waitForDeliveryAck(socket: any, key: any, timeoutMs: numbe
     });
 }
 
-export async function sendPayload(socket: any, whatsappId: string, payload: any, options: SendChecksOptions = {}) {
+export async function sendSocketMessage(socket: any, whatsappId: string, payload: any, options: GeneralSendOptions = {}) {
     if (options.liveCheck) {
         const exists = await checkNumberExistsOnWhatsApp(socket, whatsappId);
         if (!exists) {
@@ -277,13 +272,13 @@ export async function sendPayload(socket: any, whatsappId: string, payload: any,
 
 export async function sendImageHelper(socket: any, whatsappId: string, filePath: string, options: {
     caption: string | undefined
-} & SendChecksOptions) {
+} & GeneralSendOptions) {
     const payload = {image: fs.readFileSync(filePath), caption: handleNewlines(options.caption)}
-    await sendPayload(socket, whatsappId, payload, options);
+    await sendSocketMessage(socket, whatsappId, payload, options);
 }
 
 export async function sendFileHelper(socket: any, whatsappId: string, filePath: string,
-                                     options: { caption: string | undefined, type: 'audio' | 'video' | 'document' } & SendChecksOptions) {
+                                     options: { caption: string | undefined, type: 'audio' | 'video' | 'document' } & GeneralSendOptions) {
     const payload: any = {
         mimetype: mime.getType(filePath),
         caption: handleNewlines(options.caption)
@@ -299,7 +294,7 @@ export async function sendFileHelper(socket: any, whatsappId: string, filePath: 
             payload['document'] = fs.readFileSync(filePath);
             payload['fileName'] = path.basename(filePath)
     }
-    await sendPayload(socket, whatsappId, payload, options);
+    await sendSocketMessage(socket, whatsappId, payload, options);
 }
 
 export function handleNewlines(s?: string): string | undefined {
