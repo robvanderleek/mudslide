@@ -91,6 +91,10 @@ export function checkValidFile(path: string) {
     }
 }
 
+export function isLoggedOutDisconnect(lastDisconnect: any): boolean {
+    return (lastDisconnect?.error as Boom)?.output?.statusCode === DisconnectReason.loggedOut;
+}
+
 export function parseGeoLocation(latitude: string, longitude: string): Array<number> {
     const latitudeFloat = parseFloat(latitude);
     const longitudeFloat = parseFloat(longitude);
