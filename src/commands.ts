@@ -6,6 +6,7 @@ import {
     getWhatsAppId,
     handleNewlines,
     initWASocket,
+    isLoggedOutDisconnect,
     parseGeoLocation,
     sendFileHelper,
     sendImageHelper,
@@ -135,11 +136,15 @@ export async function me() {
     signale.log(`Cache folder: ${getAuthStateCacheFolderLocation()}`);
     const socket = await initWASocket();
     socket.ev.on('connection.update', async (update) => {
-        const {connection} = update
+        const {connection, lastDisconnect} = update
         if (connection === 'open') {
             const user = await socket.user
             signale.log(`Current user: ${user?.id}`);
             await terminate(socket);
+        } else if (connection === 'close') {
+            signale.error(isLoggedOutDisconnect(lastDisconnect) ? 'Device unlinked from WhatsApp' : 'Connection closed unexpectedly');
+            socket.end(undefined);
+            process.exit(1);
         }
     });
 }
