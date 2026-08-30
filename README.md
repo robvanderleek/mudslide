@@ -396,7 +396,7 @@ In case Mudslide does not give any output or does not behave as expected, try
 removing the local cache folder (see below), then disconnect the client using
 your mobile WhatsApp app, and login again.
 
-## Removing local cache foler
+## Removing local cache folder
 
 By default WhatsApp credentials are cached in a folder located in the user's
 home directory. This folder is `~/.local/share/mudslider` on Linux & macOS and
