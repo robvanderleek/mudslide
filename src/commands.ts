@@ -135,9 +135,10 @@ export async function me() {
     checkLoggedIn();
     signale.log(`Cache folder: ${getAuthStateCacheFolderLocation()}`);
     const socket = await initWASocket();
-    socket.ev.on('connection.update', async (update) => {
+    const onConnectionUpdate = async (update: any) => {
         const {connection, lastDisconnect} = update
         if (connection === 'open') {
+            socket.ev.off('connection.update', onConnectionUpdate);
             const user = await socket.user
             signale.log(`Current user: ${user?.id}`);
             await terminate(socket);
@@ -146,7 +147,8 @@ export async function me() {
             socket.end(undefined);
             process.exit(1);
         }
-    });
+    };
+    socket.ev.on('connection.update', onConnectionUpdate);
 }
 
 export async function listGroups() {
