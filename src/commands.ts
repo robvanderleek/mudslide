@@ -6,7 +6,7 @@ import {
     getWhatsAppId,
     handleNewlines,
     initWASocket,
-    isLoggedOutDisconnect,
+    onConnectionOpen,
     parseGeoLocation,
     sendFileHelper,
     sendImageHelper,
@@ -21,27 +21,24 @@ export async function sendMessage(recipient: string, message: string, options: {
 } & GeneralSendOptions) {
     checkLoggedIn();
     const socket = await initWASocket();
-    socket.ev.on('connection.update', async (update) => {
-        const {connection} = update
-        if (connection === 'open') {
-            const whatsappId = await getWhatsAppId(socket, recipient);
-            signale.await(`Sending message: "${message}" to: ${whatsappId}`);
-            const buttons = options.button ? options.button.map((b, idx) => ({
-                buttonId: `id${idx}`,
-                buttonText: {displayText: b},
-                type: 1
-            })) : [];
-            const whatsappMessage: any = {};
-            whatsappMessage['text'] = handleNewlines(message);
-            if (options.footer) {
-                whatsappMessage['footer'] = options.footer;
-            }
-            if (buttons.length > 0) {
-                whatsappMessage['buttons'] = buttons;
-                whatsappMessage['headerType'] = 1;
-            }
-            await sendSocketMessage(socket, whatsappId, whatsappMessage, options);
+    onConnectionOpen(socket, async () => {
+        const whatsappId = await getWhatsAppId(socket, recipient);
+        signale.await(`Sending message: "${message}" to: ${whatsappId}`);
+        const buttons = options.button ? options.button.map((b, idx) => ({
+            buttonId: `id${idx}`,
+            buttonText: {displayText: b},
+            type: 1
+        })) : [];
+        const whatsappMessage: any = {};
+        whatsappMessage['text'] = handleNewlines(message);
+        if (options.footer) {
+            whatsappMessage['footer'] = options.footer;
         }
+        if (buttons.length > 0) {
+            whatsappMessage['buttons'] = buttons;
+            whatsappMessage['headerType'] = 1;
+        }
+        await sendSocketMessage(socket, whatsappId, whatsappMessage, options);
     });
 }
 
@@ -49,13 +46,10 @@ export async function sendImage(recipient: string, path: string, options: { capt
     checkValidFile(path);
     checkLoggedIn();
     const socket = await initWASocket();
-    socket.ev.on('connection.update', async (update) => {
-        const {connection} = update
-        if (connection === 'open') {
-            const whatsappId = await getWhatsAppId(socket, recipient);
-            signale.await(`Sending image file: "${path}" to: ${whatsappId}`);
-            await sendImageHelper(socket, whatsappId, path, options);
-        }
+    onConnectionOpen(socket, async () => {
+        const whatsappId = await getWhatsAppId(socket, recipient);
+        signale.await(`Sending image file: "${path}" to: ${whatsappId}`);
+        await sendImageHelper(socket, whatsappId, path, options);
     });
 }
 
@@ -66,13 +60,10 @@ export async function sendFile(recipient: string, path: string, options: {
     checkValidFile(path);
     checkLoggedIn();
     const socket = await initWASocket();
-    socket.ev.on('connection.update', async (update) => {
-        const {connection} = update
-        if (connection === 'open') {
-            const whatsappId = await getWhatsAppId(socket, recipient);
-            signale.await(`Sending file: "${path}" to: ${whatsappId}`);
-            await sendFileHelper(socket, whatsappId, path, options);
-        }
+    onConnectionOpen(socket, async () => {
+        const whatsappId = await getWhatsAppId(socket, recipient);
+        signale.await(`Sending file: "${path}" to: ${whatsappId}`);
+        await sendFileHelper(socket, whatsappId, path, options);
     });
 }
 
@@ -80,22 +71,18 @@ export async function sendLocation(recipient: string, latitude: string, longitud
     checkLoggedIn();
     const geolocation = parseGeoLocation(latitude, longitude);
     const socket = await initWASocket();
-    socket.ev.on('connection.update', async (update) => {
-            const {connection} = update
-            if (connection === 'open') {
-                const whatsappId = await getWhatsAppId(socket, recipient);
-                signale.await(`Sending location: ${geolocation[0]}, ${geolocation[1]} to: ${whatsappId}`);
-                await socket.sendMessage(whatsappId, {
-                    location: {
-                        degreesLatitude: geolocation[0],
-                        degreesLongitude: geolocation[1]
-                    }
-                });
-                signale.success('Done');
-                await terminate(socket, 3);
+    onConnectionOpen(socket, async () => {
+        const whatsappId = await getWhatsAppId(socket, recipient);
+        signale.await(`Sending location: ${geolocation[0]}, ${geolocation[1]} to: ${whatsappId}`);
+        await socket.sendMessage(whatsappId, {
+            location: {
+                degreesLatitude: geolocation[0],
+                degreesLongitude: geolocation[1]
             }
-        }
-    );
+        });
+        signale.success('Done');
+        await terminate(socket, 3);
+    });
 }
 
 export async function sendPoll(recipient: string, name: string, options: {
@@ -112,90 +99,70 @@ export async function sendPoll(recipient: string, name: string, options: {
     }
     checkLoggedIn();
     const socket = await initWASocket();
-    socket.ev.on('connection.update', async (update) => {
-            const {connection} = update
-            if (connection === 'open') {
-                const whatsappId = await getWhatsAppId(socket, recipient);
-                signale.await(`Sending poll: "${name}" to: ${whatsappId}`);
-                await socket.sendMessage(whatsappId, {
-                    poll: {
-                        name: name,
-                        selectableCount: options.selectable,
-                        values: options.item,
-                    }
-                });
-                signale.success('Done');
-                await terminate(socket, 3);
+    onConnectionOpen(socket, async () => {
+        const whatsappId = await getWhatsAppId(socket, recipient);
+        signale.await(`Sending poll: "${name}" to: ${whatsappId}`);
+        await socket.sendMessage(whatsappId, {
+            poll: {
+                name: name,
+                selectableCount: options.selectable,
+                values: options.item,
             }
-        }
-    );
+        });
+        signale.success('Done');
+        await terminate(socket, 3);
+    });
 }
 
 export async function me() {
     checkLoggedIn();
     signale.log(`Cache folder: ${getAuthStateCacheFolderLocation()}`);
     const socket = await initWASocket();
-    socket.ev.on('connection.update', async (update) => {
-        const {connection, lastDisconnect} = update
-        if (connection === 'open') {
-            const user = await socket.user
-            signale.log(`Current user: ${user?.id}`);
-            await terminate(socket);
-        } else if (connection === 'close') {
-            signale.error(isLoggedOutDisconnect(lastDisconnect) ? 'Device unlinked from WhatsApp' : 'Connection closed unexpectedly');
-            socket.end(undefined);
-            process.exit(1);
-        }
+    onConnectionOpen(socket, async () => {
+        const user = await socket.user;
+        signale.log(`Current user: ${user?.id}`);
+        await terminate(socket);
     });
 }
 
 export async function listGroups() {
     checkLoggedIn();
     const socket = await initWASocket();
-    socket.ev.on('connection.update', async (update) => {
-        const {connection} = update
-        if (connection === 'open') {
-            const groupData = await socket.groupFetchAllParticipating()
-            for (const group in groupData) {
-                signale.log(`{"id": "${groupData[group].id}", "subject": "${groupData[group].subject}"}`);
-            }
-            await terminate(socket);
+    onConnectionOpen(socket, async () => {
+        const groupData = await socket.groupFetchAllParticipating();
+        for (const group in groupData) {
+            signale.log(`{"id": "${groupData[group].id}", "subject": "${groupData[group].subject}"}`);
         }
+        await terminate(socket);
     });
 }
 
 export async function mutateGroup(groupId: string, phoneNumber: string, operation: "add" | "remove") {
     checkLoggedIn();
     const socket = await initWASocket();
-    socket.ev.on('connection.update', async (update) => {
-        const {connection} = update
-        if (connection === 'open') {
-            const whatsAppId = await getWhatsAppId(socket, phoneNumber);
-            if (operation === 'add') {
-                signale.log(`Adding ${whatsAppId} to group ${groupId}`);
-            } else {
-                signale.log(`Removing ${whatsAppId} from group ${groupId}`);
-            }
-            const updateResult = await socket.groupParticipantsUpdate(groupId, [whatsAppId], operation);
-            updateResult.forEach((entry) => {
-                signale.log(`{"id": "${entry.jid}", "status": "${entry.status}"}`);
-            });
-            await terminate(socket);
+    onConnectionOpen(socket, async () => {
+        const whatsAppId = await getWhatsAppId(socket, phoneNumber);
+        if (operation === 'add') {
+            signale.log(`Adding ${whatsAppId} to group ${groupId}`);
+        } else {
+            signale.log(`Removing ${whatsAppId} from group ${groupId}`);
         }
+        const updateResult = await socket.groupParticipantsUpdate(groupId, [whatsAppId], operation);
+        updateResult.forEach((entry: any) => {
+            signale.log(`{"id": "${entry.jid}", "status": "${entry.status}"}`);
+        });
+        await terminate(socket);
     });
 }
 
 export async function listGroupParticipants(groupId: string) {
     checkLoggedIn();
     const socket = await initWASocket();
-    socket.ev.on('connection.update', async (update) => {
-        const {connection} = update
-        if (connection === 'open') {
-            const groupMetadata = await socket.groupMetadata(groupId);
-            groupMetadata.participants.forEach((participant) => {
-                signale.log(`{"id": "${participant.id}"}`);
-            });
-            await terminate(socket);
-        }
+    onConnectionOpen(socket, async () => {
+        const groupMetadata = await socket.groupMetadata(groupId);
+        groupMetadata.participants.forEach((participant: any) => {
+            signale.log(`{"id": "${participant.id}"}`);
+        });
+        await terminate(socket);
     });
 }
