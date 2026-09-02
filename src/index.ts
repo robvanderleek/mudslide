@@ -43,6 +43,11 @@ program.on('option:proxy', () => {
     // @ts-ignore
     global.GLOBAL_AGENT.HTTPS_PROXY = process.env.HTTPS_PROXY;
 });
+program.addOption(
+    new Option('--connect-timeout <ms>', 'Connection timeout').default(3_000).argParser(v => parseInt(v, 10)));
+program.on('option:connect-timeout', (ms) => globalOptions.connectTimeoutMs = parseInt(ms, 10));
+program.addOption(new Option('--query-timeout <ms>', 'Query timeout').default(6_000).argParser(v => parseInt(v, 10)));
+program.on('option:query-timeout', (ms) => globalOptions.defaultQueryTimeoutMs = parseInt(ms, 10));
 program.addOption(new Option('--timeout <sec>', 'Command timeout').default(60).argParser(parseInt));
 
 program.hook('preAction', (command: Command) => {

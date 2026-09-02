@@ -10,7 +10,9 @@ import {readPhoneNumber} from "./utils";
 import * as QRCode from 'qrcode-terminal';
 
 export const globalOptions = {
-    logLevel: 'silent'
+    logLevel: 'silent',
+    connectTimeoutMs: 3_000,
+    defaultQueryTimeoutMs: 6_000
 }
 
 export const mudslideFooter = '\u2B50 Please star Mudslide on GitHub! https://github.com/robvanderleek/mudslide';
@@ -47,8 +49,8 @@ export async function initWASocket(message?: string): Promise<WASocket> {
     const os = process.platform === 'darwin' ? 'macOS' : process.platform === 'win32' ? 'Windows' : 'Linux';
     const {version} = await fetchLatestWaWebVersion({});
     const socket = makeWASocket({
-        connectTimeoutMs: 3_000,
-        defaultQueryTimeoutMs: 6_000,
+        connectTimeoutMs: globalOptions.connectTimeoutMs,
+        defaultQueryTimeoutMs: globalOptions.defaultQueryTimeoutMs,
         logger: pino({level: globalOptions.logLevel}),
         auth: state,
         browser: [os, 'Chrome', '10.15.0'],
