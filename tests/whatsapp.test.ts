@@ -1,5 +1,11 @@
 import {expect, test} from 'vitest';
-import {getWhatsAppId, handleNewlines, isLoggedOutDisconnect, parseGeoLocation} from "../src/whatsapp";
+import {
+    checkNumberExistsOnWhatsApp,
+    getWhatsAppId,
+    handleNewlines,
+    isLoggedOutDisconnect,
+    parseGeoLocation
+} from "../src/whatsapp";
 
 test('get whatsapp id', async () => {
     expect(await getWhatsAppId({}, '3161234567890')).toBe('3161234567890@s.whatsapp.net');
@@ -42,6 +48,12 @@ test('handle newlines', () => {
     expect(handleNewlines('hello\\nworld')).toBe('hello\nworld');
     expect(handleNewlines('hello\\nworld\\n')).toBe('hello\nworld\n');
     expect(handleNewlines()).toBeUndefined();
+})
+
+test('check number exists on whatsapp', async () => {
+    const socket = {onWhatsApp: async () => [{jid: '3161234567890@s.whatsapp.net', exists: true}]};
+
+    expect(await checkNumberExistsOnWhatsApp(socket, '3161234567890@s.whatsapp.net')).toBe(true);
 })
 
 test('detect logged-out disconnect', () => {

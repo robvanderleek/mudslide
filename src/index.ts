@@ -76,23 +76,29 @@ function configureBasicCommands() {
         .action(() => me());
 }
 
+function addGeneralSendOptions(command: Command) {
+    return command
+        .option('--live-check', 'Verify the recipient exists on WhatsApp before sending')
+        .option('--typing <ms>', 'Simulate typing indicator for the given duration (ms) before sending', parseInt);
+}
+
 function configureSendCommands() {
-    program
+    addGeneralSendOptions(program
         .command('send <recipient> <message>')
-        .description('Send message')
+        .description('Send message'))
         .action((recipient, message, options) => sendMessage(recipient, message, options));
 
-    program
+    addGeneralSendOptions(program
         .command('send-image <recipient> <file>')
         .option('--caption <text>', 'Caption text')
-        .description('Send image file')
+        .description('Send image file'))
         .action((recipient, file, options) => sendImage(recipient, file, options));
 
-    program
+    addGeneralSendOptions(program
         .command('send-file <recipient> <file>')
         .option('--caption <text>', 'Caption text')
         .option('--type <document|audio|video>', 'File type', 'document')
-        .description('Send file')
+        .description('Send file'))
         .action((recipient, file, options) => sendFile(recipient, file, options));
 
     program

@@ -279,6 +279,14 @@ as a playable message in the chat:
 npx mudslide@latest send-file --type audio 123456789-987654321@g.us music.mp3
 ```
 
+## General send options
+
+For message and file sending commands the following options are available:
+
+- **--live-check**: Verify the recipient exists on WhatsApp before sending
+- **--typing <ms>**: Simulate typing indicator for the given duration (ms) before sending
+- **-wait-ack <ms>**: Wait for delivery acknowledgement after sending, up to the given timeout (ms)
+
 ## Sending a location
 
 Geographic locations can be sent to individuals or groups using latitude and

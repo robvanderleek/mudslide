@@ -10,13 +10,15 @@ import {
     parseGeoLocation,
     sendFileHelper,
     sendImageHelper,
+    sendSocketMessage,
     terminate
 } from "./whatsapp";
+import {GeneralSendOptions} from "./entities/GeneralSendOptions";
 
 export async function sendMessage(recipient: string, message: string, options: {
     footer: string | undefined,
     button: Array<string>
-}) {
+} & GeneralSendOptions) {
     checkLoggedIn();
     const socket = await initWASocket();
     socket.ev.on('connection.update', async (update) => {
@@ -38,14 +40,12 @@ export async function sendMessage(recipient: string, message: string, options: {
                 whatsappMessage['buttons'] = buttons;
                 whatsappMessage['headerType'] = 1;
             }
-            await socket.sendMessage(whatsappId, whatsappMessage);
-            signale.success('Done');
-            await terminate(socket, 3);
+            await sendSocketMessage(socket, whatsappId, whatsappMessage, options);
         }
     });
 }
 
-export async function sendImage(recipient: string, path: string, options: { caption: string | undefined }) {
+export async function sendImage(recipient: string, path: string, options: { caption: string | undefined } & GeneralSendOptions) {
     checkValidFile(path);
     checkLoggedIn();
     const socket = await initWASocket();
@@ -62,7 +62,7 @@ export async function sendImage(recipient: string, path: string, options: { capt
 export async function sendFile(recipient: string, path: string, options: {
     caption: string | undefined,
     type: 'audio' | 'video' | 'document'
-}) {
+} & GeneralSendOptions) {
     checkValidFile(path);
     checkLoggedIn();
     const socket = await initWASocket();
