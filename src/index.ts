@@ -79,8 +79,7 @@ function configureBasicCommands() {
 function addGeneralSendOptions(command: Command) {
     return command
         .option('--live-check', 'Verify the recipient exists on WhatsApp before sending')
-        .option('--typing <ms>', 'Simulate typing indicator for the given duration (ms) before sending', parseInt)
-        .option('--wait-ack <ms>', 'Wait for delivery acknowledgement after sending, up to the given timeout (ms)', parseInt);
+        .option('--typing <ms>', 'Simulate typing indicator for the given duration (ms) before sending', parseInt);
 }
 
 function configureSendCommands() {

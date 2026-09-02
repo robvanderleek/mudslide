@@ -1,6 +1,11 @@
 import {expect, test} from 'vitest';
-import {WAMessageStatus} from "baileys";
-import {checkNumberExistsOnWhatsApp, getWhatsAppId, handleNewlines, isLoggedOutDisconnect, parseGeoLocation, waitForDeliveryAck} from "../src/whatsapp";
+import {
+    checkNumberExistsOnWhatsApp,
+    getWhatsAppId,
+    handleNewlines,
+    isLoggedOutDisconnect,
+    parseGeoLocation
+} from "../src/whatsapp";
 
 test('get whatsapp id', async () => {
     expect(await getWhatsAppId({}, '3161234567890')).toBe('3161234567890@s.whatsapp.net');
@@ -49,16 +54,6 @@ test('check number exists on whatsapp', async () => {
     const socket = {onWhatsApp: async () => [{jid: '3161234567890@s.whatsapp.net', exists: true}]};
 
     expect(await checkNumberExistsOnWhatsApp(socket, '3161234567890@s.whatsapp.net')).toBe(true);
-})
-
-test('wait for delivery ack, resolves once the status update arrives', async () => {
-    let onUpdate: (updates: any[]) => void;
-    const socket = {ev: {on: (_: string, cb: any) => onUpdate = cb, off: () => {}}};
-
-    const result = waitForDeliveryAck(socket, {id: 'abc'}, 1000);
-    onUpdate!([{key: {id: 'abc'}, update: {status: WAMessageStatus.DELIVERY_ACK}}]);
-
-    expect(await result).toBe(true);
 })
 
 test('detect logged-out disconnect', () => {

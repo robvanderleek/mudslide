@@ -1,4 +1,4 @@
-import makeWASocket, {delay, DisconnectReason, fetchLatestWaWebVersion, useMultiFileAuthState, WAMessageStatus, WASocket} from "baileys";
+import makeWASocket, {delay, DisconnectReason, fetchLatestWaWebVersion, useMultiFileAuthState, WASocket} from "baileys";
 import pino from "pino";
 import path from "path";
 import * as fs from "fs";
@@ -228,30 +228,8 @@ export async function simulateTyping(socket: any, whatsappId: string, ms: number
     await socket.sendPresenceUpdate('paused', whatsappId);
 }
 
-export async function waitForDeliveryAck(socket: any, key: any, timeoutMs: number): Promise<boolean> {
-    return new Promise(resolve => {
-        const cleanup = () => {
-            clearTimeout(timer);
-            socket.ev.off('messages.update', onUpdate);
-        };
-        const onUpdate = (updates: any[]) => {
-            for (const {key: updateKey, update} of updates) {
-                if (updateKey.id === key.id && update.status >= WAMessageStatus.DELIVERY_ACK) {
-                    cleanup();
-                    resolve(true);
-                    return;
-                }
-            }
-        };
-        const timer = setTimeout(() => {
-            cleanup();
-            resolve(false);
-        }, timeoutMs);
-        socket.ev.on('messages.update', onUpdate);
-    });
-}
-
-export async function sendSocketMessage(socket: any, whatsappId: string, payload: any, options: GeneralSendOptions = {}) {
+export async function sendSocketMessage(socket: any, whatsappId: string, payload: any,
+                                        options: GeneralSendOptions = {}) {
     if (options.liveCheck) {
         const exists = await checkNumberExistsOnWhatsApp(socket, whatsappId);
         if (!exists) {
@@ -263,16 +241,8 @@ export async function sendSocketMessage(socket: any, whatsappId: string, payload
     if (options.typing) {
         await simulateTyping(socket, whatsappId, options.typing);
     }
-    const result = await socket.sendMessage(whatsappId, payload);
+    await socket.sendMessage(whatsappId, payload);
     signale.success('Done');
-    if (options.waitAck) {
-        const delivered = await waitForDeliveryAck(socket, result.key, options.waitAck);
-        if (delivered) {
-            signale.success('Delivered');
-        } else {
-            signale.error(`No delivery acknowledgement within ${options.waitAck}ms`);
-        }
-    }
     await terminate(socket, 3);
 }
 
@@ -284,7 +254,10 @@ export async function sendImageHelper(socket: any, whatsappId: string, filePath:
 }
 
 export async function sendFileHelper(socket: any, whatsappId: string, filePath: string,
-                                     options: { caption: string | undefined, type: 'audio' | 'video' | 'document' } & GeneralSendOptions) {
+                                     options: {
+                                         caption: string | undefined,
+                                         type: 'audio' | 'video' | 'document'
+                                     } & GeneralSendOptions) {
     const payload: any = {
         mimetype: mime.getType(filePath),
         caption: handleNewlines(options.caption)
