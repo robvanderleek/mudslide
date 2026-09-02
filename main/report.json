@@ -1,7 +1,7 @@
 {
   "version": "0.21.0",
-  "uuid": "3c2d984d-7e6f-46c7-a742-e3379977a9a5",
-  "timestamp": "2026-09-02T08:55:39+00:00",
+  "uuid": "23fdf2fe-96cc-4e3a-8594-dc05eb352732",
+  "timestamp": "2026-09-02T14:19:31+00:00",
   "root": "/github/workspace",
   "repository": {
     "owner": "robvanderleek",
@@ -12,8 +12,8 @@
     "totals": {
       "TypeScript": {
         "files": 5,
-        "lines_of_code": 404,
-        "functions": 38,
+        "lines_of_code": 406,
+        "functions": 39,
         "hard_to_maintain": 0,
         "unmaintainable": 0
       }
@@ -23,7 +23,7 @@
         "entries": [
           "src/"
         ],
-        "profile": [211, 193, 0, 0]
+        "profile": [230, 176, 0, 0]
       },
       "src/": {
         "entries": [
@@ -33,7 +33,7 @@
           "utils.ts",
           "entities/"
         ],
-        "profile": [211, 193, 0, 0]
+        "profile": [230, 176, 0, 0]
       },
       "src/entities/": {
         "entries": [
@@ -44,16 +44,16 @@
     },
     "files": {
       "src/index.ts": {
-        "checksum": "aa4904ca9b9ba6db917fa22e35f47c3d",
+        "checksum": "aa94a8b33c54956fe8cd504075858e7d",
         "language": "TypeScript",
         "loc": 80,
         "profile": [32, 48, 0, 0],
         "measurements": [
-          {"unit_name": "increaseVerbosity", "start": {"line": 23, "column": 10}, "end": {"line": 34, "column": 2}, "value": 12},
-          {"unit_name": "configureBasicCommands", "start": {"line": 61, "column": 10}, "end": {"line": 77, "column": 2}, "value": 15},
-          {"unit_name": "addGeneralSendOptions", "start": {"line": 79, "column": 10}, "end": {"line": 83, "column": 2}, "value": 5},
-          {"unit_name": "configureSendCommands", "start": {"line": 85, "column": 10}, "end": {"line": 116, "column": 2}, "value": 28},
-          {"unit_name": "configureGroupCommands", "start": {"line": 118, "column": 10}, "end": {"line": 140, "column": 2}, "value": 20}
+          {"unit_name": "increaseVerbosity", "start": {"line": 28, "column": 10}, "end": {"line": 39, "column": 2}, "value": 12},
+          {"unit_name": "configureBasicCommands", "start": {"line": 66, "column": 10}, "end": {"line": 82, "column": 2}, "value": 15},
+          {"unit_name": "addGeneralSendOptions", "start": {"line": 84, "column": 10}, "end": {"line": 88, "column": 2}, "value": 5},
+          {"unit_name": "configureSendCommands", "start": {"line": 90, "column": 10}, "end": {"line": 121, "column": 2}, "value": 28},
+          {"unit_name": "configureGroupCommands", "start": {"line": 123, "column": 10}, "end": {"line": 145, "column": 2}, "value": 20}
         ]
       },
       "src/whatsapp.ts": {
@@ -86,20 +86,21 @@
         ]
       },
       "src/commands.ts": {
-        "checksum": "6b9b8b15aae6953aa864c9de284155b5",
+        "checksum": "f28819864d57b6990dc40b442698815c",
         "language": "TypeScript",
-        "loc": 99,
-        "profile": [41, 58, 0, 0],
+        "loc": 101,
+        "profile": [60, 41, 0, 0],
         "measurements": [
           {"unit_name": "sendMessage", "start": {"line": 18, "column": 23}, "end": {"line": 21, "column": 2}, "value": 4},
           {"unit_name": "sendImage", "start": {"line": 48, "column": 23}, "end": {"line": 48, "column": 106}, "value": 1},
           {"unit_name": "sendFile", "start": {"line": 62, "column": 23}, "end": {"line": 65, "column": 2}, "value": 4},
           {"unit_name": "sendLocation", "start": {"line": 79, "column": 23}, "end": {"line": 99, "column": 2}, "value": 21},
           {"unit_name": "sendPoll", "start": {"line": 101, "column": 23}, "end": {"line": 104, "column": 2}, "value": 4},
-          {"unit_name": "me", "start": {"line": 134, "column": 23}, "end": {"line": 150, "column": 2}, "value": 17},
-          {"unit_name": "listGroups", "start": {"line": 152, "column": 23}, "end": {"line": 165, "column": 2}, "value": 14},
-          {"unit_name": "mutateGroup", "start": {"line": 167, "column": 23}, "end": {"line": 186, "column": 2}, "value": 20},
-          {"unit_name": "listGroupParticipants", "start": {"line": 188, "column": 23}, "end": {"line": 201, "column": 2}, "value": 14}
+          {"unit_name": "me", "start": {"line": 134, "column": 23}, "end": {"line": 152, "column": 2}, "value": 6},
+          {"unit_name": "onConnectionUpdate", "start": {"line": 138, "column": 5}, "end": {"line": 150, "column": 6}, "value": 13},
+          {"unit_name": "listGroups", "start": {"line": 154, "column": 23}, "end": {"line": 167, "column": 2}, "value": 14},
+          {"unit_name": "mutateGroup", "start": {"line": 169, "column": 23}, "end": {"line": 188, "column": 2}, "value": 20},
+          {"unit_name": "listGroupParticipants", "start": {"line": 190, "column": 23}, "end": {"line": 203, "column": 2}, "value": 14}
         ]
       },
       "src/utils.ts": {
