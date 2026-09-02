@@ -381,7 +381,27 @@ export HTTPS_PROXY=http://USER:PASS@proxy.server.com:80
 npx mudslide@latest --proxy login
 ```
 
-## Timeout
+## Timeouts
+
+### Connection timeout
+
+The default connection timeout is 3000 ms. This duration can be
+changed using the `--connection-timeout <ms>` flag:
+
+```shell
+npx mudslide@latest --connection-timeout 10000 send me 'hello world'
+```
+
+### Query timeout
+
+The default query timeout is 6000 ms. This duration can be changed using the
+`--query-timeout <ms>` flag:
+
+```shell
+npx mudslide@latest --query-timeout 30000 send me 'hello world'
+```
+
+### Command timeout
 
 The default timeout for commands is 60 seconds. This duration can be changed
 using the `--timeout <seconds>` flag:
