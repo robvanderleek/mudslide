@@ -17,6 +17,11 @@ import signale from "signale";
 
 const packageJson = require('../package.json');
 
+process.on('unhandledRejection', (err: any) => {
+    signale.error(err?.message || err);
+    process.exit(1);
+});
+
 program.name('mudslide').version(packageJson.version);
 program.option('-c, --cache <folder>', 'Override cache folder');
 
