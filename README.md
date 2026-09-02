@@ -389,7 +389,27 @@ export HTTPS_PROXY=http://USER:PASS@proxy.server.com:80
 npx mudslide@latest --proxy login
 ```
 
-## Timeout
+## Timeouts
+
+### Connection timeout
+
+The default connection timeout is 3000 ms. This duration can be
+changed using the `--connection-timeout <ms>` flag:
+
+```shell
+npx mudslide@latest --connection-timeout 10000 send me 'hello world'
+```
+
+### Query timeout
+
+The default query timeout is 6000 ms. This duration can be changed using the
+`--query-timeout <ms>` flag:
+
+```shell
+npx mudslide@latest --query-timeout 30000 send me 'hello world'
+```
+
+### Command timeout
 
 The default timeout for commands is 60 seconds. This duration can be changed
 using the `--timeout <seconds>` flag:
@@ -404,7 +424,7 @@ In case Mudslide does not give any output or does not behave as expected, try
 removing the local cache folder (see below), then disconnect the client using
 your mobile WhatsApp app, and login again.
 
-## Removing local cache foler
+## Removing local cache folder
 
 By default WhatsApp credentials are cached in a folder located in the user's
 home directory. This folder is `~/.local/share/mudslider` on Linux & macOS and
