@@ -1,7 +1,7 @@
 {
   "version": "0.21.0",
-  "uuid": "5a30e121-be3c-4089-9ff4-7ef52a983835",
-  "timestamp": "2026-09-02T08:28:32+00:00",
+  "uuid": "3c2d984d-7e6f-46c7-a742-e3379977a9a5",
+  "timestamp": "2026-09-02T08:55:39+00:00",
   "root": "/github/workspace",
   "repository": {
     "owner": "robvanderleek",
@@ -11,9 +11,9 @@
   "codebase": {
     "totals": {
       "TypeScript": {
-        "files": 4,
-        "lines_of_code": 385,
-        "functions": 34,
+        "files": 5,
+        "lines_of_code": 404,
+        "functions": 38,
         "hard_to_maintain": 0,
         "unmaintainable": 0
       }
@@ -23,64 +23,75 @@
         "entries": [
           "src/"
         ],
-        "profile": [192, 193, 0, 0]
+        "profile": [211, 193, 0, 0]
       },
       "src/": {
         "entries": [
           "index.ts",
           "whatsapp.ts",
           "commands.ts",
-          "utils.ts"
+          "utils.ts",
+          "entities/"
         ],
-        "profile": [192, 193, 0, 0]
+        "profile": [211, 193, 0, 0]
+      },
+      "src/entities/": {
+        "entries": [
+          "GeneralSendOptions.ts"
+        ],
+        "profile": [0, 0, 0, 0]
       }
     },
     "files": {
       "src/index.ts": {
-        "checksum": "15073a6c9ff49174573900a2ababa09e",
+        "checksum": "aa4904ca9b9ba6db917fa22e35f47c3d",
         "language": "TypeScript",
-        "loc": 75,
-        "profile": [27, 48, 0, 0],
+        "loc": 80,
+        "profile": [32, 48, 0, 0],
         "measurements": [
           {"unit_name": "increaseVerbosity", "start": {"line": 23, "column": 10}, "end": {"line": 34, "column": 2}, "value": 12},
           {"unit_name": "configureBasicCommands", "start": {"line": 61, "column": 10}, "end": {"line": 77, "column": 2}, "value": 15},
-          {"unit_name": "configureSendCommands", "start": {"line": 79, "column": 10}, "end": {"line": 110, "column": 2}, "value": 28},
-          {"unit_name": "configureGroupCommands", "start": {"line": 112, "column": 10}, "end": {"line": 134, "column": 2}, "value": 20}
+          {"unit_name": "addGeneralSendOptions", "start": {"line": 79, "column": 10}, "end": {"line": 83, "column": 2}, "value": 5},
+          {"unit_name": "configureSendCommands", "start": {"line": 85, "column": 10}, "end": {"line": 116, "column": 2}, "value": 28},
+          {"unit_name": "configureGroupCommands", "start": {"line": 118, "column": 10}, "end": {"line": 140, "column": 2}, "value": 20}
         ]
       },
       "src/whatsapp.ts": {
-        "checksum": "d959c6be61dfa6b0f5e3fcf1bcb2e557",
+        "checksum": "6bff337bef600620f7b10d2b7d7ef593",
         "language": "TypeScript",
-        "loc": 194,
-        "profile": [107, 87, 0, 0],
+        "loc": 208,
+        "profile": [121, 87, 0, 0],
         "measurements": [
-          {"unit_name": "getAuthStateCacheFolderLocation", "start": {"line": 20, "column": 17}, "end": {"line": 31, "column": 2}, "value": 12},
-          {"unit_name": "clearCacheFolder", "start": {"line": 33, "column": 10}, "end": {"line": 36, "column": 2}, "value": 4},
-          {"unit_name": "initAuthStateCacheFolder", "start": {"line": 38, "column": 10}, "end": {"line": 45, "column": 2}, "value": 8},
-          {"unit_name": "initWASocket", "start": {"line": 47, "column": 23}, "end": {"line": 67, "column": 2}, "value": 21},
-          {"unit_name": "terminate", "start": {"line": 69, "column": 23}, "end": {"line": 80, "column": 2}, "value": 12},
-          {"unit_name": "checkLoggedIn", "start": {"line": 82, "column": 17}, "end": {"line": 87, "column": 2}, "value": 6},
-          {"unit_name": "checkValidFile", "start": {"line": 89, "column": 17}, "end": {"line": 94, "column": 2}, "value": 6},
-          {"unit_name": "isLoggedOutDisconnect", "start": {"line": 96, "column": 17}, "end": {"line": 98, "column": 2}, "value": 3},
-          {"unit_name": "parseGeoLocation", "start": {"line": 100, "column": 17}, "end": {"line": 108, "column": 2}, "value": 9},
-          {"unit_name": "waitForKey", "start": {"line": 110, "column": 23}, "end": {"line": 119, "column": 2}, "value": 10},
-          {"unit_name": "loginSecondPass", "start": {"line": 121, "column": 16}, "end": {"line": 132, "column": 2}, "value": 12},
-          {"unit_name": "loginWithPairingCode", "start": {"line": 134, "column": 23}, "end": {"line": 157, "column": 2}, "value": 24},
-          {"unit_name": "loginWithQrCode", "start": {"line": 159, "column": 23}, "end": {"line": 177, "column": 2}, "value": 19},
-          {"unit_name": "logout", "start": {"line": 179, "column": 23}, "end": {"line": 201, "column": 2}, "value": 23},
-          {"unit_name": "getWhatsAppId", "start": {"line": 203, "column": 23}, "end": {"line": 217, "column": 2}, "value": 15},
-          {"unit_name": "sendImageHelper", "start": {"line": 219, "column": 23}, "end": {"line": 221, "column": 2}, "value": 3},
-          {"unit_name": "sendFileHelper", "start": {"line": 228, "column": 23}, "end": {"line": 229, "column": 116}, "value": 2},
-          {"unit_name": "handleNewlines", "start": {"line": 250, "column": 17}, "end": {"line": 254, "column": 2}, "value": 5}
+          {"unit_name": "getAuthStateCacheFolderLocation", "start": {"line": 21, "column": 17}, "end": {"line": 32, "column": 2}, "value": 12},
+          {"unit_name": "clearCacheFolder", "start": {"line": 34, "column": 10}, "end": {"line": 37, "column": 2}, "value": 4},
+          {"unit_name": "initAuthStateCacheFolder", "start": {"line": 39, "column": 10}, "end": {"line": 46, "column": 2}, "value": 8},
+          {"unit_name": "initWASocket", "start": {"line": 48, "column": 23}, "end": {"line": 68, "column": 2}, "value": 21},
+          {"unit_name": "terminate", "start": {"line": 70, "column": 23}, "end": {"line": 81, "column": 2}, "value": 12},
+          {"unit_name": "checkLoggedIn", "start": {"line": 83, "column": 17}, "end": {"line": 88, "column": 2}, "value": 6},
+          {"unit_name": "checkValidFile", "start": {"line": 90, "column": 17}, "end": {"line": 95, "column": 2}, "value": 6},
+          {"unit_name": "isLoggedOutDisconnect", "start": {"line": 97, "column": 17}, "end": {"line": 99, "column": 2}, "value": 3},
+          {"unit_name": "parseGeoLocation", "start": {"line": 101, "column": 17}, "end": {"line": 109, "column": 2}, "value": 9},
+          {"unit_name": "waitForKey", "start": {"line": 111, "column": 23}, "end": {"line": 120, "column": 2}, "value": 10},
+          {"unit_name": "loginSecondPass", "start": {"line": 122, "column": 16}, "end": {"line": 133, "column": 2}, "value": 12},
+          {"unit_name": "loginWithPairingCode", "start": {"line": 135, "column": 23}, "end": {"line": 158, "column": 2}, "value": 24},
+          {"unit_name": "loginWithQrCode", "start": {"line": 160, "column": 23}, "end": {"line": 178, "column": 2}, "value": 19},
+          {"unit_name": "logout", "start": {"line": 180, "column": 23}, "end": {"line": 202, "column": 2}, "value": 23},
+          {"unit_name": "getWhatsAppId", "start": {"line": 204, "column": 23}, "end": {"line": 218, "column": 2}, "value": 15},
+          {"unit_name": "checkNumberExistsOnWhatsApp", "start": {"line": 220, "column": 23}, "end": {"line": 223, "column": 2}, "value": 4},
+          {"unit_name": "simulateTyping", "start": {"line": 225, "column": 23}, "end": {"line": 229, "column": 2}, "value": 5},
+          {"unit_name": "sendSocketMessage", "start": {"line": 231, "column": 23}, "end": {"line": 232, "column": 73}, "value": 2},
+          {"unit_name": "sendImageHelper", "start": {"line": 249, "column": 23}, "end": {"line": 251, "column": 2}, "value": 3},
+          {"unit_name": "sendFileHelper", "start": {"line": 256, "column": 23}, "end": {"line": 260, "column": 39}, "value": 5},
+          {"unit_name": "handleNewlines", "start": {"line": 279, "column": 17}, "end": {"line": 283, "column": 2}, "value": 5}
         ]
       },
       "src/commands.ts": {
-        "checksum": "348d2fe5ea9f2a96fe4e340395827818",
+        "checksum": "6b9b8b15aae6953aa864c9de284155b5",
         "language": "TypeScript",
         "loc": 99,
         "profile": [41, 58, 0, 0],
         "measurements": [
-          {"unit_name": "sendMessage", "start": {"line": 16, "column": 23}, "end": {"line": 19, "column": 2}, "value": 4},
+          {"unit_name": "sendMessage", "start": {"line": 18, "column": 23}, "end": {"line": 21, "column": 2}, "value": 4},
           {"unit_name": "sendImage", "start": {"line": 48, "column": 23}, "end": {"line": 48, "column": 106}, "value": 1},
           {"unit_name": "sendFile", "start": {"line": 62, "column": 23}, "end": {"line": 65, "column": 2}, "value": 4},
           {"unit_name": "sendLocation", "start": {"line": 79, "column": 23}, "end": {"line": 99, "column": 2}, "value": 21},
@@ -100,6 +111,14 @@
           {"unit_name": "question", "start": {"line": 9, "column": 16}, "end": {"line": 11, "column": 2}, "value": 3},
           {"unit_name": "isValidE164PhoneNumber", "start": {"line": 13, "column": 17}, "end": {"line": 15, "column": 2}, "value": 3},
           {"unit_name": "readPhoneNumber", "start": {"line": 17, "column": 23}, "end": {"line": 27, "column": 2}, "value": 11}
+        ]
+      },
+      "src/entities/GeneralSendOptions.ts": {
+        "checksum": "744f6f05f58a92f1361544ad786eae4d",
+        "language": "TypeScript",
+        "loc": 0,
+        "profile": [0, 0, 0, 0],
+        "measurements": [
         ]
       }
     }
