@@ -1,7 +1,7 @@
 {
   "version": "0.21.0",
-  "uuid": "23fdf2fe-96cc-4e3a-8594-dc05eb352732",
-  "timestamp": "2026-09-02T14:19:31+00:00",
+  "uuid": "df5de02f-6e99-4b35-ab6a-7267891f0e18",
+  "timestamp": "2026-09-03T11:58:17+00:00",
   "root": "/github/workspace",
   "repository": {
     "owner": "robvanderleek",
@@ -12,8 +12,8 @@
     "totals": {
       "TypeScript": {
         "files": 5,
-        "lines_of_code": 406,
-        "functions": 39,
+        "lines_of_code": 398,
+        "functions": 40,
         "hard_to_maintain": 0,
         "unmaintainable": 0
       }
@@ -23,7 +23,7 @@
         "entries": [
           "src/"
         ],
-        "profile": [230, 176, 0, 0]
+        "profile": [229, 169, 0, 0]
       },
       "src/": {
         "entries": [
@@ -33,7 +33,7 @@
           "utils.ts",
           "entities/"
         ],
-        "profile": [230, 176, 0, 0]
+        "profile": [229, 169, 0, 0]
       },
       "src/entities/": {
         "entries": [
@@ -57,10 +57,10 @@
         ]
       },
       "src/whatsapp.ts": {
-        "checksum": "6bff337bef600620f7b10d2b7d7ef593",
+        "checksum": "3ab79bfc7bd5923e32634a1c058b7506",
         "language": "TypeScript",
-        "loc": 208,
-        "profile": [121, 87, 0, 0],
+        "loc": 222,
+        "profile": [135, 87, 0, 0],
         "measurements": [
           {"unit_name": "getAuthStateCacheFolderLocation", "start": {"line": 21, "column": 17}, "end": {"line": 32, "column": 2}, "value": 12},
           {"unit_name": "clearCacheFolder", "start": {"line": 34, "column": 10}, "end": {"line": 37, "column": 2}, "value": 4},
@@ -76,31 +76,32 @@
           {"unit_name": "loginWithPairingCode", "start": {"line": 135, "column": 23}, "end": {"line": 158, "column": 2}, "value": 24},
           {"unit_name": "loginWithQrCode", "start": {"line": 160, "column": 23}, "end": {"line": 178, "column": 2}, "value": 19},
           {"unit_name": "logout", "start": {"line": 180, "column": 23}, "end": {"line": 202, "column": 2}, "value": 23},
-          {"unit_name": "getWhatsAppId", "start": {"line": 204, "column": 23}, "end": {"line": 218, "column": 2}, "value": 15},
-          {"unit_name": "checkNumberExistsOnWhatsApp", "start": {"line": 220, "column": 23}, "end": {"line": 223, "column": 2}, "value": 4},
-          {"unit_name": "simulateTyping", "start": {"line": 225, "column": 23}, "end": {"line": 229, "column": 2}, "value": 5},
-          {"unit_name": "sendSocketMessage", "start": {"line": 231, "column": 23}, "end": {"line": 232, "column": 73}, "value": 2},
-          {"unit_name": "sendImageHelper", "start": {"line": 249, "column": 23}, "end": {"line": 251, "column": 2}, "value": 3},
-          {"unit_name": "sendFileHelper", "start": {"line": 256, "column": 23}, "end": {"line": 260, "column": 39}, "value": 5},
-          {"unit_name": "handleNewlines", "start": {"line": 279, "column": 17}, "end": {"line": 283, "column": 2}, "value": 5}
+          {"unit_name": "onConnectionOpen", "start": {"line": 204, "column": 17}, "end": {"line": 217, "column": 2}, "value": 3},
+          {"unit_name": "onConnectionUpdate", "start": {"line": 205, "column": 5}, "end": {"line": 215, "column": 6}, "value": 11},
+          {"unit_name": "getWhatsAppId", "start": {"line": 219, "column": 23}, "end": {"line": 233, "column": 2}, "value": 15},
+          {"unit_name": "checkNumberExistsOnWhatsApp", "start": {"line": 235, "column": 23}, "end": {"line": 238, "column": 2}, "value": 4},
+          {"unit_name": "simulateTyping", "start": {"line": 240, "column": 23}, "end": {"line": 244, "column": 2}, "value": 5},
+          {"unit_name": "sendSocketMessage", "start": {"line": 246, "column": 23}, "end": {"line": 247, "column": 73}, "value": 2},
+          {"unit_name": "sendImageHelper", "start": {"line": 264, "column": 23}, "end": {"line": 266, "column": 2}, "value": 3},
+          {"unit_name": "sendFileHelper", "start": {"line": 271, "column": 23}, "end": {"line": 275, "column": 39}, "value": 5},
+          {"unit_name": "handleNewlines", "start": {"line": 294, "column": 17}, "end": {"line": 298, "column": 2}, "value": 5}
         ]
       },
       "src/commands.ts": {
-        "checksum": "f28819864d57b6990dc40b442698815c",
+        "checksum": "36d9923af8f2aa542724de5dd9166f1f",
         "language": "TypeScript",
-        "loc": 101,
-        "profile": [60, 41, 0, 0],
+        "loc": 79,
+        "profile": [45, 34, 0, 0],
         "measurements": [
           {"unit_name": "sendMessage", "start": {"line": 18, "column": 23}, "end": {"line": 21, "column": 2}, "value": 4},
-          {"unit_name": "sendImage", "start": {"line": 48, "column": 23}, "end": {"line": 48, "column": 106}, "value": 1},
-          {"unit_name": "sendFile", "start": {"line": 62, "column": 23}, "end": {"line": 65, "column": 2}, "value": 4},
-          {"unit_name": "sendLocation", "start": {"line": 79, "column": 23}, "end": {"line": 99, "column": 2}, "value": 21},
-          {"unit_name": "sendPoll", "start": {"line": 101, "column": 23}, "end": {"line": 104, "column": 2}, "value": 4},
-          {"unit_name": "me", "start": {"line": 134, "column": 23}, "end": {"line": 152, "column": 2}, "value": 6},
-          {"unit_name": "onConnectionUpdate", "start": {"line": 138, "column": 5}, "end": {"line": 150, "column": 6}, "value": 13},
-          {"unit_name": "listGroups", "start": {"line": 154, "column": 23}, "end": {"line": 167, "column": 2}, "value": 14},
-          {"unit_name": "mutateGroup", "start": {"line": 169, "column": 23}, "end": {"line": 188, "column": 2}, "value": 20},
-          {"unit_name": "listGroupParticipants", "start": {"line": 190, "column": 23}, "end": {"line": 203, "column": 2}, "value": 14}
+          {"unit_name": "sendImage", "start": {"line": 45, "column": 23}, "end": {"line": 45, "column": 106}, "value": 1},
+          {"unit_name": "sendFile", "start": {"line": 56, "column": 23}, "end": {"line": 59, "column": 2}, "value": 4},
+          {"unit_name": "sendLocation", "start": {"line": 70, "column": 23}, "end": {"line": 86, "column": 2}, "value": 17},
+          {"unit_name": "sendPoll", "start": {"line": 88, "column": 23}, "end": {"line": 91, "column": 2}, "value": 4},
+          {"unit_name": "me", "start": {"line": 117, "column": 23}, "end": {"line": 126, "column": 2}, "value": 10},
+          {"unit_name": "listGroups", "start": {"line": 128, "column": 23}, "end": {"line": 138, "column": 2}, "value": 11},
+          {"unit_name": "mutateGroup", "start": {"line": 140, "column": 23}, "end": {"line": 156, "column": 2}, "value": 17},
+          {"unit_name": "listGroupParticipants", "start": {"line": 158, "column": 23}, "end": {"line": 168, "column": 2}, "value": 11}
         ]
       },
       "src/utils.ts": {
