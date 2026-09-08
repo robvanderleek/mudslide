@@ -1,7 +1,7 @@
 {
   "version": "0.21.0",
-  "uuid": "df5de02f-6e99-4b35-ab6a-7267891f0e18",
-  "timestamp": "2026-09-03T11:58:17+00:00",
+  "uuid": "73c62997-7ce5-424b-85f5-fe0abfddab12",
+  "timestamp": "2026-09-08T13:17:55+00:00",
   "root": "/github/workspace",
   "repository": {
     "owner": "robvanderleek",
@@ -27,10 +27,10 @@
       },
       "src/": {
         "entries": [
-          "index.ts",
           "whatsapp.ts",
-          "commands.ts",
+          "index.ts",
           "utils.ts",
+          "commands.ts",
           "entities/"
         ],
         "profile": [229, 169, 0, 0]
@@ -43,19 +43,6 @@
       }
     },
     "files": {
-      "src/index.ts": {
-        "checksum": "aa94a8b33c54956fe8cd504075858e7d",
-        "language": "TypeScript",
-        "loc": 80,
-        "profile": [32, 48, 0, 0],
-        "measurements": [
-          {"unit_name": "increaseVerbosity", "start": {"line": 28, "column": 10}, "end": {"line": 39, "column": 2}, "value": 12},
-          {"unit_name": "configureBasicCommands", "start": {"line": 66, "column": 10}, "end": {"line": 82, "column": 2}, "value": 15},
-          {"unit_name": "addGeneralSendOptions", "start": {"line": 84, "column": 10}, "end": {"line": 88, "column": 2}, "value": 5},
-          {"unit_name": "configureSendCommands", "start": {"line": 90, "column": 10}, "end": {"line": 121, "column": 2}, "value": 28},
-          {"unit_name": "configureGroupCommands", "start": {"line": 123, "column": 10}, "end": {"line": 145, "column": 2}, "value": 20}
-        ]
-      },
       "src/whatsapp.ts": {
         "checksum": "3ab79bfc7bd5923e32634a1c058b7506",
         "language": "TypeScript",
@@ -87,6 +74,30 @@
           {"unit_name": "handleNewlines", "start": {"line": 294, "column": 17}, "end": {"line": 298, "column": 2}, "value": 5}
         ]
       },
+      "src/index.ts": {
+        "checksum": "aa94a8b33c54956fe8cd504075858e7d",
+        "language": "TypeScript",
+        "loc": 80,
+        "profile": [32, 48, 0, 0],
+        "measurements": [
+          {"unit_name": "increaseVerbosity", "start": {"line": 28, "column": 10}, "end": {"line": 39, "column": 2}, "value": 12},
+          {"unit_name": "configureBasicCommands", "start": {"line": 66, "column": 10}, "end": {"line": 82, "column": 2}, "value": 15},
+          {"unit_name": "addGeneralSendOptions", "start": {"line": 84, "column": 10}, "end": {"line": 88, "column": 2}, "value": 5},
+          {"unit_name": "configureSendCommands", "start": {"line": 90, "column": 10}, "end": {"line": 121, "column": 2}, "value": 28},
+          {"unit_name": "configureGroupCommands", "start": {"line": 123, "column": 10}, "end": {"line": 145, "column": 2}, "value": 20}
+        ]
+      },
+      "src/utils.ts": {
+        "checksum": "b1981533e3dc75b66f9f7fe8837db9c5",
+        "language": "TypeScript",
+        "loc": 17,
+        "profile": [17, 0, 0, 0],
+        "measurements": [
+          {"unit_name": "question", "start": {"line": 9, "column": 16}, "end": {"line": 11, "column": 2}, "value": 3},
+          {"unit_name": "isValidE164PhoneNumber", "start": {"line": 13, "column": 17}, "end": {"line": 15, "column": 2}, "value": 3},
+          {"unit_name": "readPhoneNumber", "start": {"line": 17, "column": 23}, "end": {"line": 27, "column": 2}, "value": 11}
+        ]
+      },
       "src/commands.ts": {
         "checksum": "36d9923af8f2aa542724de5dd9166f1f",
         "language": "TypeScript",
@@ -102,17 +113,6 @@
           {"unit_name": "listGroups", "start": {"line": 128, "column": 23}, "end": {"line": 138, "column": 2}, "value": 11},
           {"unit_name": "mutateGroup", "start": {"line": 140, "column": 23}, "end": {"line": 156, "column": 2}, "value": 17},
           {"unit_name": "listGroupParticipants", "start": {"line": 158, "column": 23}, "end": {"line": 168, "column": 2}, "value": 11}
-        ]
-      },
-      "src/utils.ts": {
-        "checksum": "b1981533e3dc75b66f9f7fe8837db9c5",
-        "language": "TypeScript",
-        "loc": 17,
-        "profile": [17, 0, 0, 0],
-        "measurements": [
-          {"unit_name": "question", "start": {"line": 9, "column": 16}, "end": {"line": 11, "column": 2}, "value": 3},
-          {"unit_name": "isValidE164PhoneNumber", "start": {"line": 13, "column": 17}, "end": {"line": 15, "column": 2}, "value": 3},
-          {"unit_name": "readPhoneNumber", "start": {"line": 17, "column": 23}, "end": {"line": 27, "column": 2}, "value": 11}
         ]
       },
       "src/entities/GeneralSendOptions.ts": {
