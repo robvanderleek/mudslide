@@ -394,10 +394,10 @@ npx mudslide@latest --proxy login
 ### Connection timeout
 
 The default connection timeout is 3000 ms. This duration can be
-changed using the `--connection-timeout <ms>` flag:
+changed using the `--connect-timeout <ms>` flag:
 
 ```shell
-npx mudslide@latest --connection-timeout 10000 send me 'hello world'
+npx mudslide@latest --connect-timeout 10000 send me 'hello world'
 ```
 
 ### Query timeout
