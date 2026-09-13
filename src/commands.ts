@@ -166,3 +166,42 @@ export async function listGroupParticipants(groupId: string) {
         await terminate(socket);
     });
 }
+
+export async function listCommunities() {
+    checkLoggedIn();
+    const socket = await initWASocket();
+    onConnectionOpen(socket, async () => {
+        const communityData = await socket.communityFetchAllParticipating();
+        for (const community in communityData) {
+            signale.log(`{"id": "${communityData[community].id}", "subject": "${communityData[community].subject}"}`);
+        }
+        await terminate(socket);
+    });
+}
+
+export async function communityInfo(communityId: string) {
+    checkLoggedIn();
+    const socket = await initWASocket();
+    onConnectionOpen(socket, async () => {
+        const communityMetadata = await socket.communityMetadata(communityId);
+        signale.log(JSON.stringify({
+            id: communityMetadata.id,
+            subject: communityMetadata.subject,
+            participants: communityMetadata.participants.map((participant: any) => ({
+                id: participant.id,
+                admin: participant.admin ?? null
+            }))
+        }));
+        await terminate(socket);
+    });
+}
+
+export async function communityInvite(communityId: string) {
+    checkLoggedIn();
+    const socket = await initWASocket();
+    onConnectionOpen(socket, async () => {
+        const code = await socket.communityInviteCode(communityId);
+        signale.log(`{"code": "${code}", "link": "https://chat.whatsapp.com/${code}"}`);
+        await terminate(socket);
+    });
+}
