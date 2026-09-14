@@ -211,9 +211,11 @@ export async function communityInfo(communityId: string) {
         });
         const groupNode = getBinaryNodeChild(result, 'group');
         const participants = groupNode ? getBinaryNodeChildren(groupNode, 'participant') : [];
+        const pictureUrl = await socket.profilePictureUrl(communityId, 'image').catch(() => null);
         signale.log(JSON.stringify({
             id: communityId,
             subject: groupNode?.attrs.subject ?? '',
+            pictureUrl,
             participants: participants.map((participant: any) => ({
                 id: participant.attrs.jid,
                 admin: participant.attrs.type || null,
