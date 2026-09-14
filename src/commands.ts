@@ -204,13 +204,20 @@ export async function communityInfo(communityId: string) {
     checkLoggedIn();
     const socket = await initWASocket();
     onConnectionOpen(socket, async () => {
-        const groupMetadata = await socket.groupMetadata(communityId);
+        const result = await socket.query({
+            tag: 'iq',
+            attrs: {type: 'get', xmlns: 'w:g2', to: communityId},
+            content: [{tag: 'query', attrs: {request: 'interactive'}}]
+        });
+        const groupNode = getBinaryNodeChild(result, 'group');
+        const participants = groupNode ? getBinaryNodeChildren(groupNode, 'participant') : [];
         signale.log(JSON.stringify({
-            id: groupMetadata.id,
-            subject: groupMetadata.subject,
-            participants: groupMetadata.participants.map((participant: any) => ({
-                id: participant.id,
-                admin: participant.admin ?? null
+            id: communityId,
+            subject: groupNode?.attrs.subject ?? '',
+            participants: participants.map((participant: any) => ({
+                id: participant.attrs.jid,
+                admin: participant.attrs.type || null,
+                phoneNumber: participant.attrs.phone_number || null
             }))
         }));
         await terminate(socket);
