@@ -56,6 +56,12 @@ test('check number exists on whatsapp', async () => {
     expect(await checkNumberExistsOnWhatsApp(socket, '3161234567890@s.whatsapp.net')).toBe(true);
 })
 
+test('check number exists on whatsapp, group ids skip the check', async () => {
+    const socket = {onWhatsApp: async () => [{exists: false}]};
+
+    expect(await checkNumberExistsOnWhatsApp(socket, '123456789-987654321@g.us')).toBe(true);
+})
+
 test('detect logged-out disconnect', () => {
     expect(isLoggedOutDisconnect({error: {output: {statusCode: 401}}})).toBe(true);
     expect(isLoggedOutDisconnect({error: {output: {statusCode: 500}}})).toBe(false);
