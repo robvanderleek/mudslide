@@ -1,7 +1,7 @@
 {
   "version": "0.21.0",
-  "uuid": "a7aea77d-03cd-4c66-b891-8f3fe2e151ed",
-  "timestamp": "2026-09-18T08:57:06+00:00",
+  "uuid": "a58315ec-6abe-489e-91ab-c76aca5ce6e8",
+  "timestamp": "2026-09-18T21:43:58+00:00",
   "root": "/github/workspace",
   "repository": {
     "owner": "robvanderleek",
@@ -12,7 +12,7 @@
     "totals": {
       "TypeScript": {
         "files": 5,
-        "lines_of_code": 398,
+        "lines_of_code": 401,
         "functions": 40,
         "hard_to_maintain": 0,
         "unmaintainable": 0
@@ -23,7 +23,7 @@
         "entries": [
           "src/"
         ],
-        "profile": [229, 169, 0, 0]
+        "profile": [232, 169, 0, 0]
       },
       "src/": {
         "entries": [
@@ -33,7 +33,7 @@
           "commands.ts",
           "entities/"
         ],
-        "profile": [229, 169, 0, 0]
+        "profile": [232, 169, 0, 0]
       },
       "src/entities/": {
         "entries": [
@@ -44,10 +44,10 @@
     },
     "files": {
       "src/whatsapp.ts": {
-        "checksum": "3ab79bfc7bd5923e32634a1c058b7506",
+        "checksum": "e1e1871a44fa026dc1dc7c7071b3616a",
         "language": "TypeScript",
-        "loc": 222,
-        "profile": [135, 87, 0, 0],
+        "loc": 225,
+        "profile": [138, 87, 0, 0],
         "measurements": [
           {"unit_name": "getAuthStateCacheFolderLocation", "start": {"line": 21, "column": 17}, "end": {"line": 32, "column": 2}, "value": 12},
           {"unit_name": "clearCacheFolder", "start": {"line": 34, "column": 10}, "end": {"line": 37, "column": 2}, "value": 4},
@@ -66,12 +66,12 @@
           {"unit_name": "onConnectionOpen", "start": {"line": 204, "column": 17}, "end": {"line": 217, "column": 2}, "value": 3},
           {"unit_name": "onConnectionUpdate", "start": {"line": 205, "column": 5}, "end": {"line": 215, "column": 6}, "value": 11},
           {"unit_name": "getWhatsAppId", "start": {"line": 219, "column": 23}, "end": {"line": 233, "column": 2}, "value": 15},
-          {"unit_name": "checkNumberExistsOnWhatsApp", "start": {"line": 235, "column": 23}, "end": {"line": 238, "column": 2}, "value": 4},
-          {"unit_name": "simulateTyping", "start": {"line": 240, "column": 23}, "end": {"line": 244, "column": 2}, "value": 5},
-          {"unit_name": "sendSocketMessage", "start": {"line": 246, "column": 23}, "end": {"line": 247, "column": 73}, "value": 2},
-          {"unit_name": "sendImageHelper", "start": {"line": 264, "column": 23}, "end": {"line": 266, "column": 2}, "value": 3},
-          {"unit_name": "sendFileHelper", "start": {"line": 271, "column": 23}, "end": {"line": 275, "column": 39}, "value": 5},
-          {"unit_name": "handleNewlines", "start": {"line": 294, "column": 17}, "end": {"line": 298, "column": 2}, "value": 5}
+          {"unit_name": "checkNumberExistsOnWhatsApp", "start": {"line": 235, "column": 23}, "end": {"line": 241, "column": 2}, "value": 7},
+          {"unit_name": "simulateTyping", "start": {"line": 243, "column": 23}, "end": {"line": 247, "column": 2}, "value": 5},
+          {"unit_name": "sendSocketMessage", "start": {"line": 249, "column": 23}, "end": {"line": 250, "column": 73}, "value": 2},
+          {"unit_name": "sendImageHelper", "start": {"line": 267, "column": 23}, "end": {"line": 269, "column": 2}, "value": 3},
+          {"unit_name": "sendFileHelper", "start": {"line": 274, "column": 23}, "end": {"line": 278, "column": 39}, "value": 5},
+          {"unit_name": "handleNewlines", "start": {"line": 297, "column": 17}, "end": {"line": 301, "column": 2}, "value": 5}
         ]
       },
       "src/index.ts": {
