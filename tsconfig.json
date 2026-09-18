@@ -1,18 +1,16 @@
 {
-  "include": [
-    "src/**/*"
-  ],
   "compilerOptions": {
-    "rootDir": "src",
     "outDir": "build",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "noEmit": true,
+    "module": "CommonJS",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "rootDir": "src",
     "skipLibCheck": true,
     "strict": true,
-    "target": "ESNext"
-  }
+    "target": "es6"
+  },
+  "include": [
+    "src"
+  ]
 }
