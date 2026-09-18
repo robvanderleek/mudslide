@@ -5,12 +5,14 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "build",
-    "strict": true,
-    "target": "es6",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
     "resolveJsonModule": true,
-    "module": "CommonJS",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ESNext"
   }
 }
