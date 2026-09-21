@@ -212,10 +212,13 @@ export async function communityInfo(communityId: string) {
         const groupNode = getBinaryNodeChild(result, 'group');
         const participants = groupNode ? getBinaryNodeChildren(groupNode, 'participant') : [];
         const pictureUrl = await socket.profilePictureUrl(communityId, 'image').catch(() => null);
+        const inviteCode = await socket.communityInviteCode(communityId).catch(() => null);
         signale.log(JSON.stringify({
             id: communityId,
             subject: groupNode?.attrs.subject ?? '',
             pictureUrl,
+            inviteCode,
+            inviteLink: inviteCode ? `https://chat.whatsapp.com/${inviteCode}` : null,
             participants: participants.map((participant: any) => ({
                 id: participant.attrs.jid,
                 admin: participant.attrs.type || null,
