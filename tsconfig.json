@@ -1,16 +1,16 @@
 {
-  "include": [
-    "src/**/*"
-  ],
   "compilerOptions": {
-    "rootDir": "src",
     "outDir": "build",
-    "strict": true,
-    "target": "es6",
-    "resolveJsonModule": true,
     "module": "CommonJS",
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
-  }
+    "rootDir": "src",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es6"
+  },
+  "include": [
+    "src"
+  ]
 }
