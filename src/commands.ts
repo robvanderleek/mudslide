@@ -228,13 +228,3 @@ export async function communityInfo(communityId: string) {
         await terminate(socket);
     });
 }
-
-export async function communityInvite(communityId: string) {
-    checkLoggedIn();
-    const socket = await initWASocket();
-    onConnectionOpen(socket, async () => {
-        const code = await socket.communityInviteCode(communityId);
-        signale.log(`{"code": "${code}", "link": "https://chat.whatsapp.com/${code}"}`);
-        await terminate(socket);
-    });
-}

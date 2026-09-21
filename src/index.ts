@@ -3,7 +3,6 @@ import {Command, Option, program} from "commander";
 import {globalOptions, loginWithPairingCode, loginWithQrCode, logout, mudslideFooter} from "./whatsapp";
 import {
     communityInfo,
-    communityInvite,
     listCommunities,
     listGroupParticipants,
     listGroups,
@@ -156,13 +155,8 @@ function configureCommunityCommands() {
 
     program
         .command('community-info <community-id>')
-        .description('Show community metadata and participants')
+        .description('Show community metadata, participants, profile picture, and invite link')
         .action((communityId) => communityInfo(communityId));
-
-    program
-        .command('community-invite <community-id>')
-        .description('Get community invite code/link')
-        .action((communityId) => communityInvite(communityId));
 }
 
 configureBasicCommands();
