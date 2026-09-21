@@ -350,6 +350,30 @@ Group participants can be listed as follows:
 npx mudslide@latest list-group 123456789-987654321@g.us 
 ```
 
+## List your communities
+
+To list all the WhatsApp Communities you are participating in:
+
+```shell
+npx mudslide@latest communities
+```
+
+this will show a list of community IDs and subjects. Pass `--admin-only` to
+only list communities you administer:
+
+```shell
+npx mudslide@latest communities --admin-only
+```
+
+## Show community info
+
+To show a community's metadata, participants, profile picture, and invite
+link:
+
+```shell
+npx mudslide@latest community-info 123456789-987654321@g.us
+```
+
 ## Show current user details
 
 To get the WhatsApp ID of the logged in user:
