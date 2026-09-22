@@ -155,7 +155,7 @@ function configureCommunityCommands() {
 
     program
         .command('community-info <community-id>')
-        .description('Show community metadata, participants, profile picture, and invite link')
+        .description('Show community information')
         .action((communityId) => communityInfo(communityId));
 }
 
