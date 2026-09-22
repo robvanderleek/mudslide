@@ -1,4 +1,5 @@
 import signale from "signale";
+import {getBinaryNodeChild, getBinaryNodeChildren} from "baileys";
 import {
     checkLoggedIn,
     checkValidFile,
@@ -6,6 +7,7 @@ import {
     getWhatsAppId,
     handleNewlines,
     initWASocket,
+    isOwnParticipant,
     onConnectionOpen,
     parseGeoLocation,
     sendFileHelper,
@@ -163,6 +165,66 @@ export async function listGroupParticipants(groupId: string) {
         groupMetadata.participants.forEach((participant: any) => {
             signale.log(`{"id": "${participant.id}"}`);
         });
+        await terminate(socket);
+    });
+}
+
+async function fetchParticipatingCommunities(socket: any) {
+    const result = await socket.query({
+        tag: 'iq',
+        attrs: {to: '@g.us', xmlns: 'w:g2', type: 'get'},
+        content: [{
+            tag: 'participating',
+            attrs: {},
+            content: [{tag: 'participants', attrs: {}}, {tag: 'description', attrs: {}}]
+        }]
+    });
+    const groupsNode = getBinaryNodeChild(result, 'groups');
+    const groups = groupsNode ? getBinaryNodeChildren(groupsNode, 'group') : [];
+    return groups.filter((group: any) => !!getBinaryNodeChild(group, 'parent'));
+}
+
+export async function listCommunities(options: { adminOnly?: boolean } = {}) {
+    checkLoggedIn();
+    const socket = await initWASocket();
+    onConnectionOpen(socket, async () => {
+        let communities = await fetchParticipatingCommunities(socket);
+        if (options.adminOnly) {
+            communities = communities.filter((community: any) =>
+                getBinaryNodeChildren(community, 'participant').some((p: any) => isOwnParticipant(socket, p)));
+        }
+        for (const community of communities) {
+            signale.log(`{"id": "${community.attrs.id}@g.us", "subject": "${community.attrs.subject}"}`);
+        }
+        await terminate(socket);
+    });
+}
+
+export async function communityInfo(communityId: string) {
+    checkLoggedIn();
+    const socket = await initWASocket();
+    onConnectionOpen(socket, async () => {
+        const result = await socket.query({
+            tag: 'iq',
+            attrs: {type: 'get', xmlns: 'w:g2', to: communityId},
+            content: [{tag: 'query', attrs: {request: 'interactive'}}]
+        });
+        const groupNode = getBinaryNodeChild(result, 'group');
+        const participants = groupNode ? getBinaryNodeChildren(groupNode, 'participant') : [];
+        const pictureUrl = await socket.profilePictureUrl(communityId, 'image').catch(() => null);
+        const inviteCode = await socket.communityInviteCode(communityId).catch(() => null);
+        signale.log(JSON.stringify({
+            id: communityId,
+            subject: groupNode?.attrs.subject ?? '',
+            pictureUrl,
+            inviteCode,
+            inviteLink: inviteCode ? `https://chat.whatsapp.com/${inviteCode}` : null,
+            participants: participants.map((participant: any) => ({
+                id: participant.attrs.jid,
+                admin: participant.attrs.type || null,
+                phoneNumber: participant.attrs.phone_number || null
+            }))
+        }));
         await terminate(socket);
     });
 }

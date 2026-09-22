@@ -2,6 +2,8 @@
 import {Command, Option, program} from "commander";
 import {globalOptions, loginWithPairingCode, loginWithQrCode, logout, mudslideFooter} from "./whatsapp";
 import {
+    communityInfo,
+    listCommunities,
     listGroupParticipants,
     listGroups,
     me,
@@ -144,9 +146,23 @@ function configureGroupCommands() {
         .action((groupId, phoneNumber) => mutateGroup(groupId, phoneNumber, 'remove'));
 }
 
+function configureCommunityCommands() {
+    program
+        .command('communities')
+        .description('List all your communities')
+        .option('--admin-only', 'Only list communities you administer')
+        .action((options) => listCommunities(options));
+
+    program
+        .command('community-info <community-id>')
+        .description('Show community information')
+        .action((communityId) => communityInfo(communityId));
+}
+
 configureBasicCommands();
 configureSendCommands();
 configureGroupCommands();
+configureCommunityCommands();
 program.addHelpText('after', `
 
 Examples:
