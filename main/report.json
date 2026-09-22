@@ -1,7 +1,7 @@
 {
   "version": "0.21.0",
-  "uuid": "a58315ec-6abe-489e-91ab-c76aca5ce6e8",
-  "timestamp": "2026-09-18T21:43:58+00:00",
+  "uuid": "f376d2f8-4fb9-4d34-8fc9-ebbc5071bc4c",
+  "timestamp": "2026-09-22T21:50:37+00:00",
   "root": "/github/workspace",
   "repository": {
     "owner": "robvanderleek",
@@ -12,8 +12,8 @@
     "totals": {
       "TypeScript": {
         "files": 5,
-        "lines_of_code": 401,
-        "functions": 40,
+        "lines_of_code": 463,
+        "functions": 46,
         "hard_to_maintain": 0,
         "unmaintainable": 0
       }
@@ -23,7 +23,7 @@
         "entries": [
           "src/"
         ],
-        "profile": [232, 169, 0, 0]
+        "profile": [266, 197, 0, 0]
       },
       "src/": {
         "entries": [
@@ -33,7 +33,7 @@
           "commands.ts",
           "entities/"
         ],
-        "profile": [232, 169, 0, 0]
+        "profile": [266, 197, 0, 0]
       },
       "src/entities/": {
         "entries": [
@@ -44,10 +44,10 @@
     },
     "files": {
       "src/whatsapp.ts": {
-        "checksum": "e1e1871a44fa026dc1dc7c7071b3616a",
+        "checksum": "83629d58b1ebccb4a231d0572c093b33",
         "language": "TypeScript",
-        "loc": 225,
-        "profile": [138, 87, 0, 0],
+        "loc": 229,
+        "profile": [142, 87, 0, 0],
         "measurements": [
           {"unit_name": "getAuthStateCacheFolderLocation", "start": {"line": 21, "column": 17}, "end": {"line": 32, "column": 2}, "value": 12},
           {"unit_name": "clearCacheFolder", "start": {"line": 34, "column": 10}, "end": {"line": 37, "column": 2}, "value": 4},
@@ -67,24 +67,26 @@
           {"unit_name": "onConnectionUpdate", "start": {"line": 205, "column": 5}, "end": {"line": 215, "column": 6}, "value": 11},
           {"unit_name": "getWhatsAppId", "start": {"line": 219, "column": 23}, "end": {"line": 233, "column": 2}, "value": 15},
           {"unit_name": "checkNumberExistsOnWhatsApp", "start": {"line": 235, "column": 23}, "end": {"line": 241, "column": 2}, "value": 7},
-          {"unit_name": "simulateTyping", "start": {"line": 243, "column": 23}, "end": {"line": 247, "column": 2}, "value": 5},
-          {"unit_name": "sendSocketMessage", "start": {"line": 249, "column": 23}, "end": {"line": 250, "column": 73}, "value": 2},
-          {"unit_name": "sendImageHelper", "start": {"line": 267, "column": 23}, "end": {"line": 269, "column": 2}, "value": 3},
-          {"unit_name": "sendFileHelper", "start": {"line": 274, "column": 23}, "end": {"line": 278, "column": 39}, "value": 5},
-          {"unit_name": "handleNewlines", "start": {"line": 297, "column": 17}, "end": {"line": 301, "column": 2}, "value": 5}
+          {"unit_name": "isOwnParticipant", "start": {"line": 243, "column": 17}, "end": {"line": 246, "column": 2}, "value": 4},
+          {"unit_name": "simulateTyping", "start": {"line": 248, "column": 23}, "end": {"line": 252, "column": 2}, "value": 5},
+          {"unit_name": "sendSocketMessage", "start": {"line": 254, "column": 23}, "end": {"line": 255, "column": 73}, "value": 2},
+          {"unit_name": "sendImageHelper", "start": {"line": 272, "column": 23}, "end": {"line": 274, "column": 2}, "value": 3},
+          {"unit_name": "sendFileHelper", "start": {"line": 279, "column": 23}, "end": {"line": 283, "column": 39}, "value": 5},
+          {"unit_name": "handleNewlines", "start": {"line": 302, "column": 17}, "end": {"line": 306, "column": 2}, "value": 5}
         ]
       },
       "src/index.ts": {
-        "checksum": "aa94a8b33c54956fe8cd504075858e7d",
+        "checksum": "39ffd915b4c7bcbe54763c2871bc467a",
         "language": "TypeScript",
-        "loc": 80,
-        "profile": [32, 48, 0, 0],
+        "loc": 91,
+        "profile": [43, 48, 0, 0],
         "measurements": [
-          {"unit_name": "increaseVerbosity", "start": {"line": 28, "column": 10}, "end": {"line": 39, "column": 2}, "value": 12},
-          {"unit_name": "configureBasicCommands", "start": {"line": 66, "column": 10}, "end": {"line": 82, "column": 2}, "value": 15},
-          {"unit_name": "addGeneralSendOptions", "start": {"line": 84, "column": 10}, "end": {"line": 88, "column": 2}, "value": 5},
-          {"unit_name": "configureSendCommands", "start": {"line": 90, "column": 10}, "end": {"line": 121, "column": 2}, "value": 28},
-          {"unit_name": "configureGroupCommands", "start": {"line": 123, "column": 10}, "end": {"line": 145, "column": 2}, "value": 20}
+          {"unit_name": "increaseVerbosity", "start": {"line": 30, "column": 10}, "end": {"line": 41, "column": 2}, "value": 12},
+          {"unit_name": "configureBasicCommands", "start": {"line": 68, "column": 10}, "end": {"line": 84, "column": 2}, "value": 15},
+          {"unit_name": "addGeneralSendOptions", "start": {"line": 86, "column": 10}, "end": {"line": 90, "column": 2}, "value": 5},
+          {"unit_name": "configureSendCommands", "start": {"line": 92, "column": 10}, "end": {"line": 123, "column": 2}, "value": 28},
+          {"unit_name": "configureGroupCommands", "start": {"line": 125, "column": 10}, "end": {"line": 147, "column": 2}, "value": 20},
+          {"unit_name": "configureCommunityCommands", "start": {"line": 149, "column": 10}, "end": {"line": 160, "column": 2}, "value": 11}
         ]
       },
       "src/utils.ts": {
@@ -99,20 +101,24 @@
         ]
       },
       "src/commands.ts": {
-        "checksum": "36d9923af8f2aa542724de5dd9166f1f",
+        "checksum": "7f6c76be384c4179486e01d98a063208",
         "language": "TypeScript",
-        "loc": 79,
-        "profile": [45, 34, 0, 0],
+        "loc": 126,
+        "profile": [64, 62, 0, 0],
         "measurements": [
-          {"unit_name": "sendMessage", "start": {"line": 18, "column": 23}, "end": {"line": 21, "column": 2}, "value": 4},
-          {"unit_name": "sendImage", "start": {"line": 45, "column": 23}, "end": {"line": 45, "column": 106}, "value": 1},
-          {"unit_name": "sendFile", "start": {"line": 56, "column": 23}, "end": {"line": 59, "column": 2}, "value": 4},
-          {"unit_name": "sendLocation", "start": {"line": 70, "column": 23}, "end": {"line": 86, "column": 2}, "value": 17},
-          {"unit_name": "sendPoll", "start": {"line": 88, "column": 23}, "end": {"line": 91, "column": 2}, "value": 4},
-          {"unit_name": "me", "start": {"line": 117, "column": 23}, "end": {"line": 126, "column": 2}, "value": 10},
-          {"unit_name": "listGroups", "start": {"line": 128, "column": 23}, "end": {"line": 138, "column": 2}, "value": 11},
-          {"unit_name": "mutateGroup", "start": {"line": 140, "column": 23}, "end": {"line": 156, "column": 2}, "value": 17},
-          {"unit_name": "listGroupParticipants", "start": {"line": 158, "column": 23}, "end": {"line": 168, "column": 2}, "value": 11}
+          {"unit_name": "sendMessage", "start": {"line": 20, "column": 23}, "end": {"line": 23, "column": 2}, "value": 4},
+          {"unit_name": "sendImage", "start": {"line": 47, "column": 23}, "end": {"line": 47, "column": 106}, "value": 1},
+          {"unit_name": "sendFile", "start": {"line": 58, "column": 23}, "end": {"line": 61, "column": 2}, "value": 4},
+          {"unit_name": "sendLocation", "start": {"line": 72, "column": 23}, "end": {"line": 88, "column": 2}, "value": 17},
+          {"unit_name": "sendPoll", "start": {"line": 90, "column": 23}, "end": {"line": 93, "column": 2}, "value": 4},
+          {"unit_name": "me", "start": {"line": 119, "column": 23}, "end": {"line": 128, "column": 2}, "value": 10},
+          {"unit_name": "listGroups", "start": {"line": 130, "column": 23}, "end": {"line": 140, "column": 2}, "value": 11},
+          {"unit_name": "mutateGroup", "start": {"line": 142, "column": 23}, "end": {"line": 158, "column": 2}, "value": 17},
+          {"unit_name": "listGroupParticipants", "start": {"line": 160, "column": 23}, "end": {"line": 170, "column": 2}, "value": 11},
+          {"unit_name": "fetchParticipatingCommunities", "start": {"line": 172, "column": 16}, "end": {"line": 185, "column": 2}, "value": 14},
+          {"unit_name": "getBinaryNodeChildren", "start": {"line": 183, "column": 33}, "end": {"line": 187, "column": 76}, "value": 4},
+          {"unit_name": "listCommunities", "start": {"line": 187, "column": 23}, "end": {"line": 187, "column": 71}, "value": 1},
+          {"unit_name": "communityInfo", "start": {"line": 203, "column": 23}, "end": {"line": 230, "column": 2}, "value": 28}
         ]
       },
       "src/entities/GeneralSendOptions.ts": {
